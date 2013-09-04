@@ -1,0 +1,75 @@
+#container {
+  
+}
+
+img.photo {
+  min-width: 640px;
+  max-width: 640px;
+}
+#photo_frame {
+  position: relative;
+}
+
+#photo_frame img.hotspot {
+  position: absolute;
+  border: 0.2em solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 96px;
+  height: 96px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+}
+@media screen and (min-width: 320px) and (orientation: portrait) {
+  img.photo {
+    min-width: 320px;
+    max-width: 320px;
+  }
+  #photo_frame img.hotspot {
+    width: 60px;
+    height: 60px;
+  }
+}
+@media not screen and (min-width: 320px) and (orientation: portrait) {
+  #photo_frame img.hotspot {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+#photo_frame img.hotspot:hover {
+  cursor: pointer; 
+}
+
+#photo_frame img.expanding {
+}
+
+.pagination {
+  text-align: center;
+}
+.pagination a {
+  text-decoration: none;
+}
+
+@keyframes fade {
+    from { border-color: #FFF; }
+    70% { border-color: rgba(255, 255, 255, 0.4); }
+    to { border-color: #FFF; }
+}
+ 
+@-webkit-keyframes fade {
+    from { border-color: #FFF; }
+    75% { border-color: rgba(255, 255, 255, 0.4); }
+    to { border-color: #FFF; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+.blink:hover {
+  /*-webkit-animation-fill-mode: backwards;*/
+  -webkit-animation-duration: 1000ms;
+}
