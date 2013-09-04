@@ -10,12 +10,12 @@
     
     <link rel="icon" href="img/favicons/favicon.ico" type="image/x-icon">
     <title>由我图记</title>
-    <link rel="stylesheet" href="assets/mobile/normalize.css" />
-    <link rel="stylesheet" href="assets/mobile/foundation.css" />
-    <link rel="stylesheet" href="assets/mobile/stamp.css" />
-    <link rel="stylesheet" href="assets/mobile/master.css" />
+    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/asset/mobile/normalize.css" />
+    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/asset/mobile/foundation.css" />
+    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/asset/mobile/stamp.css" />
+    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/asset/mobile/master.css" />
 	<script src="http://js.suc.itc.cn/jquery/jquery-1.9.1.js"></script>
-	<script src="js/hogan.js"></script>
+	<script src="http://s5.suc.itc.cn/ux_tudian/js/hogan.js"></script>
   </head>
   <body class="antialiased off-canvas hide-extras">
   	<div id="container" class="main">
@@ -30,18 +30,18 @@
   			</section>
 
   			<section class="stamp first">
-					<div><img class="img-first-bg" src="assets/mobile/img_first_bg.png"/></div>
+					<div><img class="img-first-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_first_bg.png"/></div>
 					<div class="pos-rel btn-box">
-						<a href="javascript:;"><img src="assets/mobile/btn_first_bg.png"/></a>
+						<a href="javascript:;"><img src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/btn_first_bg.png"/></a>
   				</div>
   			</section>
 
   			<section class="stamp second">
-					<div><img src="assets/mobile/img_second_bg.jpg" /></div>
+					<div><img src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg.jpg" /></div>
 					<div class="pos-rel png-box">
-						<img class="second-bg" src="assets/mobile/img_second_bg_p1.png" />
-						<div class="btn-wrapper"><a href="javascript:;"><img class="img_second_bg" src="assets/mobile/btn_second_bg.png" /></a></div>
-						<img class="second-bg" src="assets/mobile/img_second_bg_p2.png" />
+						<img class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p1.png" />
+						<div class="btn-wrapper"><a href="javascript:;"><img class="img_second_bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/btn_second_bg.png" /></a></div>
+						<img class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p2.png" />
 					</div>
   			</section>
 
@@ -52,15 +52,15 @@
 		  		var oBtn = $('.first .btn-box a img'),
 		  				tBtn = $('.second .png-box a img');
 
-					oBtn.mousedown(function() {
-						oBtn.attr('src', 'assets/mobile/btn_first_bg_hover.png');
-					}).mouseout(function() {
-						oBtn.attr('src', 'assets/mobile/btn_first_bg.png');
+					oBtn.on('mousedown',function() {
+						oBtn.attr('src', 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/btn_first_bg_hover.png');
+					}).on('mouseup',function() {
+						oBtn.attr('src', 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/btn_first_bg.png');
 					});
-					tBtn.mousedown(function() {
-						tBtn.attr('src', 'assets/mobile/btn_second_bg_hover.png');
-					}).mouseout(function() {
-						tBtn.attr('src', 'assets/mobile/btn_second_bg.png');
+					tBtn.on('mousedown',function() {
+						tBtn.attr('src', 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/btn_second_bg_hover.png');
+					}).on('mouseup',function() {
+						tBtn.attr('src', 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/btn_second_bg.png');
 					});
 
 				})
@@ -80,7 +80,7 @@
           prev_id: '',
           top: 0,
           left: 0,
-          src: 'assets/mobile/db/001.jpg',
+          src: 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/db/001.jpg',
           hotspot: [
             '003',
             '006'
@@ -93,7 +93,7 @@
           parent_id: '003',
           top: 29,
           left: 24,
-          src: 'assets/mobile/db/002.jpg',
+          src: 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/db/002.jpg',
           hotspot: [
           ]
         },
@@ -104,7 +104,7 @@
           parent_id: '001',
           top: 50,
           left: 20,
-          src: 'assets/mobile/db/003.jpg',
+          src: 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/db/003.jpg',
           hotspot: [
             '002'
           ]
@@ -116,7 +116,7 @@
           parent_id: '',
           top: 0,
           left: 0,
-          src: 'assets/mobile/db/004.jpg',
+          src: 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/db/004.jpg',
           hotspot: [
             '005'
           ]
@@ -128,7 +128,7 @@
           parent_id: '004',
           top: 18,
           left: 38,
-          src: 'assets/mobile/db/005.jpg',
+          src: 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/db/005.jpg',
           hotspot: [
           ]
         },
@@ -139,7 +139,7 @@
           parent_id: '001',
           top: 18,
           left: 38,
-          src: 'assets/mobile/db/005.jpg',
+          src: 'http://s5.suc.itc.cn/ux_tudian/asset/mobile/db/005.jpg',
           hotspot: [
           ]
         }
@@ -162,11 +162,12 @@
       , template = {
 
         spot: [
-'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="assets/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
         ].join(''),
 
         photo: [
 '<div id="{{dom_id}}" class="photo-wrapper" style="display:none;">',
+'<div class="pos-abs pageReference">1 / 2</div>',
 '{{#hotspot}}',
 '{{>spot}}',
 '{{/hotspot}}',
