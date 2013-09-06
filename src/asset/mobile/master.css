@@ -9,7 +9,16 @@ img.photo {
 #photo_frame {
   position: relative;
 }
-
+#photo_frame .photos-wrapper {
+  position: relative;
+  max-width: 1920px;
+}
+#photo_frame .photo-wrapper {
+  position: relative;
+  float: left;
+  display: inline-block;
+  clear: none;
+}
 #photo_frame img.hotspot {
   position: absolute;
   border: 0.2em solid #fff;
