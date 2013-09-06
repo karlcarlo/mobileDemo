@@ -9,6 +9,58 @@ var MIN_WIDTH = 960,
 
 var animObjects = [];
 
+var partOneData = {
+	pics: [
+		'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll01.jpg',
+		'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll02.jpg',
+		'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll03.jpg'
+	]
+};
+
+var partOneSlide = {
+	delay: 2000,
+	template: [
+		'<ul>',
+		'{{#pics}}',
+		'<li><img src="{{.}}" alt="" /></li>',
+		'{{/pics}}',
+		'</ul>'
+	].join(''),
+	init: function($box){
+		$box.html(Hogan.compile(this.template).render(partOneData));
+		this.$box = $box;
+		this.$ul = $box.find('ul');
+		this.$ul.css({
+			width: partOneData.pics.length * 224
+		})
+		this.curItem = this.$ul.find('li:first');
+		this.tid = null;
+	},
+	/**
+	 * [start description]
+	 * @param  {[number]} index [从哪张图开始播放，0-n]
+	 * @return {[type]}       [description]
+	 */
+	start: function(index){
+		this.tid = setInterval($.proxy(this.slide,this),this,delay);
+	},
+	/**
+	 * [stop description]
+	 * @param  {[type]} index [停止在哪张，0-n]
+	 * @return {[type]}       [description]
+	 */
+	stop: function(){
+		clearInterval(this.tid);
+	},
+	slide: function(){
+		if(!this.curItem.next().length){
+			//如果没有下一个，把第一张挪到最后
+		}
+	}
+};
+
+// $li.index() * 126 - 22 = 第二个滚动的坐标
+
 var SA = {
 	init: function(){
 		//先回到顶部
@@ -21,6 +73,8 @@ var SA = {
 			part3: $('#part3'),
 			part4: $('#part4')
 		};
+		partOneSlide.init(this.$elems.part1.find('div.pic-scroll'));
+		partOneSlide.start();
 		//回到顶部
 		this.backTop();
 		//设置容器宽高
@@ -51,13 +105,16 @@ var SA = {
 	},
 	scrollToLinks: function(){
 		var self = this;
-		$('a.link-one').click(function(){
+		$('a.link-one').click(function(event){
+			event.preventDefault();
 			self.$elems.part2.ScrollTo();
 		});
-		$('a.link-two').click(function(){
+		$('a.link-two').click(function(event){
+			event.preventDefault();
 			self.$elems.part3.ScrollTo();
 		});
-		$('a.link-three').click(function(){
+		$('a.link-three').click(function(event){
+			event.preventDefault();
 			self.$elems.part4.ScrollTo();
 		});
 	},
@@ -99,13 +156,13 @@ var SA = {
 		//初始化动画的一些左边信息
 		var $mov1 = $('#mov1'),
 			$mov2 = $('#mov2'),
-			$gif = this.$elems.part3.find('.book img');
+			$book_img = this.$elems.part3.find('.book img');
 
 		var part2_offset = this.$elems.part2.offset(),
-			part3_offest = this.$elems.part3.offset(),
+			part3_offset = this.$elems.part3.offset(),
 			part4_offset = this.$elems.part4.offset();
 
-		$gif.hide();
+		$book_img.eq(1).hide();
 
 		//第一个关键帧
 		var at1 = 107,
@@ -148,9 +205,9 @@ var SA = {
 		);
 
 		//第二个关键帧
-		var at2 = this.$elems.part2.offset().top + 170,
+		var at2 = part2_offset.top + 170,
 			to2 = this.$elems.part3.find('div.book').offset(),
-			dur2 = part3_offest.top - at2;
+			dur2 = part3_offset.top - at2;
 
 		animObjects.push(at2);
 		this.controller.addTween(
@@ -169,20 +226,36 @@ var SA = {
 					},
 					onComplete: function(){
 						$mov1.fadeOut();
-						$gif.fadeIn();
+						$book_img.eq(0).hide();
+						$book_img.eq(1).fadeIn();
 						console.log('complete')
 					},
 					onUpdate: function(){
 						var _offset = $mov1.offset();
 						if(_offset.left != to2.left || _offset.top != to2.top){
 							$mov1.show();
-							$gif.hide();
+							$book_img.eq(0).show();
+							$book_img.eq(1).hide();
 						}
 					}
 				}
 			),
 			dur2
 		);
+
+		$mov2.css({
+			left: to2.left,
+			top: to2.top,
+			width: 341,
+			height: 443,
+			zIndex: 100
+		});
+
+		//第三个关键帧
+		var at3 = part3_offset.top + 158,
+			to3 = this.$elems.part3.find('div.book').offset(),
+			dur3 = part3_offset.top - at3;
+
 
 	},
 	removeTweens: function(){
