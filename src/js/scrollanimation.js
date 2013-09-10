@@ -9,16 +9,18 @@ var MIN_WIDTH = 960,
 
 var animObjects = [];
 
-var partOneData = {
-	pics: [
-		'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll01.jpg',
-		'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll02.jpg',
-		'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll03.jpg'
-	]
-};
 
+//第一屏的滚动效果
 var partOneSlide = {
 	delay: 2000,
+	dur: 500,
+	data: {
+		pics: [
+			'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll01.jpg',
+			'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll02.jpg',
+			'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_scroll03.jpg'
+		]
+	},
 	template: [
 		'<ul>',
 		'{{#pics}}',
@@ -27,39 +29,196 @@ var partOneSlide = {
 		'</ul>'
 	].join(''),
 	init: function($box){
-		$box.html(Hogan.compile(this.template).render(partOneData));
 		this.$box = $box;
-		this.$ul = $box.find('ul');
-		this.$ul.css({
-			width: partOneData.pics.length * 224
-		})
-		this.curItem = this.$ul.find('li:first');
+		this.$curItem = null;
 		this.tid = null;
+		this.render();
 	},
-	/**
-	 * [start description]
-	 * @param  {[number]} index [从哪张图开始播放，0-n]
-	 * @return {[type]}       [description]
-	 */
-	start: function(index){
-		this.tid = setInterval($.proxy(this.slide,this),this,delay);
+	render: function(){
+		this.$ul && this.$ul.stop();
+		this.$box.html(Hogan.compile(this.template).render(this.data));
+		this.$ul = this.$box.find('ul');
+		this.$ul.css({
+			width: this.data.pics.length * 224
+		});
 	},
-	/**
-	 * [stop description]
-	 * @param  {[type]} index [停止在哪张，0-n]
-	 * @return {[type]}       [description]
-	 */
-	stop: function(){
+	start: function(rebuild){
+		if(rebuild) this.render();
+		if(!this.$curItem) this.$curItem = this.$ul.find('li:first');
+		this.tid = setInterval($.proxy(this.slide,this),this.delay+this.dur);
+		return this;
+	},
+	stop: function(index){
 		clearInterval(this.tid);
+		this.render();
+		this.$curItem = null;
+		if(index > 0) this.$ul.find('li:lt('+index+')').hide();
+		return this;
 	},
 	slide: function(){
-		if(!this.curItem.next().length){
+		if(!this.$curItem.next().length){
 			//如果没有下一个，把第一张挪到最后
+			this.$ul.append(this.$ul.find('li:first'));
 		}
+		this.$ul
+		.css({
+			left: - (this.$curItem.index() * 224)
+		})
+		.animate({
+			left: '-=224'
+		},this.dur,'swing');
+		this.$curItem = this.$curItem.next();
 	}
 };
 
+//第4屏的滚动效果
 // $li.index() * 126 - 22 = 第二个滚动的坐标
+var partFourSlide = {
+	delay: 1500,
+	dur: 200,
+	data: {
+		pics: [
+			{
+				text: '1',
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+			},
+			{
+				text: '2',
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+			},
+			{
+				text: '3',
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+			},
+			{
+				text: '4',
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+			},
+			{
+				text: '5',
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+			},
+			{
+				text: '6',
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+			}
+		]
+	},
+	template: [
+		'<ul>',
+		'{{#pics}}',
+		'<li data-bg="{{bg}}" data-text="{{text}}"><img src="{{pic}}" alt="" /></li>',
+		'{{/pics}}',
+		'</ul>'
+	].join(''),
+	init: function($box,$bg){
+		this.$box = $box;
+		this.$bg = $bg;
+		this.$curItem = null;
+		this.tid = null;
+		this.render();
+	},
+	render: function(){
+		this.$ul && this.$ul.stop();
+		this.$box.html(Hogan.compile(this.template).render(this.data));
+		this.$ul = this.$box.find('ul');
+		this.$ul.css({
+			width: this.data.pics.length * 126
+		});
+		this.setCurItem();
+	},
+	setCurItem: function(index){
+		index = index || 1;
+		this.$curItem = this.$ul.find('li').eq(index);
+		this.$ul.css({
+			left: - (this.$curItem.index() * 126 - 22) 
+		});
+	},
+	start: function(rebuild){
+		if(rebuild) this.render();
+		this.show();
+		//这里写动画展开效果
+		var $lis = this.$ul.find('li'),
+			curIndex = this.$curItem.index(),
+			center = this.$curItem.position(),
+			pos = [];
+		$lis.each(function(){
+			pos.push($(this).position());
+		});
+		var tl = new TimelineLite({
+			onComplete: function(){
+				$lis.each(function(){
+					$(this).css({
+						position: 'static',
+						left: 'auto',
+						top: 'auto',
+					});
+				});
+			},
+			paused: true
+
+		}),
+			tweens = [];
+		$lis.each(function(i){
+			var $li = $(this);
+			$li.css({
+				position: 'absolute',
+				left: pos[i].left,
+				top: pos[i].top,
+				zIndex: (i == curIndex ? 100 : 1)
+			});
+
+			tweens.push(TweenMax.from( $li, .25, {css:{top: center.top, left: center.left}}));
+		});
+		
+		tl.add(tweens);
+		tl.play();
+		this.tid = setInterval($.proxy(this.slide,this),this.delay+this.dur);
+		return this;
+	},
+	stop: function(){
+		clearInterval(this.tid);
+		this.render();
+		return this;
+	},
+	slide: function(){
+		var self = this;
+		if(this.$curItem.prevAll().length == 1){
+			//如果没有下一个，把第一张挪到最后
+			this.$ul.prepend(this.$ul.find('li:last'));
+		}
+		this.setCurItem(this.$curItem.index());
+		this.$ul
+		.animate({
+			left: '+=126'
+		},
+		this.dur,
+		'swing',
+		function(){
+			self.$bg.html('<img width="170" height="222" src="'+self.$curItem.attr('data-bg')+'" />');
+		});
+		this.$curItem = this.$curItem.prev();
+	},
+	hide: function(){
+		this.$ul.hide();
+		this.$bg.children().hide();
+		return this;
+	},
+	show: function(){
+		this.$ul.show();
+		this.$bg.children().show();
+		return this;
+	},
+	clone: function(){
+		return this.$ul.clone();
+	}
+};
 
 var SA = {
 	init: function(){
@@ -75,6 +234,9 @@ var SA = {
 		};
 		partOneSlide.init(this.$elems.part1.find('div.pic-scroll'));
 		partOneSlide.start();
+		partFourSlide.init(this.$elems.part4.find('div.img-scroll'),this.$elems.part4.find('div.bg'));
+		//partFourSlide.hide();
+		
 		//回到顶部
 		this.backTop();
 		//设置容器宽高
@@ -162,7 +324,7 @@ var SA = {
 			part3_offset = this.$elems.part3.offset(),
 			part4_offset = this.$elems.part4.offset();
 
-		$book_img.eq(1).hide();
+		$book_img.eq(0).show().end().eq(1).hide();
 
 		//第一个关键帧
 		var at1 = 107,
@@ -194,10 +356,12 @@ var SA = {
 					},
 					onStart: function(){
 						$mov1.show();
+						partOneSlide.stop(1);
 					},
 					onReverseComplete: function(){
 						$mov1.hide();
-						console.log('reversed')
+						partOneSlide.start(true);
+						//console.log('reversed')
 					}
 				}
 			),
@@ -205,7 +369,7 @@ var SA = {
 		);
 
 		//第二个关键帧
-		var at2 = part2_offset.top + 170,
+		var at2 = part2_offset.top + 180,
 			to2 = this.$elems.part3.find('div.book').offset(),
 			dur2 = part3_offset.top - at2;
 
@@ -227,8 +391,8 @@ var SA = {
 					onComplete: function(){
 						$mov1.fadeOut();
 						$book_img.eq(0).hide();
-						$book_img.eq(1).fadeIn();
-						console.log('complete')
+						$book_img.eq(1).fadeIn('fast');
+						//console.log('at2 complete')
 					},
 					onUpdate: function(){
 						var _offset = $mov1.offset();
@@ -252,17 +416,62 @@ var SA = {
 		});
 
 		//第三个关键帧
-		var at3 = part3_offset.top + 158,
-			to3 = this.$elems.part3.find('div.book').offset(),
-			dur3 = part3_offset.top - at3;
-
+		var at3 = part3_offset.top + 180,
+			to3 = this.$elems.part4.find('div.img-scroll').offset(),
+			dur3 = part4_offset.top - at3;
+		//显示出来，并开始计算坐标
+		animObjects.push(at3);
+		to3.left += 37;
+		to3.top += 251;
+		this.controller.addTween(
+			at3,
+			TweenMax.to(
+				$mov2,
+				2,
+				{
+					css:{
+						left: to3.left ,
+						top: to3.top,
+						width: 95,
+						height: 123,
+						zIndex: 100
+					},
+					onComplete: function(){
+						$mov2.hide();
+						partFourSlide.start(true);
+					},
+					onReverseComplete: function(){
+						$mov2.hide();
+						$book_img.eq(0).hide();
+						$book_img.eq(1).show();
+					},
+					onUpdate: function(){
+						var _offset = $mov2.offset();
+						if(_offset.left != to3.left || _offset.top != to3.top){
+							$mov2.show();
+							$book_img.hide();
+							partFourSlide.stop().hide();
+						}
+					}
+				}
+			),
+			dur2
+		);
 
 	},
 	removeTweens: function(){
-
+		for(var i=0;i<animObjects.length;i+=1){
+			this.controller.removeTween(animObjects[i]);
+		}
+		animObjects = [];
+		$('#mov1').remove();
+		$('#mov2').remove();
 	},
 	resize: function(){
 		this.containerAutoSize();
+		this.removeTweens();
+		$(window).scrollTop(0);
+		this.addTweens();
 	}
 
 };
