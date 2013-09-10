@@ -388,18 +388,17 @@ var SA = {
 						zIndex: 100,
 						opacity: .6
 					},
-					onComplete: function(){
-						$mov1.fadeOut();
-						$book_img.eq(0).hide();
-						$book_img.eq(1).fadeIn('fast');
-						//console.log('at2 complete')
-					},
 					onUpdate: function(){
 						var _offset = $mov1.offset();
 						if(_offset.left != to2.left || _offset.top != to2.top){
 							$mov1.show();
 							$book_img.eq(0).show();
 							$book_img.eq(1).hide();
+						}else{
+							$mov1.fadeOut('fast');
+							$book_img.eq(0).hide();
+							$book_img.eq(1).fadeIn('fast');
+							//console.log('at2 else');
 						}
 					}
 				}
