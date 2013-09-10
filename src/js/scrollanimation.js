@@ -406,6 +406,7 @@ var SA = {
 			dur2
 		);
 
+		//设置初始坐标
 		$mov2.css({
 			left: to2.left,
 			top: to2.top,
@@ -420,8 +421,8 @@ var SA = {
 			dur3 = part4_offset.top - at3;
 		//显示出来，并开始计算坐标
 		animObjects.push(at3);
-		to3.left += 37;
-		to3.top += 251;
+		to3.left += 37;//添加偏移量
+		to3.top += 251;//偏移量
 		this.controller.addTween(
 			at3,
 			TweenMax.to(
@@ -454,7 +455,7 @@ var SA = {
 					}
 				}
 			),
-			dur2
+			dur3
 		);
 
 	},
