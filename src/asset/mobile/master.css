@@ -1,3 +1,225 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+
+/* Grid HTML Classes */
+.row {max-width: 40em;}
+
+.row.collapse > .column,
+.row.collapse > .columns {
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  float: left; }
+.row.collapse .row {
+  margin-left: 0;
+  margin-right: 0; }
+
+a.th {
+  max-width: 100%; }
+.pos-rel {
+  position: relative;
+}
+.pos-abs {
+  position: absolute;
+}
+
+.arrow-group {
+  display: none;
+}
+
+.arrow-group a.pos-abs {
+  top: 40%;
+}
+.arrow-group i {
+  background: url(icon_arrow.png) no-repeat;
+  width: 30px;
+  height: 50px;
+  display: inline-block;
+}
+.arrow-group a {
+  margin: 0 20px;
+  padding: 18px 28px;
+  background-color: #000;
+  border-radius: 10px;
+  opacity: 0.6;
+  display: block;
+  z-index: 50;
+}
+
+.arrow-group a:hover {
+  opacity: 0.8;
+}
+.arrow-group a.next {
+  right: 0;
+}
+.arrow-group i.icon-arrow-left {
+  background-position: 0 -50px;
+}
+.arrow-group i.icon-arrow-right {
+  background-position: 0 0;
+}
+@media screen and (min-width: 320px) and (orientation: portrait) {
+  .arrow-group a {
+    margin: 0 10px;
+    padding: 9px 14px;
+    border-radius: 5px;
+  }
+}
+
+/* -----------------------------------------
+   context
+----------------------------------------- */
+
+.main:before {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  background: #fff; }
+
+.main {
+  width: 100%;
+  background: url(img_stamp_bg.jpg) repeat center center; }
+.stamp {
+  clear: both;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+}
+.stamp.first {
+  margin: 1.875em 0;
+}
+.stamp.second {
+
+}
+.stamp > div {
+  text-align: center;
+}
+.first .img-first-bg {
+  width: 410px;
+}
+@media screen and (max-width: 320px) and (orientation: portrait) {
+  .first .img-first-bg {
+    width: 205px;
+  }
+}
+.first .btn-box {
+  float: left;
+  left: 50%;
+  margin: -125px 0 0 -113px;
+}
+
+.first .btn-box a {
+  display: block;
+}
+
+.first .btn-box img {
+  width: 226px;
+  height:  82px;
+}
+
+.first .btn-box img.img_first_bg {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_first_bg.png);
+}
+.first .btn-box img.img_first_bg:active  {
+  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_first_bg_hover.png);
+}
+
+@media screen and (max-width: 320px) and (orientation: portrait) {
+  .first .btn-box {
+    margin: -62.5px 0 0 -56.5px;
+  }
+  .first .btn-box img {
+    width: 113px;
+  }
+}
+.second div img {
+  height: auto;
+}
+.second .png-box {
+  float: left;
+  display: inline;
+  left: 50%;
+  margin: -730px 0 0 -205px;
+}
+.second .png-box .second-bg {
+  width: 410px;
+}
+.second .png-box .btn-wrapper {
+  padding: 20px 0;
+}
+.second .png-box .img_second_bg {
+  width: 282px;
+  height: 88px;
+}
+
+.second .png-box img.img_second_bg {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_second_bg.png);
+}
+.second .png-box img.img_second_bg:active  {
+  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_second_bg_hover.png);
+}
+
+
+@media screen and (max-width: 320px) and (orientation: portrait) {
+  .second .png-box {
+    margin: -365px 0 0 -102.5px;
+  }
+  .second .png-box .second-bg {
+    width: 205px;
+  }
+  .second .png-box .btn-wrapper {
+    padding: 10px 0;
+  }
+  .second .png-box .img_second_bg {
+    width: 141px;
+  }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 1024px) and (orientation: portrait){
+  
+}
+
+/* ------------------------------------------------------------
+  Disables Overflow on mobile - Had issues with Foundation 4 
+------------------------------------------------------------ */
+@media all and (max-width: 640px) {
+  html {
+    overflow-x: hidden; }
+
+  body.off-canvas {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden; } }
+@font-face {
+  font-family: 'proxima-nova-condensed';
+  src: url("fonts/proximanovacond-bold-webfont.eot");
+  src: url("fonts/proximanovacond-bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/proximanovacond-bold-webfont.woff") format("woff"), url("fonts/proximanovacond-bold-webfont.ttf") format("truetype"), url("fonts/proximanovacond-bold-webfont.svg#ProximaNovaCondensedBold") format("svg");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'proxima-nova';
+  src: url("fonts/ProximaNova-Reg-webfont.eot");
+  src: url("fonts/ProximaNova-Reg-webfont.eot?iefix") format("eot"), url("fonts/ProximaNova-Reg-webfont.woff") format("woff"), url("fonts/ProximaNova-Reg-webfont.ttf") format("truetype"), url("fonts/ProximaNova-Reg-webfont.svg#webfontZam02nTh") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+
 #container {
   
 }
@@ -9,9 +231,13 @@ img.photo {
 #photo_frame {
   position: relative;
 }
-#photo_frame .photos-wrapper {
+#photo_frame .albums-wrapper {
   position: relative;
-  max-width: 1920px;
+  min-width: 640px;
+}
+#photo_frame .album-wrapper {
+  position: relative;
+  min-width: 640px;
 }
 #photo_frame .photo-wrapper {
   position: relative;
@@ -55,17 +281,12 @@ img.photo {
 #photo_frame img.expanding {
 }
 
-.pageReference {
+.pagination {
   bottom: 3%;
   right: 5%;
   color: #fff;
   text-shadow: 0 1px 1px #666;
-}
-.pagination {
-  text-align: center;
-}
-.pagination a {
-  text-decoration: none;
+  font-size: 1.5em;
 }
 
 @keyframes fade {
@@ -88,4 +309,15 @@ img.photo {
 .blink:hover {
   /*-webkit-animation-fill-mode: backwards;*/
   -webkit-animation-duration: 1000ms;
+}
+
+
+#console {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.draging {
 }
