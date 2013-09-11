@@ -32,11 +32,15 @@ a.th {
 }
 
 .arrow-group {
-  display: none;
+  position: relative;
+  max-width: 52em;
+  min-height: 60em;
+  margin: 0 auto -60em;
+  display: block;
 }
-
 .arrow-group a.pos-abs {
-  top: 40%;
+  top: 30%;
+  display: none;
 }
 .arrow-group i {
   background: url(icon_arrow.png) no-repeat;
@@ -45,7 +49,6 @@ a.th {
   display: inline-block;
 }
 .arrow-group a {
-  margin: 0 20px;
   padding: 18px 28px;
   background-color: #000;
   border-radius: 10px;
@@ -53,11 +56,13 @@ a.th {
   display: block;
   z-index: 50;
 }
-
 .arrow-group a:hover {
   opacity: 0.8;
 }
 .arrow-group a.next {
+  right: 0;
+}
+.arrow-group a:last-child {
   right: 0;
 }
 .arrow-group i.icon-arrow-left {
