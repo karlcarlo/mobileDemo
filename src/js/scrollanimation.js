@@ -260,15 +260,21 @@ var SA = {
 		var self = this;
 		$('a.link-one').click(function(event){
 			event.preventDefault();
-			self.$elems.part2.ScrollTo();
+			self.$elems.part2.ScrollTo({
+				duration: 1000
+			});
 		});
 		$('a.link-two').click(function(event){
 			event.preventDefault();
-			self.$elems.part3.ScrollTo();
+			self.$elems.part3.ScrollTo({
+				duration: 1000
+			});
 		});
 		$('a.link-three').click(function(event){
 			event.preventDefault();
-			self.$elems.part4.ScrollTo();
+			self.$elems.part4.ScrollTo({
+				duration: 1000
+			});
 		});
 	},
 	containerAutoSize: function(){
