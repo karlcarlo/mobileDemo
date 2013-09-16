@@ -114,6 +114,7 @@ a.null{
 	margin: 0 auto;
 	padding-top:  56px;
 	position: relative;
+	z-index: 20;
 }
 .parttwo .parttwo-con .img{
 	width: 322px;
