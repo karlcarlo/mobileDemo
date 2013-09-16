@@ -265,19 +265,19 @@ var SA = {
 		var self = this;
 		$('a.link-one').click(function(event){
 			event.preventDefault();
-			$.scrollTo(self.$elems.part2,1000);
+			$.scrollTo('#part2',1000);
 		});
 		$('a.link-two').click(function(event){
 			event.preventDefault();
-			$.scrollTo(self.$elems.part3,1000);
+			$.scrollTo('#part3',1000);
 		});
 		$('a.link-three').click(function(event){
 			event.preventDefault();
-			$.scrollTo(self.$elems.part4,1000);
+			$.scrollTo('#part4',1000);
 		});
 		$('a.link-four').click(function(event){
 			event.preventDefault();
-			$.scrollTo(self.$elems.part1,1000);
+			$.scrollTo('#part1',1000);
 		});
 	},
 	containerAutoSize: function(){
