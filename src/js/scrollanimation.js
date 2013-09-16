@@ -433,10 +433,6 @@ var SA = {
 						height: 123,
 						zIndex: 100
 					},
-					onComplete: function(){
-						$mov2.hide();
-						partFourSlide.start(true);
-					},
 					onReverseComplete: function(){
 						$mov2.hide();
 						$book_img.eq(0).hide();
@@ -448,6 +444,9 @@ var SA = {
 							$mov2.show();
 							$book_img.hide();
 							partFourSlide.stop().hide();
+						}else{
+							$mov2.hide();
+							partFourSlide.start(true);
 						}
 					}
 				}
