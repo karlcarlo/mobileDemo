@@ -275,6 +275,10 @@ var SA = {
 			event.preventDefault();
 			$.scrollTo(self.$elems.part4,1000);
 		});
+		$('a.link-four').click(function(event){
+			event.preventDefault();
+			$.scrollTo(self.$elems.part1,1000);
+		});
 	},
 	containerAutoSize: function(){
 		var win_width = $(window).width(),
@@ -314,7 +318,8 @@ var SA = {
 		//初始化动画的一些左边信息
 		var $mov1 = $('#mov1'),
 			$mov2 = $('#mov2'),
-			$book_img = this.$elems.part3.find('.book img');
+			$book_img = this.$elems.part3.find('.book img'),
+			top_offset = 5;//为了防止世界被破坏（为了防止动画不能正常播放完毕，所以在播放时长上减少5像素）
 
 		var part2_offset = this.$elems.part2.offset(),
 			part3_offset = this.$elems.part3.offset(),
@@ -326,7 +331,7 @@ var SA = {
 		var at1 = 107,
 			from1 = this.$elems.part1.find('div.pic-scroll').offset(),
 			to1 = this.$elems.part2.find('div.parttwo-con > div.img').offset(),
-			dur1 = part2_offset.top - at1;
+			dur1 = part2_offset.top - at1 - top_offset;
 
 		$mov1.css({
 			left: from1.left,
@@ -367,7 +372,7 @@ var SA = {
 		//第二个关键帧
 		var at2 = part2_offset.top + 180,
 			to2 = this.$elems.part3.find('div.book').offset(),
-			dur2 = part3_offset.top - at2;
+			dur2 = part3_offset.top - at2 - top_offset;
 
 		animObjects.push(at2);
 		this.controller.addTween(
@@ -414,7 +419,7 @@ var SA = {
 		//第三个关键帧
 		var at3 = part3_offset.top + 180,
 			to3 = this.$elems.part4.find('div.img-scroll').offset(),
-			dur3 = part4_offset.top - at3;
+			dur3 = part4_offset.top - at3 - top_offset;
 		//显示出来，并开始计算坐标
 		animObjects.push(at3);
 		to3.left += 37;//添加偏移量
@@ -447,9 +452,6 @@ var SA = {
 							$mov2.show();
 							$book_img.hide();
 							partFourSlide.stop().hide();
-						}else{
-							$mov2.hide();
-							partFourSlide.start(true);
 						}
 					}
 				}
