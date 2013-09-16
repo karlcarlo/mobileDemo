@@ -452,6 +452,9 @@ var SA = {
 							$mov2.show();
 							$book_img.hide();
 							partFourSlide.stop().hide();
+						}else{
+							$mov2.hide();
+							partFourSlide.start(true);
 						}
 					}
 				}
