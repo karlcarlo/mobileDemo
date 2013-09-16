@@ -186,6 +186,14 @@ a.null{
 	position: relative;
 	background: url("img_info_four.png") no-repeat center 56px;
 }
+.partfour .partfour-con .link-four{
+	width: 145px;
+	height: 26px;
+	position: absolute;
+	top: 721px;
+	left: 320px;
+	z-index: 30;
+}
 .partfour .partfour-con .bg{
 	width: 170px;
 	height: 222px;
