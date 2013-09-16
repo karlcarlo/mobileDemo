@@ -6,8 +6,11 @@
       touchstart_x: 0,
       touchstart_y: 0,
       wrapper_start_x: 0,
+      is_scroll_horizontal: false,
+      is_scroll_vertacal: false,
       is_turning: false,
       is_sliding: false,
+      is_hotspot_visible: false,
       on_backcover: false,
       is_prev: false,
       is_next: false,
@@ -170,10 +173,11 @@
 
       $photo_frame
       .on('mouseenter', '.hotspot', function(event){
+        console.log('mouseenter')
         hotspot_active()
       })
       .on('mouseleave', '.hotspot', function(event){
-        hotspot_disable()
+        hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
         event.preventDefault()
@@ -184,12 +188,11 @@
         back_spot(this)
       })
       .on('mouseover', '.albums-wrapper', function(event){
-        console.log('over')
+        console.log('albums-wrapper over')
         Photonote.mouseover = true
         Photonote.mouseout = false
       })
       .on('mousedown', '.albums-wrapper', function(event){
-        hotspot_active()
         drag_handler(event)
       })
       .on('mousemove', '.albums-wrapper', move_handler)
@@ -197,17 +200,23 @@
         if(Photonote.mousedown){
           return
         }
-        console.log('out')
+        console.log('albums-wrapper out')
         Photonote.mouseover = false
         Photonote.mouseout = true
         drag_cancel(event)
       })
       .on('mouseup', '.albums-wrapper', function(event){
-        hotspot_disable()
-        console.log('up')
+
+        console.log('mouseup')
         Photonote.mouseup = true
         Photonote.mousedown = false
         drag_cancel(event)
+
+        if($(event.target).closest('.hotspot').length){
+          return
+        }
+
+        hotspot_inversion()
       })
 
       // touch events
@@ -215,9 +224,17 @@
       $photo_frame[0].addEventListener('touchmove', touch_handler)
       $photo_frame[0].addEventListener('touchend', touch_handler)
 
+      window.addEventListener('orientationchange', function(event){
+        console.log('orientationchange')
+        clear_width()
+        fix_photos_wrapper()
+      })
+
       fix_photos_wrapper()
 
-      hotspot_disable()
+      hotspot_fade()
+
+
     }
 
     function gen_albums(){
@@ -250,11 +267,19 @@
       $('#' + get_spot_id(default_id)).show()
     }
 
+    function clear_width(){
+      $photo_frame.find('.photo-wrapper').css({
+        width: 'auto'
+      })
+    }
+
     function fix_photos_wrapper(){
       var base_width = $photo_frame.find('.photo-wrapper').eq(0).width()
 
       Photonote.base_width = base_width
       Photonote.critical = base_width * 0.3
+
+      console.log('base_width: ' + base_width)
 
       // 获取宽度并设置为像素单位
       $photo_frame.find('.photo-wrapper').css({
@@ -262,9 +287,15 @@
       })
 
       // 设置图册容器总宽度, 实际页数 + 封底
-      $photo_frame.find('.albums-wrapper').css({
-        width: base_width * (pages.length + 1)
-      })
+      // $photo_frame.find('.albums-wrapper').css({
+      //   // width: base_width * (pages.length + 1)
+      //   width: base_width
+      // })
+
+      // $photo_frame.find('.')
+      // $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
+      // $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
+
     }
 
     function drag_handler(event){
@@ -430,6 +461,7 @@
         photo_reset()
       })
 
+      scroll_top()
       Photonote.is_sliding = false
     }
 
@@ -481,6 +513,8 @@
 
           // console.log(sx + ',' + touch.clientX)
 
+          if(touch)
+
           $albums_wrapper.addClass('dragging')
 
           
@@ -526,7 +560,7 @@
             slide_reset()
           }
 
-          hotspot_disable()
+          hotspot_fade()
           break;
 
       }
@@ -534,16 +568,38 @@
     }
 
     function hotspot_active(){
+      console.log('hotspot_active')
       clearTimeout(Photonote.hotspot_timer)
-      $photo_frame.find('.hotspot').fadeIn('fast')
-      console.log('active')
+      $photo_frame.find('.hotspot').show()
+      Photonote.is_hotspot_visible = true
+      // console.log('active')
     }
 
-    function hotspot_disable(){
+    function hotspot_inversion(){
+      console.log('inversion:' + Photonote.is_hotspot_visible)
+      if(Photonote.is_hotspot_visible){
+        hotspot_disable()
+      }
+      else{
+        hotspot_active()
+        hotspot_fade()
+      }
+    }
+
+    function hotspot_fade(){
+      console.log('hotspot_fade')
       clearTimeout(Photonote.hotspot_timer)
       Photonote.hotspot_timer = setTimeout(function(){
         $photo_frame.find('.hotspot').fadeOut('slow')
+        Photonote.is_hotspot_visible = false
       }, 3000)
+    }
+
+    function hotspot_disable(){
+      console.log('hotspot_disable')
+      clearTimeout(Photonote.hotspot_timer)
+      $photo_frame.find('.hotspot').hide()
+      Photonote.is_hotspot_visible = false
     }
 
     function render(data){
