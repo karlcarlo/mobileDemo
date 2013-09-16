@@ -74,7 +74,7 @@ var partOneSlide = {
 //第4屏的滚动效果
 // $li.index() * 126 - 22 = 第二个滚动的坐标
 var partFourSlide = {
-	delay: 1500,
+	delay: 2500,
 	dur: 200,
 	data: {
 		pics: [
@@ -122,6 +122,7 @@ var partFourSlide = {
 			width: this.data.pics.length * 126
 		});
 		this.setCurItem();
+		this.setBg();
 	},
 	setCurItem: function(index){
 		index = index || 1;
@@ -129,7 +130,6 @@ var partFourSlide = {
 		this.$ul.css({
 			left: - (this.$curItem.index() * 126 - 22) 
 		});
-		this.$bg.html('<img style="display:none" width="170" height="222" src="'+this.$curItem.attr('data-bg')+'" />').find('img').fadeIn();
 	},
 	start: function(rebuild){
 		if(rebuild) this.render();
@@ -192,9 +192,12 @@ var partFourSlide = {
 		this.dur,
 		'swing',
 		function(){
-			self.$bg.html('<img style="display:none" width="170" height="222" src="'+self.$curItem.attr('data-bg')+'" />').find('img').fadeIn();
+			setTimeout($.proxy(self.setBg,self),500);
 		});
 		this.$curItem = this.$curItem.prev();
+	},
+	setBg: function(){
+		this.$bg.html('<img width="170" height="222" src="'+this.$curItem.attr('data-bg')+'" />').find('img').css('opacity',0.4).animate({opacity:1},500);
 	},
 	hide: function(){
 		this.$ul.hide();
