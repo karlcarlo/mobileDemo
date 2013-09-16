@@ -43,6 +43,7 @@ var partOneSlide = {
 		});
 	},
 	start: function(rebuild){
+		if(this.tid) clearInterval(this.tid);
 		if(rebuild) this.render();
 		if(!this.$curItem) this.$curItem = this.$ul.find('li:first');
 		this.tid = setInterval($.proxy(this.slide,this),this.delay+this.dur);
@@ -132,6 +133,7 @@ var partFourSlide = {
 		});
 	},
 	start: function(rebuild){
+		if(this.tid) clearInterval(this.tid);
 		if(rebuild) this.render();
 		this.show();
 		//这里写动画展开效果
@@ -148,7 +150,7 @@ var partFourSlide = {
 					$(this).css({
 						position: 'static',
 						left: 'auto',
-						top: 'auto',
+						top: 'auto'
 					});
 				});
 			},
@@ -250,7 +252,7 @@ var SA = {
 		$('<a href="#" id="back_top"></a>')
 		.click(function(event){
 			event.preventDefault();
-			self.$elems.part1.ScrollTo();
+			$.scrollTo(self.$elems.part1,1000);
 		})
 		.appendTo('body')
 		.hide();
@@ -263,21 +265,15 @@ var SA = {
 		var self = this;
 		$('a.link-one').click(function(event){
 			event.preventDefault();
-			self.$elems.part2.ScrollTo({
-				duration: 1000
-			});
+			$.scrollTo(self.$elems.part2,1000);
 		});
 		$('a.link-two').click(function(event){
 			event.preventDefault();
-			self.$elems.part3.ScrollTo({
-				duration: 1000
-			});
+			$.scrollTo(self.$elems.part3,1000);
 		});
 		$('a.link-three').click(function(event){
 			event.preventDefault();
-			self.$elems.part4.ScrollTo({
-				duration: 1000
-			});
+			$.scrollTo(self.$elems.part4,1000);
 		});
 	},
 	containerAutoSize: function(){
@@ -435,6 +431,10 @@ var SA = {
 						width: 95,
 						height: 123,
 						zIndex: 100
+					},
+					onComplete: function(){
+						$mov2.hide();
+						partFourSlide.start(true);
 					},
 					onReverseComplete: function(){
 						$mov2.hide();
