@@ -6,8 +6,11 @@
       touchstart_x: 0,
       touchstart_y: 0,
       wrapper_start_x: 0,
+      is_scroll_horizontal: false,
+      is_scroll_vertacal: false,
       is_turning: false,
       is_sliding: false,
+      is_hotspot_visible: false,
       on_backcover: false,
       is_prev: false,
       is_next: false,
@@ -31,8 +34,6 @@
         type: 'root',
         parent_id: '',
         root_id: '',
-        next_id: '',
-        prev_id: '',
         top: 0,
         left: 0,
         src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/001.jpg',
@@ -170,10 +171,11 @@
 
       $photo_frame
       .on('mouseenter', '.hotspot', function(event){
+        console.log('mouseenter')
         hotspot_active()
       })
       .on('mouseleave', '.hotspot', function(event){
-        hotspot_disable()
+        hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
         event.preventDefault()
@@ -183,41 +185,54 @@
         event.preventDefault()
         back_spot(this)
       })
-      .on('mouseover', '.albums-wrapper', function(event){
-        console.log('over')
-        Photonote.mouseover = true
-        Photonote.mouseout = false
-      })
-      .on('mousedown', '.albums-wrapper', function(event){
-        hotspot_active()
-        drag_handler(event)
-      })
-      .on('mousemove', '.albums-wrapper', move_handler)
-      .on('mouseout', '.albums-wrapper', function(event){
-        if(Photonote.mousedown){
+      // .on('mouseover', '.albums-wrapper', function(event){
+      //   console.log('albums-wrapper over')
+      //   Photonote.mouseover = true
+      //   Photonote.mouseout = false
+      // })
+      // .on('mousedown', '.albums-wrapper', function(event){
+      //   drag_handler(event)
+      // })
+      // .on('mousemove', '.albums-wrapper', move_handler)
+      // .on('mouseout', '.albums-wrapper', function(event){
+      //   if(Photonote.mousedown){
+      //     return
+      //   }
+      //   console.log('albums-wrapper out')
+      //   Photonote.mouseover = false
+      //   Photonote.mouseout = true
+      //   drag_cancel(event)
+      // })
+      .on('mouseup', '.albums-wrapper', function(event){
+
+        console.log('mouseup')
+      //   Photonote.mouseup = true
+      //   Photonote.mousedown = false
+      //   drag_cancel(event)
+
+        if($(event.target).closest('.hotspot').length){
           return
         }
-        console.log('out')
-        Photonote.mouseover = false
-        Photonote.mouseout = true
-        drag_cancel(event)
-      })
-      .on('mouseup', '.albums-wrapper', function(event){
-        hotspot_disable()
-        console.log('up')
-        Photonote.mouseup = true
-        Photonote.mousedown = false
-        drag_cancel(event)
+
+        hotspot_inversion()
       })
 
       // touch events
-      $photo_frame[0].addEventListener('touchstart', touch_handler)
-      $photo_frame[0].addEventListener('touchmove', touch_handler)
-      $photo_frame[0].addEventListener('touchend', touch_handler)
+      // $photo_frame[0].addEventListener('touchstart', touch_handler)
+      // $photo_frame[0].addEventListener('touchmove', touch_handler)
+      // $photo_frame[0].addEventListener('touchend', touch_handler)
+
+      window.addEventListener('orientationchange', function(event){
+        console.log('orientationchange')
+        clear_width()
+        fix_photos_wrapper()
+      })
 
       fix_photos_wrapper()
 
-      hotspot_disable()
+      hotspot_fade()
+
+
     }
 
     function gen_albums(){
@@ -250,11 +265,19 @@
       $('#' + get_spot_id(default_id)).show()
     }
 
+    function clear_width(){
+      $photo_frame.find('.photo-wrapper').css({
+        width: 'auto'
+      })
+    }
+
     function fix_photos_wrapper(){
       var base_width = $photo_frame.find('.photo-wrapper').eq(0).width()
 
       Photonote.base_width = base_width
       Photonote.critical = base_width * 0.3
+
+      console.log('base_width: ' + base_width)
 
       // 获取宽度并设置为像素单位
       $photo_frame.find('.photo-wrapper').css({
@@ -262,305 +285,341 @@
       })
 
       // 设置图册容器总宽度, 实际页数 + 封底
-      $photo_frame.find('.albums-wrapper').css({
-        width: base_width * (pages.length + 1)
-      })
-    }
-
-    function drag_handler(event){
-      if(Photonote.drag){
-        return
-      }
-
-      console.log('mouseover and mousedown, drag start')
-      Photonote.mouseup = false
-      Photonote.mousedown = true
-
-      Photonote.drag = true
-
-      Photonote.touchstart_x = event.clientX
-
-      var that = event.currentTarget
-
-      that.style.position = 'relative'
-      that.classList.add('dragging')
-
-      Photonote.wrapper_start_x = parseInt(that.style.left)
-
-      if(isNaN(Photonote.wrapper_start_x)){
-        Photonote.wrapper_start_x = 0
-      }
-    }
-
-    function move_handler(event){
-      if(Photonote.mouseout || Photonote.mouseup){
-        return
-      }
-
-      var sx = Photonote.touchstart_x
-        , wx = Photonote.wrapper_start_x
-
-      var elem = document.getElementsByClassName('dragging')[0]
-
-      if(!elem){
-        return
-      }
-
-      if(event.clientX - sx < -Photonote.critical){
-        Photonote.is_next = true;
-        Photonote.is_prev = false;
-      }
-      else if(event.clientX - sx > Photonote.critical){
-        Photonote.is_next = false;
-        Photonote.is_prev = true;
-      }
-      else{
-        Photonote.is_next = false;
-        Photonote.is_prev = false;
-      }
-
-      // console.log(event.clientX - Photonote.start_x + wx)
-
-      elem.style.left = (event.clientX - Photonote.touchstart_x + wx) + 'px'
-      // elem.style.top = (event.clientY - Photonote.start_y) + 'px'
-      
-      // display({
-      //   start_x: Photonote.start_x,
-      //   start_y: Photonote.start_y,
-      //   client_x: event.clientX,
-      //   client_y: event.clientY
+      // $photo_frame.find('.albums-wrapper').css({
+      //   // width: base_width * (pages.length + 1)
+      //   width: base_width
       // })
 
-    }
-
-    function drag_cancel(event){
-      if(!Photonote.drag){
-        return
-      }
-
-      Photonote.drag = false
-      // Photonote.start_x = 0
-      // Photonote.start_y = 0
-
-      console.log('mouseout or mouseup, drag abort')
-
-      var that = event.currentTarget
-
-      // that.style.position = 'static'
-      // // that.style.top = '0px'
-      // that.style.left = '0px'
-      that.classList.remove('dragging')
-
-      if(Photonote.is_next){
-        slide_next()
-        console.log('sliding next')
-        Photonote.is_next = false
-      }
-      else if(Photonote.is_prev){
-        slide_prev()
-        console.log('sliding prev')
-        Photonote.is_prev = false
-      }
-      else{
-        slide_reset()
-        console.log('sliding reset')
-      }
+      // $photo_frame.find('.')
+      // $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
+      // $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
 
     }
 
-    function slide_prev(){
-      if(Photonote.is_sliding){
-        return
-      }
+    // function drag_handler(event){
+    //   if(Photonote.drag){
+    //     return
+    //   }
 
-      if(current_page <= 1){
-        slide_reset()
-        return
-      }
+    //   console.log('mouseover and mousedown, drag start')
+    //   Photonote.mouseup = false
+    //   Photonote.mousedown = true
 
-      var base_width = Photonote.base_width
+    //   Photonote.drag = true
 
-      Photonote.is_sliding = true
+    //   Photonote.touchstart_x = event.clientX
 
-      current_page -= 1
+    //   var that = event.currentTarget
 
-      if(Photonote.on_backcover && current_page !== pages.length + 1){
-        $('#footer').show()
-        Photonote.on_backcover = false
-      }
+    //   that.style.position = 'relative'
+    //   that.classList.add('dragging')
 
-      $albums_wrapper.animate({
-        left: -(base_width * (current_page - 1))
-      }, function(){
-        photo_reset()
-      })
+    //   Photonote.wrapper_start_x = parseInt(that.style.left)
 
-      scroll_top()
-      Photonote.is_sliding = false
-    }
+    //   if(isNaN(Photonote.wrapper_start_x)){
+    //     Photonote.wrapper_start_x = 0
+    //   }
+    // }
 
-    function slide_next(){
-      if(Photonote.is_sliding){
-        return
-      }
+    // function move_handler(event){
+    //   if(Photonote.mouseout || Photonote.mouseup){
+    //     return
+    //   }
 
-      var total = pages.length
+    //   var sx = Photonote.touchstart_x
+    //     , wx = Photonote.wrapper_start_x
 
-      console.log('current_page: ' + current_page)
+    //   var elem = document.getElementsByClassName('dragging')[0]
 
-      if(current_page >= total + 1){
-        slide_reset()
-        return
-      }
+    //   if(!elem){
+    //     return
+    //   }
 
-      var base_width = Photonote.base_width
+    //   if(event.clientX - sx < -Photonote.critical){
+    //     Photonote.is_next = true;
+    //     Photonote.is_prev = false;
+    //   }
+    //   else if(event.clientX - sx > Photonote.critical){
+    //     Photonote.is_next = false;
+    //     Photonote.is_prev = true;
+    //   }
+    //   else{
+    //     Photonote.is_next = false;
+    //     Photonote.is_prev = false;
+    //   }
 
-      Photonote.is_sliding = true
+    //   // console.log(event.clientX - Photonote.start_x + wx)
 
-      current_page += 1
+    //   elem.style.left = (event.clientX - Photonote.touchstart_x + wx) + 'px'
+    //   // elem.style.top = (event.clientY - Photonote.start_y) + 'px'
+      
+    //   // display({
+    //   //   start_x: Photonote.start_x,
+    //   //   start_y: Photonote.start_y,
+    //   //   client_x: event.clientX,
+    //   //   client_y: event.clientY
+    //   // })
 
-      if(!Photonote.on_backcover && current_page == total + 1){
-        $('#footer').hide()
-        Photonote.on_backcover = true
-      }
+    // }
 
-      $albums_wrapper.animate({
-        left: -(base_width * (current_page - 1))
-      }, function(){
-        photo_reset()
-      })
+    // function drag_cancel(event){
+    //   if(!Photonote.drag){
+    //     return
+    //   }
 
-      Photonote.is_sliding = false
-    }
+    //   Photonote.drag = false
+    //   // Photonote.start_x = 0
+    //   // Photonote.start_y = 0
 
-    function slide_reset(){
-      if(Photonote.is_sliding){
-        return
-      }
+    //   console.log('mouseout or mouseup, drag abort')
 
-      console.log('current_page: ' + current_page)
+    //   var that = event.currentTarget
 
-      var base_width = Photonote.base_width
+    //   // that.style.position = 'static'
+    //   // // that.style.top = '0px'
+    //   // that.style.left = '0px'
+    //   that.classList.remove('dragging')
 
-      Photonote.is_sliding = true
+    //   if(Photonote.is_next){
+    //     slide_next()
+    //     console.log('sliding next')
+    //     Photonote.is_next = false
+    //   }
+    //   else if(Photonote.is_prev){
+    //     slide_prev()
+    //     console.log('sliding prev')
+    //     Photonote.is_prev = false
+    //   }
+    //   else{
+    //     slide_reset()
+    //     console.log('sliding reset')
+    //   }
 
-      $albums_wrapper.animate({
-        left: -(base_width * (current_page - 1))
-      })
+    // }
 
-      Photonote.is_sliding = false
-    }
+    // function slide_prev(){
+    //   if(Photonote.is_sliding){
+    //     return
+    //   }
 
-    function touch_handler(event){
+    //   if(current_page <= 1){
+    //     slide_reset()
+    //     return
+    //   }
 
-      if(Photonote.is_turning){
-        return
-      }
+    //   var base_width = Photonote.base_width
 
-      switch(event.type){
-        case 'touchstart':
-          console.log('Touch start X: ' + event.touches[0].clientX)
+    //   Photonote.is_sliding = true
 
-          Photonote.touchstart_x = event.touches[0].clientX
-          Photonote.touchstart_y = event.touches[0].clientY
+    //   current_page -= 1
 
-          Photonote.wrapper_start_x = parseInt($albums_wrapper[0].style.left)
+    //   if(Photonote.on_backcover && current_page !== pages.length + 1){
+    //     $('#footer').show()
+    //     Photonote.on_backcover = false
+    //   }
 
-          if(isNaN(Photonote.wrapper_start_x)){
-            Photonote.wrapper_start_x = 0
-          }
+    //   $albums_wrapper.animate({
+    //     left: -(base_width * (current_page - 1))
+    //   }, function(){
+    //     photo_reset()
+    //   })
 
-          hotspot_active()
-          break;
+    //   scroll_top()
+    //   Photonote.is_sliding = false
+    // }
 
-        case 'touchmove':
-          var sx = Photonote.touchstart_x
-            , sy = Photonote.touchstart_y
-            , wx = Photonote.wrapper_start_x
-            , touch = event.changedTouches[0]
+    // function slide_next(){
+    //   if(Photonote.is_sliding){
+    //     return
+    //   }
 
-          // console.log(sx + ',' + touch.clientX)
+    //   var total = pages.length
 
-          $albums_wrapper.addClass('dragging')
+    //   console.log('current_page: ' + current_page)
+
+    //   if(current_page >= total + 1){
+    //     slide_reset()
+    //     return
+    //   }
+
+    //   var base_width = Photonote.base_width
+
+    //   Photonote.is_sliding = true
+
+    //   current_page += 1
+
+    //   if(!Photonote.on_backcover && current_page == total + 1){
+    //     $('#footer').hide()
+    //     Photonote.on_backcover = true
+    //   }
+
+    //   $albums_wrapper.animate({
+    //     left: -(base_width * (current_page - 1))
+    //   }, function(){
+    //     photo_reset()
+    //   })
+
+    //   scroll_top()
+    //   Photonote.is_sliding = false
+    // }
+
+    // function slide_reset(){
+    //   if(Photonote.is_sliding){
+    //     return
+    //   }
+
+    //   console.log('current_page: ' + current_page)
+
+    //   var base_width = Photonote.base_width
+
+    //   Photonote.is_sliding = true
+
+    //   $albums_wrapper.animate({
+    //     left: -(base_width * (current_page - 1))
+    //   })
+
+    //   Photonote.is_sliding = false
+    // }
+
+    // function touch_handler(event){
+
+    //   if(Photonote.is_turning){
+    //     return
+    //   }
+
+    //   switch(event.type){
+    //     case 'touchstart':
+    //       console.log('Touch start X: ' + event.touches[0].clientX)
+
+    //       Photonote.touchstart_x = event.touches[0].clientX
+    //       Photonote.touchstart_y = event.touches[0].clientY
+
+    //       Photonote.wrapper_start_x = parseInt($albums_wrapper[0].style.left)
+
+    //       if(isNaN(Photonote.wrapper_start_x)){
+    //         Photonote.wrapper_start_x = 0
+    //       }
+
+    //       hotspot_active()
+    //       break;
+
+    //     case 'touchmove':
+    //       var sx = Photonote.touchstart_x
+    //         , sy = Photonote.touchstart_y
+    //         , wx = Photonote.wrapper_start_x
+    //         , touch = event.changedTouches[0]
+
+    //       // console.log(sx + ',' + touch.clientX)
+
+    //       if(touch)
+
+    //       $albums_wrapper.addClass('dragging')
 
           
-          if(touch.clientX - sx < -Photonote.critical){
-            Photonote.is_next = true;
-            Photonote.is_prev = false;
-          }
-          else if(touch.clientX - sx > Photonote.critical){
-            Photonote.is_next = false;
-            Photonote.is_prev = true;
-          }
-          else{
-            Photonote.is_next = false;
-            Photonote.is_prev = false;
-          }
+    //       if(touch.clientX - sx < -Photonote.critical){
+    //         Photonote.is_next = true;
+    //         Photonote.is_prev = false;
+    //       }
+    //       else if(touch.clientX - sx > Photonote.critical){
+    //         Photonote.is_next = false;
+    //         Photonote.is_prev = true;
+    //       }
+    //       else{
+    //         Photonote.is_next = false;
+    //         Photonote.is_prev = false;
+    //       }
 
-          $albums_wrapper[0].style.left = (touch.clientX - Photonote.touchstart_x + wx) + 'px'
+    //       $albums_wrapper[0].style.left = (touch.clientX - Photonote.touchstart_x + wx) + 'px'
 
-          display({
-            start_x: Photonote.start_x,
-            start_y: Photonote.start_y,
-            client_x: touch.clientX,
-            client_y: touch.clientY
-          })
+    //       display({
+    //         start_x: Photonote.start_x,
+    //         start_y: Photonote.start_y,
+    //         client_x: touch.clientX,
+    //         client_y: touch.clientY
+    //       })
 
-          break;
+    //       break;
 
-        case 'touchend':
+    //     case 'touchend':
 
-          var touch = event.changedTouches[0]
+    //       var touch = event.changedTouches[0]
 
-          console.log('Touch end X: ' + touch.clientX)
+    //       console.log('Touch end X: ' + touch.clientX)
 
-          if(Photonote.is_next){
-            slide_next()
-            Photonote.is_next = false
-          }
-          else if(Photonote.is_prev){
-            slide_prev()
-            Photonote.is_prev = false
-          }
-          else{
-            slide_reset()
-          }
+    //       if(Photonote.is_next){
+    //         slide_next()
+    //         Photonote.is_next = false
+    //       }
+    //       else if(Photonote.is_prev){
+    //         slide_prev()
+    //         Photonote.is_prev = false
+    //       }
+    //       else{
+    //         slide_reset()
+    //       }
 
-          hotspot_disable()
-          break;
+    //       hotspot_fade()
+    //       break;
 
-      }
+    //   }
       
-    }
+    // }
 
     function hotspot_active(){
+      console.log('hotspot_active')
       clearTimeout(Photonote.hotspot_timer)
-      $photo_frame.find('.hotspot').fadeIn('fast')
-      console.log('active')
+      $photo_frame.find('.hotspot').show()
+      Photonote.is_hotspot_visible = true
+      // console.log('active')
     }
 
-    function hotspot_disable(){
+    function hotspot_inversion(){
+      console.log('inversion:' + Photonote.is_hotspot_visible)
+      if(Photonote.is_hotspot_visible){
+        hotspot_disable()
+      }
+      else{
+        hotspot_active()
+        hotspot_fade()
+      }
+    }
+
+    function hotspot_fade(){
+      console.log('hotspot_fade')
       clearTimeout(Photonote.hotspot_timer)
       Photonote.hotspot_timer = setTimeout(function(){
         $photo_frame.find('.hotspot').fadeOut('slow')
+        Photonote.is_hotspot_visible = false
       }, 3000)
+    }
+
+    function hotspot_disable(){
+      console.log('hotspot_disable')
+      clearTimeout(Photonote.hotspot_timer)
+      $photo_frame.find('.hotspot').hide()
+      Photonote.is_hotspot_visible = false
     }
 
     function render(data){
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
       if(rendered.indexOf(data.dom_id) !== -1){
+        var $photo_wrapper = $('#' + data.dom_id)
 
         $album_wrapper.find('div.photo-wrapper').hide()
-        $('#' + data.dom_id).show().find('img.hotspot:hidden').fadeIn()
+        $photo_wrapper.show().find('img.expanding').show()
+        $photo_wrapper.find('img.hotspot:hidden').fadeIn()
       }
       else{
         var html = Hogan.compile(template.photo).render(data, template)
+          , $photo_wrapper
         $album_wrapper.append(html)
+
+        $photo_wrapper = $('#' + data.dom_id)
 
         rendered.push(data.dom_id)
         $album_wrapper.find('div.photo-wrapper').hide()
-        $('#' + data.dom_id).show().find('img.hotspot:hidden').fadeIn()
+        $photo_wrapper.show().find('img.hotspot:hidden').fadeIn()
       }
     }
 
@@ -699,9 +758,9 @@
       })
     }
 
-    function scroll_top(){
-      window.scroll(0, 0)
-    }
+    // function scroll_top(){
+    //   window.scroll(0, 0)
+    // }
 
     function display(data){
       $('#start_x')[0].innerHTML = data.start_x

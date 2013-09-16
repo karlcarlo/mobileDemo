@@ -79,41 +79,31 @@ var partFourSlide = {
 	data: {
 		pics: [
 			{
-				text: '1',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss05.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss05.jpg'
 			},
 			{
-				text: '2',
 				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss01.jpg'
 			},
 			{
-				text: '3',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss02.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss02.jpg'
 			},
 			{
-				text: '4',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss03.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss03.jpg'
 			},
 			{
-				text: '5',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
-			},
-			{
-				text: '6',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss04.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss04.jpg'
 			}
 		]
 	},
 	template: [
 		'<ul>',
 		'{{#pics}}',
-		'<li data-bg="{{bg}}" data-text="{{text}}"><img src="{{pic}}" alt="" /></li>',
+		'<li data-bg="{{bg}}"><img src="{{pic}}" alt="" /></li>',
 		'{{/pics}}',
 		'</ul>'
 	].join(''),
@@ -139,6 +129,7 @@ var partFourSlide = {
 		this.$ul.css({
 			left: - (this.$curItem.index() * 126 - 22) 
 		});
+		this.$bg.html('<img style="display:none" width="170" height="222" src="'+this.$curItem.attr('data-bg')+'" />').find('img').fadeIn();
 	},
 	start: function(rebuild){
 		if(rebuild) this.render();
@@ -201,7 +192,7 @@ var partFourSlide = {
 		this.dur,
 		'swing',
 		function(){
-			self.$bg.html('<img width="170" height="222" src="'+self.$curItem.attr('data-bg')+'" />');
+			self.$bg.html('<img style="display:none" width="170" height="222" src="'+self.$curItem.attr('data-bg')+'" />').find('img').fadeIn();
 		});
 		this.$curItem = this.$curItem.prev();
 	},
@@ -269,15 +260,21 @@ var SA = {
 		var self = this;
 		$('a.link-one').click(function(event){
 			event.preventDefault();
-			self.$elems.part2.ScrollTo();
+			self.$elems.part2.ScrollTo({
+				duration: 1000
+			});
 		});
 		$('a.link-two').click(function(event){
 			event.preventDefault();
-			self.$elems.part3.ScrollTo();
+			self.$elems.part3.ScrollTo({
+				duration: 1000
+			});
 		});
 		$('a.link-three').click(function(event){
 			event.preventDefault();
-			self.$elems.part4.ScrollTo();
+			self.$elems.part4.ScrollTo({
+				duration: 1000
+			});
 		});
 	},
 	containerAutoSize: function(){
@@ -312,7 +309,7 @@ var SA = {
 		var self = this;
 		//添加移动浮层
 		$('<img id="mov1" class="pop" src="http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_parttwo.jpg" alt="" />').appendTo(this.$elems.canvas).hide();
-		$('<img id="mov2" class="pop" src="http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_book.gif" alt="" />').appendTo(this.$elems.canvas).hide();
+		$('<img id="mov2" class="pop" src="http://s5.suc.itc.cn/ux_tudian/asset/desktop/book.png" alt="" />').appendTo(this.$elems.canvas).hide();
 
 
 		//初始化动画的一些左边信息
@@ -436,10 +433,6 @@ var SA = {
 						height: 123,
 						zIndex: 100
 					},
-					onComplete: function(){
-						$mov2.hide();
-						partFourSlide.start(true);
-					},
 					onReverseComplete: function(){
 						$mov2.hide();
 						$book_img.eq(0).hide();
@@ -451,6 +444,9 @@ var SA = {
 							$mov2.show();
 							$book_img.hide();
 							partFourSlide.stop().hide();
+						}else{
+							$mov2.hide();
+							partFourSlide.start(true);
 						}
 					}
 				}
