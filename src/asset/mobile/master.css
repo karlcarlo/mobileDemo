@@ -8,9 +8,8 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
-
 /* Grid HTML Classes */
-.row {max-width: 40em;}
+.row {max-width: 40em;min-height: 60em;}
 
 .row.collapse > .column,
 .row.collapse > .columns {
@@ -21,7 +20,6 @@ body {
 .row.collapse .row {
   margin-left: 0;
   margin-right: 0; }
-
 a.th {
   max-width: 100%; }
 .pos-rel {
@@ -30,7 +28,6 @@ a.th {
 .pos-abs {
   position: absolute;
 }
-
 .arrow-group {
   position: relative;
   max-width: 52em;
@@ -101,152 +98,41 @@ a.th {
   display: block;
   overflow: hidden;
 }
-.stamp.first {
-  margin: 1.875em 0;
-}
-.stamp.second {
 
-}
 .stamp > div {
   text-align: center;
 }
-.first .img-first-bg {
-  width: 410px;
-}
-@media screen and (max-width: 320px) and (orientation: portrait) {
-  .first .img-first-bg {
-    width: 205px;
-  }
-}
-.first .btn-box {
-  float: left;
-  left: 50%;
-  margin: -125px 0 0 -113px;
-}
-
-.first .btn-box a {
-  display: block;
-}
-
-.first .btn-box img {
-  width: 226px;
-  height:  82px;
-}
-
-.first .btn-box img.img_first_bg {
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_first_bg.png);
-}
-.first .btn-box img.img_first_bg:active  {
-  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_first_bg_hover.png);
-}
-
-@media screen and (max-width: 320px) and (orientation: portrait) {
-  .first .btn-box {
-    margin: -62.5px 0 0 -56.5px;
-  }
-  .first .btn-box img {
-    width: 113px;
-  }
-}
-.second div img {
-  height: auto;
-}
-.second .png-box {
-  float: left;
-  display: inline;
-  left: 50%;
-  margin: -730px 0 0 -205px;
-}
-.second .png-box .second-bg {
-  width: 410px;
-}
-.second .png-box .btn-wrapper {
-  padding: 20px 0;
-}
-.second .png-box .img_second_bg {
-  width: 282px;
-  height: 88px;
-}
-
-.second .png-box img.img_second_bg {
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_second_bg.png);
-}
-.second .png-box img.img_second_bg:active  {
-  background-image: url(http://10.2.58.245/ux_tudian/src/asset/mobile/btn_second_bg_hover.png);
-}
-
-
-@media screen and (max-width: 320px) and (orientation: portrait) {
-  .second .png-box {
-    margin: -365px 0 0 -102.5px;
-  }
-  .second .png-box .second-bg {
-    width: 205px;
-  }
-  .second .png-box .btn-wrapper {
-    padding: 10px 0;
-  }
-  .second .png-box .img_second_bg {
-    width: 141px;
-  }
-}
-
-@media only screen and (min-width: 640px) and (max-width: 1024px) and (orientation: portrait){
-  
-}
-
-/* ------------------------------------------------------------
-  Disables Overflow on mobile - Had issues with Foundation 4 
------------------------------------------------------------- */
-@media all and (max-width: 640px) {
-  html {
-    overflow-x: hidden; }
-
-  body.off-canvas {
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden; } }
-@font-face {
-  font-family: 'proxima-nova-condensed';
-  src: url("fonts/proximanovacond-bold-webfont.eot");
-  src: url("fonts/proximanovacond-bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/proximanovacond-bold-webfont.woff") format("woff"), url("fonts/proximanovacond-bold-webfont.ttf") format("truetype"), url("fonts/proximanovacond-bold-webfont.svg#ProximaNovaCondensedBold") format("svg");
-  font-weight: bold;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'proxima-nova';
-  src: url("fonts/ProximaNova-Reg-webfont.eot");
-  src: url("fonts/ProximaNova-Reg-webfont.eot?iefix") format("eot"), url("fonts/ProximaNova-Reg-webfont.woff") format("woff"), url("fonts/ProximaNova-Reg-webfont.ttf") format("truetype"), url("fonts/ProximaNova-Reg-webfont.svg#webfontZam02nTh") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
 
 #container {
   
 }
 
 img.photo {
-  min-width: 640px;
   max-width: 640px;
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .photo-wrapper img.photo {
+    max-width: 100%;
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .photo-wrapper img.photo {
+    max-width: 100%;
+  }
 }
 #photo_frame {
   position: relative;
 }
-#photo_frame .albums-wrapper {
-  position: relative;
-  min-width: 640px;
-}
 #photo_frame .album-wrapper {
   position: relative;
-  min-width: 640px;
+  overflow: hidden;
 }
 #photo_frame .photo-wrapper {
   position: relative;
   float: left;
+  padding-bottom: 8.125%;
+  background: url(img_cutline.png) no-repeat bottom;
+  background-size: 100% auto;
   display: inline-block;
   clear: none;
 }
@@ -262,22 +148,6 @@ img.photo {
   background-size: 100% auto;
   background-origin: border-box;
 }
-@media screen and (min-width: 320px) and (orientation: portrait) {
-  img.photo {
-    min-width: 320px;
-    max-width: 320px;
-  }
-  #photo_frame img.hotspot {
-    width: 60px;
-    height: 60px;
-  }
-}
-@media not screen and (min-width: 320px) and (orientation: portrait) {
-  #photo_frame img.hotspot {
-    width: 96px;
-    height: 96px;
-  }
-}
 
 #photo_frame img.hotspot:hover {
   cursor: pointer; 
@@ -287,11 +157,16 @@ img.photo {
 }
 
 .pagination {
-  bottom: 3%;
-  right: 5%;
+  bottom: 0.5em;
+  right: 3%;
   color: #fff;
   text-shadow: 0 1px 1px #666;
   font-size: 1.5em;
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .pagination {
+    font-size: 1em;
+  }
 }
 
 @keyframes fade {
@@ -325,4 +200,141 @@ img.photo {
 }
 
 .draging {
+}
+
+.row .footer {
+  padding: 0 3.90625%;
+}
+.footer .thumbnail {
+  margin-right: -3.90625%;
+  clear: both;
+}
+.footer .thumbnail a {
+  float: left;
+  width: 21.53344208809135%;
+  margin: 0 3.4257748776509% 3.4257748776509% 0;
+  box-shadow: 0 5px 6px -1px #000;
+}
+.footer .general {
+}
+.footer .img-alarm {
+  height: 4.75em;
+  background: url(img_alart.png) no-repeat;
+  background-size: 100% auto;
+  margin: 0.625em 0;
+}
+.footer .btn-download a {
+  height: 4.5em;
+  background: url(btn_download.png) no-repeat;
+  background-size: 100% 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 6px -1px #000;
+  display: block;
+  overflow: hidden;
+}
+.footer .btn-group {
+  clear: both;
+}
+.footer .btn-group a {
+  width: 48%;
+  margin: 1.5625em 0; 
+  padding: 15px 0;
+  font-size: 2em;
+  font-family: 'simhei';
+  color: #000;
+  display: block;
+
+  background: #e9e9e9;
+  background: -moz-linear-gradient(top, #e9e9e9 0%, #b6b6b7 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #b6b6b7));
+  background: -webkit-linear-gradient(top, #e9e9e9 0%, #b6b6b7 100%);
+  background: -o-linear-gradient(top, #e9e9e9 0%, #b6b6b7 100%);
+  background: -ms-linear-gradient(top, #e9e9e9 0%, #b6b6b7 100%);
+  background: linear-gradient(top bottom, #e9e9e9 0%, #b6b6b7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#b6b6b7', GradientType=0);
+  _filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+
+  border-radius: 8px;
+  box-shadow: 0 5px 6px -1px #000;
+}
+.footer .btn-group a.full {
+  width: 100%;
+}
+.footer .btn-group a.pull-left {
+  float: left;
+}
+.footer .btn-group a.pull-right {
+  float: right;
+}
+.footer .btn-group i {
+  width: 32px;
+  height: 28px;
+  margin-right: 5px;
+  margin-top: -1px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.footer .btn-group i.icon-pen {
+  background: url(icon_pen.png) no-repeat;
+}
+.footer .btn-group i.icon-share {
+  background: url(icon_share.png) no-repeat;
+}
+.modal {
+  position: fixed;
+  _position: absolute;
+  min-width: 40em;
+  min-height: 60em;
+  z-index: 1050;
+  background-color: rgba(0,0,0,0.6);
+  outline: none;
+  top:0;
+  background-image: url(img_alart_bg.png);
+  background-repeat: no-repeat;
+  background-position: center 0.625em;
+  background-size: 70% auto;
+}
+@media screen and (max-width: 640px) and (orientation: portrait) {
+  .modal {
+    background-position: 2.5em 0.625em;
+    background-size: 50% auto;
+  }
+  .footer .btn-download a,
+  .footer .img-alarm {
+    height: 3em;
+  }
+  .footer .btn-group a {
+    padding: 10px 0;
+    line-height: 1.5em;
+    font-size: 1.2em;
+  }
+  .footer .btn-group i {
+    margin-right: 2px;
+    background-size: 90% auto;
+  }
+}
+@media screen and (max-width: 320px) and (orientation: portrait) {
+  .pagination {
+    bottom: 0.4em;
+  }
+  .modal {
+    background-position: 2.5em 0.625em;
+    background-size: 40% auto;
+  }
+  .footer .img-alarm {
+    height: 2.38em;
+  }
+  .footer .btn-download a {
+    height: 2.5em;
+  }
+  .footer .btn-group a {
+    width: 48.5%;
+    padding: 7px 0 3px 0;
+    font-size: 1em;
+    line-height: 1em;
+  }
+  .footer .btn-group i {
+    margin: 0 -5px -2px 0; 
+    background-size: 75% auto;
+  }
 }
