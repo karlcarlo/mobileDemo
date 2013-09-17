@@ -27,7 +27,7 @@
       base_width: 0,
       critical: 0
     }
-
+//http://10.2.58.245/ux_tudian/src/asset/
     var photo_index = {
       '001': {
         id: '001',
@@ -36,7 +36,7 @@
         root_id: '',
         top: 0,
         left: 0,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/001.jpg',
+        src: 'http://tudian.com/src/asset/mobile/db/001.jpg',  
         hotspot: [
           '002',
           '003',
@@ -51,7 +51,7 @@
         root_id: '001',
         top: 29,
         left: 24,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/002.jpg',
+        src: 'http://tudian.com/src/asset/mobile/db/002.jpg',
         hotspot: [
         ]
       },
@@ -63,7 +63,7 @@
         root_id: '001',
         top: 50,
         left: 20,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/003.jpg',
+        src: 'http://tudian.com/src/asset/mobile/db/003.jpg',
         hotspot: [
         ]
       },
@@ -75,7 +75,7 @@
         root_id: '',
         top: 0,
         left: 0,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/004.jpg',
+        src: 'http://tudian.com/src/asset/mobile/db/004.jpg',
         hotspot: [
           '005'
         ]
@@ -88,7 +88,7 @@
         root_id: '004',
         top: 18,
         left: 38,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/005.jpg',
+        src: 'http://tudian.com/src/asset/mobile/db/005.jpg',
         hotspot: [
         ]
       },
@@ -100,7 +100,7 @@
         root_id: '001',
         top: 18,
         left: 38,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/005.jpg',
+        src: 'http://tudian.com/src/asset/mobile/db/005.jpg',
         hotspot: [
         ]
       }
@@ -117,7 +117,7 @@
 
     , $photo_frame = $('#photo_frame')
 
-    , $albums_wrapper = $photo_frame.find('.albums-wrapper')
+    , $albums_wrapper = $photo_frame.find('#photo_frame')
 
     , rendered = []
 
@@ -126,7 +126,7 @@
     , template = {
 
       spot: [
-'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://10.2.58.245/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://tudian.com/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
       ].join(''),
 
       album: [
@@ -150,11 +150,11 @@
 
       backcover: [
 '<div id="backcover" class="stamp second photo-wrapper">',
-'  <div><img draggable="false" src="http://10.2.58.245/ux_tudian/src/asset/mobile/img_second_bg.jpg"></div>',
+'  <div><img draggable="false" src="http://tudian.com/src/asset/mobile/img_second_bg.jpg"></div>',
 '  <div class="pos-rel png-box">',
-'    <img draggable="false" class="second-bg" src="http://10.2.58.245/ux_tudian/src/asset/mobile/img_second_bg_p1.png">',
-'    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://10.2.58.245/ux_tudian/src/asset/nil.png" alt=""></a></div>',
-'    <img draggable="false" class="second-bg" src="http://10.2.58.245/ux_tudian/src/asset/mobile/img_second_bg_p2.png">',
+'    <img draggable="false" class="second-bg" src="http://tudian.com/src/asset/mobile/img_second_bg_p1.png">',
+'    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://tudian.com/src/asset/nil.png" alt=""></a></div>',
+'    <img draggable="false" class="second-bg" src="http://tudian.com/src/asset/mobile/img_second_bg_p2.png">',
 '  </div>',
 '</div>'
       ].join('')
@@ -185,16 +185,16 @@
         event.preventDefault()
         back_spot(this)
       })
-      // .on('mouseover', '.albums-wrapper', function(event){
+      // .on('mouseover', '#photo_frame', function(event){
       //   console.log('albums-wrapper over')
       //   Photonote.mouseover = true
       //   Photonote.mouseout = false
       // })
-      // .on('mousedown', '.albums-wrapper', function(event){
+      // .on('mousedown', '#photo_frame', function(event){
       //   drag_handler(event)
       // })
-      // .on('mousemove', '.albums-wrapper', move_handler)
-      // .on('mouseout', '.albums-wrapper', function(event){
+      // .on('mousemove', '#photo_frame', move_handler)
+      // .on('mouseout', '#photo_frame', function(event){
       //   if(Photonote.mousedown){
       //     return
       //   }
@@ -203,7 +203,7 @@
       //   Photonote.mouseout = true
       //   drag_cancel(event)
       // })
-      .on('mouseup', '.albums-wrapper', function(event){
+      .on('mouseup', '#photo_frame', function(event){
 
         console.log('mouseup')
       //   Photonote.mouseup = true
@@ -259,7 +259,7 @@
       })
 
       
-      $photo_frame.find('.albums-wrapper')
+      $photo_frame.find('#photo_frame')
         .append(template.backcover)
 
       $('#' + get_spot_id(default_id)).show()
@@ -285,7 +285,7 @@
       })
 
       // 设置图册容器总宽度, 实际页数 + 封底
-      // $photo_frame.find('.albums-wrapper').css({
+      // $photo_frame.find('#photo_frame').css({
       //   // width: base_width * (pages.length + 1)
       //   width: base_width
       // })
