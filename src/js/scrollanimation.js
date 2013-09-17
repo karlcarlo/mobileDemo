@@ -43,6 +43,7 @@ var partOneSlide = {
 		});
 	},
 	start: function(rebuild){
+		if(this.tid) clearInterval(this.tid);
 		if(rebuild) this.render();
 		if(!this.$curItem) this.$curItem = this.$ul.find('li:first');
 		this.tid = setInterval($.proxy(this.slide,this),this.delay+this.dur);
@@ -74,46 +75,36 @@ var partOneSlide = {
 //第4屏的滚动效果
 // $li.index() * 126 - 22 = 第二个滚动的坐标
 var partFourSlide = {
-	delay: 1500,
+	delay: 2500,
 	dur: 200,
 	data: {
 		pics: [
 			{
-				text: '1',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss05.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss05.jpg'
 			},
 			{
-				text: '2',
 				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss01.jpg'
 			},
 			{
-				text: '3',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss02.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss02.jpg'
 			},
 			{
-				text: '4',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss03.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss03.jpg'
 			},
 			{
-				text: '5',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
-			},
-			{
-				text: '6',
-				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png',
-				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss01.png'
+				pic: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_ss04.png',
+				bg: 'http://s5.suc.itc.cn/ux_tudian/asset/desktop/bg_ss04.jpg'
 			}
 		]
 	},
 	template: [
 		'<ul>',
 		'{{#pics}}',
-		'<li data-bg="{{bg}}" data-text="{{text}}"><img src="{{pic}}" alt="" /></li>',
+		'<li data-bg="{{bg}}"><img src="{{pic}}" alt="" /></li>',
 		'{{/pics}}',
 		'</ul>'
 	].join(''),
@@ -132,6 +123,7 @@ var partFourSlide = {
 			width: this.data.pics.length * 126
 		});
 		this.setCurItem();
+		this.setBg();
 	},
 	setCurItem: function(index){
 		index = index || 1;
@@ -141,6 +133,7 @@ var partFourSlide = {
 		});
 	},
 	start: function(rebuild){
+		if(this.tid) clearInterval(this.tid);
 		if(rebuild) this.render();
 		this.show();
 		//这里写动画展开效果
@@ -157,7 +150,7 @@ var partFourSlide = {
 					$(this).css({
 						position: 'static',
 						left: 'auto',
-						top: 'auto',
+						top: 'auto'
 					});
 				});
 			},
@@ -201,9 +194,12 @@ var partFourSlide = {
 		this.dur,
 		'swing',
 		function(){
-			self.$bg.html('<img width="170" height="222" src="'+self.$curItem.attr('data-bg')+'" />');
+			setTimeout($.proxy(self.setBg,self),500);
 		});
 		this.$curItem = this.$curItem.prev();
+	},
+	setBg: function(){
+		this.$bg.html('<img width="170" height="222" src="'+this.$curItem.attr('data-bg')+'" />').find('img').css('opacity',0.4).animate({opacity:1},500);
 	},
 	hide: function(){
 		this.$ul.hide();
@@ -256,7 +252,7 @@ var SA = {
 		$('<a href="#" id="back_top"></a>')
 		.click(function(event){
 			event.preventDefault();
-			self.$elems.part1.ScrollTo();
+			$.scrollTo(self.$elems.part1,1000);
 		})
 		.appendTo('body')
 		.hide();
@@ -269,15 +265,19 @@ var SA = {
 		var self = this;
 		$('a.link-one').click(function(event){
 			event.preventDefault();
-			self.$elems.part2.ScrollTo();
+			$.scrollTo('#part2',1000);
 		});
 		$('a.link-two').click(function(event){
 			event.preventDefault();
-			self.$elems.part3.ScrollTo();
+			$.scrollTo('#part3',1000);
 		});
 		$('a.link-three').click(function(event){
 			event.preventDefault();
-			self.$elems.part4.ScrollTo();
+			$.scrollTo('#part4',1000);
+		});
+		$('a.link-four').click(function(event){
+			event.preventDefault();
+			$.scrollTo('#part1',1000);
 		});
 	},
 	containerAutoSize: function(){
@@ -312,13 +312,14 @@ var SA = {
 		var self = this;
 		//添加移动浮层
 		$('<img id="mov1" class="pop" src="http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_parttwo.jpg" alt="" />').appendTo(this.$elems.canvas).hide();
-		$('<img id="mov2" class="pop" src="http://s5.suc.itc.cn/ux_tudian/asset/desktop/img_book.gif" alt="" />').appendTo(this.$elems.canvas).hide();
+		$('<img id="mov2" class="pop" src="http://s5.suc.itc.cn/ux_tudian/asset/desktop/book.png" alt="" />').appendTo(this.$elems.canvas).hide();
 
 
 		//初始化动画的一些左边信息
 		var $mov1 = $('#mov1'),
 			$mov2 = $('#mov2'),
-			$book_img = this.$elems.part3.find('.book img');
+			$book_img = this.$elems.part3.find('.book img'),
+			top_offset = 5;//为了防止世界被破坏（为了防止动画不能正常播放完毕，所以在播放时长上减少5像素）
 
 		var part2_offset = this.$elems.part2.offset(),
 			part3_offset = this.$elems.part3.offset(),
@@ -330,7 +331,7 @@ var SA = {
 		var at1 = 107,
 			from1 = this.$elems.part1.find('div.pic-scroll').offset(),
 			to1 = this.$elems.part2.find('div.parttwo-con > div.img').offset(),
-			dur1 = part2_offset.top - at1;
+			dur1 = part2_offset.top - at1 - top_offset;
 
 		$mov1.css({
 			left: from1.left,
@@ -371,7 +372,7 @@ var SA = {
 		//第二个关键帧
 		var at2 = part2_offset.top + 180,
 			to2 = this.$elems.part3.find('div.book').offset(),
-			dur2 = part3_offset.top - at2;
+			dur2 = part3_offset.top - at2 - top_offset;
 
 		animObjects.push(at2);
 		this.controller.addTween(
@@ -418,7 +419,7 @@ var SA = {
 		//第三个关键帧
 		var at3 = part3_offset.top + 180,
 			to3 = this.$elems.part4.find('div.img-scroll').offset(),
-			dur3 = part4_offset.top - at3;
+			dur3 = part4_offset.top - at3 - top_offset;
 		//显示出来，并开始计算坐标
 		animObjects.push(at3);
 		to3.left += 37;//添加偏移量
@@ -451,6 +452,9 @@ var SA = {
 							$mov2.show();
 							$book_img.hide();
 							partFourSlide.stop().hide();
+						}else{
+							$mov2.hide();
+							partFourSlide.start(true);
 						}
 					}
 				}
