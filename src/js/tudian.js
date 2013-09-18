@@ -37,6 +37,7 @@
         top: 0,
         left: 0,
         src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/001.jpg',
+        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/001.png',
         hotspot: [
           '002',
           '003',
