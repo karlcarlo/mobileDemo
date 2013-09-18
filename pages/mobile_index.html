@@ -32,12 +32,12 @@
 
   			<section class="stamp footer">
           <div class="thumbnail">
-            <a href="#"><img src="http://img.itc.cn/photo/j0mVWAEK01p_w283"/></a>
-            <a href="#"><img src="http://img.itc.cn/photo/j0k7S4sfcKb_w283"/></a>
-            <a href="#"><img src="http://img.itc.cn/photo/j0iqLolYPag_w283"/></a>
-            <a href="#"><img src="http://img.itc.cn/photo/j0OV5MOAMcW_w283"/></a>
-            <a href="#"><img src="http://img.itc.cn/photo/j05RUN0QoWH_w283"/></a>
-            <a href="#"><img src="http://img.itc.cn/photo/j0HjgXkY3Uq_w283"/></a>
+            <a data-action="download" href="javascript:;"><img src="http://img.itc.cn/photo/j0mVWAEK01p_w283"/></a>
+            <a data-action="download" href="javascript:;"><img src="http://img.itc.cn/photo/j0k7S4sfcKb_w283"/></a>
+            <a data-action="download" href="javascript:;"><img src="http://img.itc.cn/photo/j0iqLolYPag_w283"/></a>
+            <a data-action="download" href="javascript:;"><img src="http://img.itc.cn/photo/j0OV5MOAMcW_w283"/></a>
+            <a data-action="download" href="javascript:;"><img src="http://img.itc.cn/photo/j05RUN0QoWH_w283"/></a>
+            <a data-action="download" href="javascript:;"><img src="http://img.itc.cn/photo/j0HjgXkY3Uq_w283"/></a>
           </div>
         </section>
         <section class="stamp footer">
@@ -83,14 +83,21 @@
             });
 
 
-            $('.footer').on('click', '[data-action="create_album"]', function(event){
+
+            $('.thumbnail').on('click', '[data-action="download"]', function(event){
               event.preventDefault()
-              if(window.confirm("yes","no")){
-                alert("跳至下载页");
+              if(window.confirm("下载由我图记，查看全部内容","no")){
+                window.location.href="http://baidu.com"
               }else{
-                alert("取消");
+
               }
 
+            })
+
+
+            $('.footer').on('click', '[data-action="create_album"]', function(event){
+              event.preventDefault()
+              window.location.href="http://baidu.com"
             })
       });
 

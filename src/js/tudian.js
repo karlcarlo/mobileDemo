@@ -27,7 +27,7 @@
       base_width: 0,
       critical: 0
     }
-
+//http://10.2.58.245/ux_tudian/src/asset/
     var photo_index = {
       '001': {
         id: '001',
@@ -239,6 +239,7 @@
     , $photo_frame = $('#photo_frame')
 
     //, $albums_wrapper = $photo_frame.find('#photo_frame')
+    , $albums_wrapper = $photo_frame.find('#photo_frame')
 
     , rendered = []
 
@@ -248,6 +249,7 @@
 
       spot: [
 '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+
       ].join(''),
 
       album: [
