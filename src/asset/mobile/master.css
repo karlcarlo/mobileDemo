@@ -314,6 +314,10 @@ img.photo {
   }
 }
 @media screen and (max-width: 320px) and (orientation: portrait) {
+  #photo_frame img.hotspot {
+    width: 48px;
+    height: 48px;
+  }
   .pagination {
     bottom: 0.4em;
   }

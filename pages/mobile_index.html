@@ -8,14 +8,14 @@
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     
-    <link rel="icon" href="http://s5.suc.itc.cn/ux_tudian/src/asset/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://10.2.58.132/ux_tudian/src/asset/favicon.ico" type="image/x-icon">
     <title>由我图记</title>
-    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/normalize.css" />
-    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/foundation.css" />
-    <link rel="stylesheet" href="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/master.css" />
+    <link rel="stylesheet" href="http://10.2.58.132/ux_tudian/src/asset/mobile/normalize.css" />
+    <link rel="stylesheet" href="http://10.2.58.132/ux_tudian/src/asset/mobile/foundation.css" />
+    <link rel="stylesheet" href="http://10.2.58.132/ux_tudian/src/asset/mobile/master.css" />
 	<script src="http://js.suc.itc.cn/jquery/jquery-1.9.1.js"></script>
   <!-- // <script src="http://10.2.58.245/ux_tudian/src/js/jquery.mobile-1.3.2.js"></script> -->
-	<script src="http://s5.suc.itc.cn/ux_tudian/src/js/hogan.js"></script>
+	<script src="http://10.2.58.132/ux_tudian/src/js/hogan.js"></script>
   </head>
   <body class="antialiased off-canvas hide-extras">
   	<div id="container" class="main">
@@ -42,15 +42,15 @@
         </section>
         <section class="stamp footer">
           <div class="img-alarm"></div>
-          <div class="btn-download">
-            <a href="#"></a>
+          <div data-action="create_album" class="btn-download">
+            <a href="javascript:;"></a>
           </div>
           <div class="btn-group" style="display:none;">
-            <a class="full" href="#"><i class="icon-pen"></i>我也要制作画报</a>
+            <a class="full" href="javascript:;"><i class="icon-pen"></i>我也要制作画报</a>
           </div>
           <div class="btn-group">
-            <a class="pull-left" href="#"><i class="icon-pen"></i>制作我的画报</a>
-            <a class="pull-right" href="#"><i class="icon-share"></i>分享给朋友</a>
+            <a data-action="create_album" class="pull-left" href="javascript:;"><i class="icon-pen"></i>制作我的画报</a>
+            <a id="share" class="pull-right" href="javascript:;"><i class="icon-share"></i>分享给朋友</a>
           </div>
         </section>
         <div class="modal" style="display:none;">
@@ -64,7 +64,38 @@
       <div>client_x: <span id="client_x">?</span> client_y: <span id="client_y">?</span></div>
     </div>
 
-  	<script src="http://s5.suc.itc.cn/ux_tudian/src/js/tudian.js"></script>
+    <input id="platform" type="hidden" value="{platform}" />
+
+  	<script src="http://10.2.58.132/ux_tudian/src/js/tudian.js"></script>
     <script type="text/javascript" src="http://10.2.58.245:8080/target/target-script-min.js#tuji"></script>
+
+
+    <script type="text/javascript">
+
+
+      jQuery(document).ready(function($) {
+            
+            $('#share').click(function(){
+                $('.modal').show();
+            });
+            $('.modal').click(function(){
+                $('.modal').hide();
+            });
+
+
+            $('.footer').on('click', '[data-action="create_album"]', function(event){
+              event.preventDefault()
+              if(window.confirm("yes","no")){
+                alert("跳至下载页");
+              }else{
+                alert("取消");
+              }
+
+            })
+      });
+
+
+    </script>
+
   </body>
 </html>

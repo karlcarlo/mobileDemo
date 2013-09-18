@@ -36,7 +36,7 @@
         root_id: '',
         top: 0,
         left: 0,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/001.jpg',
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/001.jpg',
         hotspot: [
           '002',
           '003',
@@ -51,7 +51,7 @@
         root_id: '001',
         top: 29,
         left: 24,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/002.jpg',
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/002.jpg',
         hotspot: [
         ]
       },
@@ -63,7 +63,7 @@
         root_id: '001',
         top: 50,
         left: 20,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/003.jpg',
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/003.jpg',
         hotspot: [
         ]
       },
@@ -75,7 +75,7 @@
         root_id: '',
         top: 0,
         left: 0,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/004.jpg',
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/004.jpg',
         hotspot: [
           '005'
         ]
@@ -88,7 +88,7 @@
         root_id: '004',
         top: 18,
         left: 38,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/005.jpg',
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/005.jpg',
         hotspot: [
         ]
       },
@@ -100,24 +100,145 @@
         root_id: '001',
         top: 18,
         left: 38,
-        src: 'http://10.2.58.245/ux_tudian/src/asset/mobile/db/005.jpg',
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/005.jpg',
+        hotspot: [
+        ]
+      },
+
+      '007': {
+        id: '007',
+        type: 'root',
+        parent_id: '',
+        root_id: '',
+        top: 0,
+        left: 0,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/006.jpg',
+        hotspot: [
+          '008'
+        ]
+      },
+
+      '008': {
+        id: '008',
+        type: 'spot',
+        parent_id: '007',
+        root_id: '007',
+        top: 28,
+        left: 18,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/007.jpg',
+        hotspot: [
+        ]
+      },
+
+      '009': {
+        id: '009',
+        type: 'root',
+        parent_id: '',
+        root_id: '',
+        top: 0,
+        left: 0,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/008.jpg',
+        hotspot: [
+          '010',
+          '011'
+        ]
+      },
+
+      '010': {
+        id: '010',
+        type: 'spot',
+        parent_id: '009',
+        root_id: '009',
+        top: 28,
+        left: 18,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/009.jpg',
+        hotspot: [
+        ]
+      },
+
+      '011': {
+        id: '011',
+        type: 'spot',
+        parent_id: '009',
+        root_id: '009',
+        top: 48,
+        left: 58,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/010.jpg',
+        hotspot: [
+        ]
+      },
+
+      '012': {
+        id: '012',
+        type: 'root',
+        parent_id: '',
+        root_id: '',
+        top: 0,
+        left: 0,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/011.jpg',
+        hotspot: [
+          '013',
+          '014',
+          '015'
+        ]
+      },
+
+      '013': {
+        id: '013',
+        type: 'spot',
+        parent_id: '012',
+        root_id: '012',
+        top: 21,
+        left: 68,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/012.jpg',
+        hotspot: [
+        ]
+      },
+
+      '014': {
+        id: '014',
+        type: 'spot',
+        parent_id: '012',
+        root_id: '012',
+        top: 48,
+        left: 28,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/013.jpg',
+        hotspot: [
+        ]
+      },
+
+      '015': {
+        id: '015',
+        type: 'spot',
+        parent_id: '012',
+        root_id: '012',
+        top: 77,
+        left: 68,
+        src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/014.jpg',
         hotspot: [
         ]
       }
+
+
+
+
 
 
     }
 
     , pages = [
       '001',
-      '004'
+      '004',
+      '007',
+      '009',
+      '012'
     ]
 
     , current_page = 1
 
     , $photo_frame = $('#photo_frame')
 
-    , $albums_wrapper = $photo_frame.find('.albums-wrapper')
+    //, $albums_wrapper = $photo_frame.find('#photo_frame')
 
     , rendered = []
 
@@ -126,7 +247,7 @@
     , template = {
 
       spot: [
-'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://10.2.58.245/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
       ].join(''),
 
       album: [
@@ -150,11 +271,11 @@
 
       backcover: [
 '<div id="backcover" class="stamp second photo-wrapper">',
-'  <div><img draggable="false" src="http://10.2.58.245/ux_tudian/src/asset/mobile/img_second_bg.jpg"></div>',
+'  <div><img draggable="false" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg.jpg"></div>',
 '  <div class="pos-rel png-box">',
-'    <img draggable="false" class="second-bg" src="http://10.2.58.245/ux_tudian/src/asset/mobile/img_second_bg_p1.png">',
-'    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://10.2.58.245/ux_tudian/src/asset/nil.png" alt=""></a></div>',
-'    <img draggable="false" class="second-bg" src="http://10.2.58.245/ux_tudian/src/asset/mobile/img_second_bg_p2.png">',
+'    <img draggable="false" class="second-bg" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg_p1.png">',
+'    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://10.2.58.132/ux_tudian/src/asset/nil.png" alt=""></a></div>',
+'    <img draggable="false" class="second-bg" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg_p2.png">',
 '  </div>',
 '</div>'
       ].join('')
@@ -184,17 +305,28 @@
       .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
         back_spot(this)
+
+        console.log('show hotspot line:188  end hotspot_inversion');
+        
+        //hotspot_inversion()
+
+        if(!Photonote.is_hotspot_visible){
+          hotspot_active()
+          hotspot_fade()
+        }
+
+
       })
-      // .on('mouseover', '.albums-wrapper', function(event){
+      // .on('mouseover', '#photo_frame', function(event){
       //   console.log('albums-wrapper over')
       //   Photonote.mouseover = true
       //   Photonote.mouseout = false
       // })
-      // .on('mousedown', '.albums-wrapper', function(event){
+      // .on('mousedown', '#photo_frame', function(event){
       //   drag_handler(event)
       // })
-      // .on('mousemove', '.albums-wrapper', move_handler)
-      // .on('mouseout', '.albums-wrapper', function(event){
+      // .on('mousemove', '#photo_frame', move_handler)
+      // .on('mouseout', '#photo_frame', function(event){
       //   if(Photonote.mousedown){
       //     return
       //   }
@@ -203,7 +335,7 @@
       //   Photonote.mouseout = true
       //   drag_cancel(event)
       // })
-      .on('mouseup', '.albums-wrapper', function(event){
+      .on('mouseup', '#photo_frame', function(event){
 
         console.log('mouseup')
       //   Photonote.mouseup = true
@@ -252,14 +384,15 @@
 
         html = Hogan.compile(template.album).render(data, template)
 
-        $albums_wrapper.append(html)
+        $photo_frame.append(html)
+        //$albums_wrapper.append(html)
 
         // rendered cache
         rendered.push(get_spot_id(obj))
       })
 
       
-      $photo_frame.find('.albums-wrapper')
+      $photo_frame.find('#photo_frame')
         .append(template.backcover)
 
       $('#' + get_spot_id(default_id)).show()
@@ -285,7 +418,7 @@
       })
 
       // 设置图册容器总宽度, 实际页数 + 封底
-      // $photo_frame.find('.albums-wrapper').css({
+      // $photo_frame.find('#photo_frame').css({
       //   // width: base_width * (pages.length + 1)
       //   width: base_width
       // })
