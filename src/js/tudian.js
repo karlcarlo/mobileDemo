@@ -30,7 +30,7 @@
 //http://10.2.58.245/ux_tudian/src/asset/
 
 
-      var photo_index = json;
+      var photo_index = window.json,
       
 /*    var photo_index = {
       '001': {
@@ -915,13 +915,11 @@
 
   })
 
+}(jQuery)
 
 
 
-
-
-
-  jQuery(document).ready(function($) {
+jQuery(document).ready(function($) {
         
         $('#share').click(function(){
             $('.modal').show();
@@ -947,9 +945,9 @@
           event.preventDefault()
           window.location.href="http://baidu.com"
         })
-  });
 
 
+        
+      console.dir(json);
+});
 
-
-}(jQuery)
