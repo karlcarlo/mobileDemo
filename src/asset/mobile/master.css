@@ -136,6 +136,15 @@ img.photo {
   display: inline-block;
   clear: none;
 }
+.photo-wrapper .img-mod {
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+.photo-wrapper .img-mod img {
+  max-width: 640px;
+  min-width: 640px;
+}
 #photo_frame img.hotspot {
   position: absolute;
   border: 0.2em solid #fff;
@@ -147,6 +156,7 @@ img.photo {
   background-position: center;
   background-size: 100% auto;
   background-origin: border-box;
+  z-index: 50;
 }
 
 #photo_frame img.hotspot:hover {
@@ -180,7 +190,7 @@ img.photo {
     75% { border-color: rgba(255, 255, 255, 0.4); }
     to { border-color: #FFF; }
 }
- 
+
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
@@ -311,6 +321,23 @@ img.photo {
   .footer .btn-group i {
     margin-right: 2px;
     background-size: 90% auto;
+  }
+}
+@media screen and (max-width: 640px) {
+  .photo-wrapper .img-mod img,
+  img.photo {
+    max-width: auto;
+    width: 100%;
+  }
+  .photo-wrapper .img-mod img {
+    min-width: inherit;
+  }
+}
+@media screen and (max-width: 320px) {
+  .photo-wrapper .img-mod img,
+  img.photo {
+    max-width: auto;
+    width: 100%;
   }
 }
 @media screen and (max-width: 320px) and (orientation: portrait) {
