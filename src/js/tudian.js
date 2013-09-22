@@ -37,7 +37,7 @@
         top: 0,
         left: 0,
         src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/001.jpg',
-        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/001.png',
+        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/cover/1.png',
         hotspot: [
           '002',
           '003',
@@ -77,6 +77,7 @@
         top: 0,
         left: 0,
         src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/004.jpg',
+        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/cover/2.png',
         hotspot: [
           '005'
         ]
@@ -114,6 +115,7 @@
         top: 0,
         left: 0,
         src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/006.jpg',
+        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/cover/3.png',
         hotspot: [
           '008'
         ]
@@ -139,6 +141,7 @@
         top: 0,
         left: 0,
         src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/008.jpg',
+        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/cover/1.png',
         hotspot: [
           '010',
           '011'
@@ -177,6 +180,7 @@
         top: 0,
         left: 0,
         src: 'http://10.2.58.132/ux_tudian/src/asset/mobile/db/011.jpg',
+        cover: 'http://10.2.58.132/ux_tudian/src/asset/mobile/cover/3.png',
         hotspot: [
           '013',
           '014',
@@ -906,4 +910,42 @@
     }
 
   })
+
+
+
+
+
+
+
+  jQuery(document).ready(function($) {
+        
+        $('#share').click(function(){
+            $('.modal').show();
+        });
+        $('.modal').click(function(){
+            $('.modal').hide();
+        });
+
+
+
+        $('.thumbnail').on('click', '[data-action="download"]', function(event){
+          event.preventDefault()
+          if(window.confirm("下载由我图记，查看全部内容","no")){
+            window.location.href="http://baidu.com"
+          }else{
+
+          }
+
+        })
+
+
+        $('.footer').on('click', '[data-action="create_album"]', function(event){
+          event.preventDefault()
+          window.location.href="http://baidu.com"
+        })
+  });
+
+
+
+
 }(jQuery)

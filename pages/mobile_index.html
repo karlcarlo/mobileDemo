@@ -16,6 +16,11 @@
 	<script src="http://js.suc.itc.cn/jquery/jquery-1.9.1.js"></script>
   <!-- // <script src="http://10.2.58.245/ux_tudian/src/js/jquery.mobile-1.3.2.js"></script> -->
 	<script src="http://10.2.58.132/ux_tudian/src/js/hogan.js"></script>
+
+
+  <script type="text/javascript">
+    var json = {data}
+  </script>
   </head>
   <body class="antialiased off-canvas hide-extras">
   	<div id="container" class="main">
@@ -68,41 +73,5 @@
 
   	<script src="http://10.2.58.132/ux_tudian/src/js/tudian.js"></script>
     <script type="text/javascript" src="http://10.2.58.245:8080/target/target-script-min.js#tuji"></script>
-
-
-    <script type="text/javascript">
-
-
-      jQuery(document).ready(function($) {
-            
-            $('#share').click(function(){
-                $('.modal').show();
-            });
-            $('.modal').click(function(){
-                $('.modal').hide();
-            });
-
-
-
-            $('.thumbnail').on('click', '[data-action="download"]', function(event){
-              event.preventDefault()
-              if(window.confirm("下载由我图记，查看全部内容","no")){
-                window.location.href="http://baidu.com"
-              }else{
-
-              }
-
-            })
-
-
-            $('.footer').on('click', '[data-action="create_album"]', function(event){
-              event.preventDefault()
-              window.location.href="http://baidu.com"
-            })
-      });
-
-
-    </script>
-
   </body>
 </html>
