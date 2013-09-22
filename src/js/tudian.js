@@ -67,7 +67,7 @@
 '{{#hotspot}}',
 '{{>spot}}',
 '{{/hotspot}}',
-'<div class="pos-abs img-mod"><img src="{{cover}}" /></div>',
+'<div data-action="hotspot_cover" class="pos-abs img-mod"><img src="{{cover}}" /></div>',
 '<div data-action="hotspot_back" data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}"><img draggable="false" class="photo" src="{{src}}" alt=""></div>',
 '</div>',
       ].join(''),
@@ -112,7 +112,7 @@
         event.preventDefault()
         goto_spot(this)
       })
-      .on('click', '[data-action="hotspot_back"]', function(event){
+      .on('click', '[data-action="hotspot_cover"]', function(event){
         event.preventDefault()
         back_spot(this)
 
