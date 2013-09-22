@@ -201,7 +201,7 @@
 
       //more——photo
       var photo_more_html=[];
-      more.forEach(function(i,n){
+      photo_more.forEach(function(i,n){
         photo_more_html.push(Hogan.compile(template.more).render(url,template));
       })
       $photo_more.append(photo_more_html.join(''));
