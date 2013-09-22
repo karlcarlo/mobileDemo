@@ -36,7 +36,7 @@
 
     , $photo_frame = $('#photo_frame')
 
-    , $photo_more = $('#thumbnail')
+    , $photo_more = $('.thumbnail')
 
     //, $albums_wrapper = $photo_frame.find('#photo_frame')
     , $albums_wrapper = $photo_frame.find('#photo_frame')
@@ -208,7 +208,8 @@
         photo_more_html.push(Hogan.compile(template.more).render(data));
       })
       $photo_more.append(photo_more_html.join(''));
-      console.log('\n\rphoto_more_html==> \n\r'+ photo_more_html.join(''));
+
+      //console.log('\n\rphoto_more_html==> \n\r'+ photo_more_html.join(''));
 
       
       $photo_frame.find('#photo_frame')
