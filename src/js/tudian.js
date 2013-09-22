@@ -244,9 +244,9 @@
       console.log('base_width: ' + base_width)
 
       // 获取宽度并设置为像素单位
-      $photo_frame.find('.photo-wrapper').css({
-        width: base_width
-      })
+      // $photo_frame.find('.photo-wrapper').css({
+      //   width: base_width
+      // })
 
       // 设置图册容器总宽度, 实际页数 + 封底
       // $photo_frame.find('#photo_frame').css({
@@ -626,9 +626,6 @@
     }
 
     function goto_spot(elem){
-
-      console.log('11111111111____goto_spot');
-
       var $elem = $(elem)
         , spot_id = $elem.attr('data-spot-id')
 
