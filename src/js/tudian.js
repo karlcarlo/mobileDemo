@@ -112,7 +112,7 @@
         event.preventDefault()
         goto_spot(this)
       })
-      .on('click', '[data-action="hotspot_cover"]', function(event){
+      .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
         back_spot(this)
 
@@ -120,6 +120,16 @@
         
         //hotspot_inversion()
 
+        if(!Photonote.is_hotspot_visible){
+          hotspot_active()
+          hotspot_fade()
+        }
+
+
+      })
+      .on('click', '[data-action="hotspot_cover"]', function(event){
+        event.preventDefault()
+        
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
           hotspot_fade()
