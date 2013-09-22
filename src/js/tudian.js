@@ -626,10 +626,13 @@
     }
 
     function goto_spot(elem){
+
+      var padding_bottom =  $('.photo-wrapper').css('padding-bottom');
       var $elem = $(elem)
         , spot_id = $elem.attr('data-spot-id')
 
       $elem.siblings('img.hotspot').fadeOut()
+
 
       //缓存原始高度，96x96 or 60x60
       $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
@@ -643,7 +646,7 @@
         'border-radius': 0,
         'border-width': 0,
         left: 0,
-        top: -(parseInt($('.photo-wrapper').css('padding-bottom').substr(0,2))/2)
+        top: -(parseInt(padding_bottom.substr(0,padding_bottom.length -2))/2)
       }, function(){
         render(get_photo_data(spot_id))
       })
