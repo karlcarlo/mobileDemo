@@ -30,7 +30,7 @@
 //http://10.2.58.245/ux_tudian/src/asset/
 
 
-      var photo_index = window.json,
+      var photo_index = window.json;
       
 /*    var photo_index = {
       '001': {
@@ -235,7 +235,7 @@
 
     }*/
 
-    , pages = [
+    var pages = [
       '001',
       '004',
       '007',
