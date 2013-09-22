@@ -67,6 +67,7 @@
 '{{#hotspot}}',
 '{{>spot}}',
 '{{/hotspot}}',
+'<div data-action="hotspot_cover"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}" class="pos-abs img-mod"><img src="{{cover}}" /></div>',
 '<div data-action="hotspot_back" data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}"><img draggable="false" class="photo" src="{{src}}" alt=""></div>',
 '</div>',
       ].join(''),
@@ -111,7 +112,7 @@
         event.preventDefault()
         goto_spot(this)
       })
-      .on('click', '[data-action="hotspot_back"]', function(event){
+      .on('click', '[data-action="hotspot_cover"]', function(event){
         event.preventDefault()
         back_spot(this)
 
@@ -596,7 +597,8 @@
               spot_id: photo_list[id].id,
               top: photo_list[id].top,
               left: photo_list[id].left,
-              src: photo_list[id].src
+              src: photo_list[id].src,
+              cover: photo_list[id].cover
             })
           }
         })
