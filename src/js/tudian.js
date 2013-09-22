@@ -28,12 +28,15 @@
       critical: 0
     }
 
-    var photo_index = window.json.nodes;
+    var photo_list = window.json.nodes;
     var pages = window.json.roots;
+    var photo_more = window.json.more;
 
     var current_page = 1
 
     , $photo_frame = $('#photo_frame')
+
+    , $photo_more = $('#thumbnail')
 
     //, $albums_wrapper = $photo_frame.find('#photo_frame')
     , $albums_wrapper = $photo_frame.find('#photo_frame')
@@ -77,6 +80,12 @@
 '    <img draggable="false" class="second-bg" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg_p2.png">',
 '  </div>',
 '</div>'
+      ].join(''),
+
+      more: [
+'<a data-action="download" href="javascript:;">',
+'  <img src="{{url}}"/>',
+'</a>'
       ].join('')
 
     }
@@ -189,6 +198,13 @@
         // rendered cache
         rendered.push(get_spot_id(obj))
       })
+
+      //more——photo
+      var photo_more_html=[];
+      more.forEach(function(i,n){
+        photo_more_html.push(Hogan.compile(template.more).render(url,template));
+      })
+      $photo_more.append(photo_more_html.join(''));
 
       
       $photo_frame.find('#photo_frame')
@@ -560,22 +576,22 @@
       id = id || default_id
 
       var temp_obj = {}
-        , photo_index_obj = photo_index[id]
+        , photo_list_obj = photo_list[id]
 
-      if(photo_index_obj){
-        temp_obj = Object.create(photo_index_obj)
+      if(photo_list_obj){
+        temp_obj = Object.create(photo_list_obj)
         temp_obj.dom_id = get_spot_id(temp_obj.id)
         temp_obj.hotspot = []
         temp_obj.total_page = pages.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
-        photo_index_obj.hotspot.forEach(function(id, i){
-          if(typeof photo_index[id] === 'object'){
+        photo_list_obj.hotspot.forEach(function(id, i){
+          if(typeof photo_list[id] === 'object'){
             temp_obj.hotspot.push({
-              spot_id: photo_index[id].id,
-              top: photo_index[id].top,
-              left: photo_index[id].left,
-              src: photo_index[id].src
+              spot_id: photo_list[id].id,
+              top: photo_list[id].top,
+              left: photo_list[id].left,
+              src: photo_list[id].src
             })
           }
         })
@@ -623,7 +639,7 @@
         , $parent = null
         , type = $elem.attr('data-type')
         , id = $elem.attr('data-id')
-        , photo_obj = photo_index[id]
+        , photo_obj = photo_list[id]
 
       if(type === 'root'){
         return
@@ -661,7 +677,7 @@
         .each(function(i){
           var $spot = $(this)
             , spot_id = $spot.attr('data-spot-id')
-            , photo_obj = photo_index[spot_id]
+            , photo_obj = photo_list[spot_id]
             
           $spot
           .removeClass('expanding')
