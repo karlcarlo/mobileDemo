@@ -28,7 +28,10 @@
       critical: 0
     }
 //http://10.2.58.245/ux_tudian/src/asset/
-    var photo_index = {
+
+
+      var photo_index = json;
+/*    var photo_index = {
       '001': {
         id: '001',
         type: 'root',
@@ -229,7 +232,7 @@
 
 
 
-    }
+    }*/
 
     , pages = [
       '001',
