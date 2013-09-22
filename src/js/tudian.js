@@ -84,7 +84,7 @@
 
       more: [
 '<a data-action="download" href="javascript:;">',
-'  <img src="{{url}}"/>',
+'<img src="{{url}}"/>',
 '</a>'
       ].join('')
 
