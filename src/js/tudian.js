@@ -129,7 +129,7 @@
       })
       .on('click', '[data-action="hotspot_cover"]', function(event){
         event.preventDefault()
-        
+
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
           hotspot_fade()
@@ -650,6 +650,7 @@
     }
 
     function back_spot(elem){
+      console.log('11111111111____backspot');
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
@@ -770,5 +771,7 @@ jQuery(document).ready(function($) {
 
         
       console.dir(json);
+
+      //$('.photo-wrapper').css('padding-bottom')
 });
 
