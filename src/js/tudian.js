@@ -202,8 +202,10 @@
       //more——photo
       var photo_more_html=[];
       photo_more.forEach(function(url){ 
-        console.log(url);
-        photo_more_html.push(Hogan.compile(template.more).render(url));
+        var data = {
+          url:url
+        };
+        photo_more_html.push(Hogan.compile(template.more).render(data));
       })
       $photo_more.append(photo_more_html.join(''));
       console.log('\n\rphoto_more_html==> \n\r'+ photo_more_html.join(''));
