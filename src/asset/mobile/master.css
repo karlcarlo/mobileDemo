@@ -305,6 +305,11 @@ img.photo {
   background-size: 70% auto;
 }
 @media screen and (max-width: 640px) and (orientation: portrait) {
+  .photo-wrapper .img-mod img {
+    max-width: auto;
+    min-width: inherit;
+    width: 100%;
+  }
   .modal {
     background-position: 2.5em 0.625em;
     background-size: 50% auto;
@@ -323,23 +328,6 @@ img.photo {
     background-size: 90% auto;
   }
 }
-@media screen and (max-width: 640px) {
-  .photo-wrapper .img-mod img,
-  img.photo {
-    max-width: auto;
-    width: 100%;
-  }
-  .photo-wrapper .img-mod img {
-    min-width: inherit;
-  }
-}
-@media screen and (max-width: 320px) {
-  .photo-wrapper .img-mod img,
-  img.photo {
-    max-width: auto;
-    width: 100%;
-  }
-}
 @media screen and (max-width: 320px) and (orientation: portrait) {
   #photo_frame img.hotspot {
     width: 48px;
@@ -347,6 +335,10 @@ img.photo {
   }
   .pagination {
     bottom: 0.4em;
+  }
+  .photo-wrapper .img-mod img {
+    max-width: auto;
+    width: 100%;
   }
   .modal {
     background-position: 2.5em 0.625em;
