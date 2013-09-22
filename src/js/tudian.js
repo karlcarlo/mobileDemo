@@ -632,8 +632,8 @@
       $elem.siblings('img.hotspot').fadeOut()
 
       //缓存原始高度，96x96 or 60x60
-      $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
-      $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
+      // $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
+      // $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
 
       $elem
       .addClass('expanding')
