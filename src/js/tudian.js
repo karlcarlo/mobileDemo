@@ -82,9 +82,7 @@
     }
 
 
-    setTimeout(function(){
-      init();
-    },1000)
+    init();
 
 
     // private
@@ -139,7 +137,6 @@
       // })
       .on('mouseup', '#photo_frame', function(event){
 
-        console.log('mouseup')
       //   Photonote.mouseup = true
       //   Photonote.mousedown = false
       //   drag_cancel(event)
