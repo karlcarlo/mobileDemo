@@ -648,7 +648,7 @@
         left: 0,
         top: -(parseInt($('.photo-wrapper').css('padding-bottom').substr(0,2))/2)
       }, function(){
-        //render(get_photo_data(spot_id))
+        render(get_photo_data(spot_id))
       })
     }
 
