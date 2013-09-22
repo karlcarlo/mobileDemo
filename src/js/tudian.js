@@ -30,7 +30,7 @@
 //http://10.2.58.245/ux_tudian/src/asset/
 
 
-      var photo_index = window.json;
+      var photo_index = window.json.nodes;
       
 /*    var photo_index = {
       '001': {
@@ -233,17 +233,18 @@
 
 
 
-    }*/
+    }
 
-    var pages = [
+    pages = [
       '001',
       '004',
       '007',
       '009',
       '012'
-    ]
+    ]*/
+    var pages = window.json.roots;
 
-    , current_page = 1
+    var current_page = 1
 
     , $photo_frame = $('#photo_frame')
 
