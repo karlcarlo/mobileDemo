@@ -626,6 +626,9 @@
     }
 
     function goto_spot(elem){
+
+      console.log('11111111111____goto_spot');
+      
       var $elem = $(elem)
         , spot_id = $elem.attr('data-spot-id')
 
@@ -650,7 +653,6 @@
     }
 
     function back_spot(elem){
-      console.log('11111111111____backspot');
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
