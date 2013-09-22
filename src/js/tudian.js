@@ -206,7 +206,7 @@
         photo_more_html.push(Hogan.compile(template.more).render(n));
       })
       $photo_more.append(photo_more_html.join(''));
-      console.log('\r photo_more_html==> \n'+ photo_more_html.join(''));
+      console.log('\n photo_more_html==> \n'+ photo_more_html.join(''));
 
       
       $photo_frame.find('#photo_frame')
