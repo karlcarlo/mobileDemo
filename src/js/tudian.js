@@ -554,7 +554,7 @@
       Photonote.hotspot_timer = setTimeout(function(){
         $photo_frame.find('.hotspot').fadeOut('slow')
         Photonote.is_hotspot_visible = false
-      }, 3000)
+      }, 30000)
     }
 
     function hotspot_disable(){
