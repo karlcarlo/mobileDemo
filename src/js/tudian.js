@@ -203,11 +203,10 @@
       var photo_more_html=[];
       photo_more.forEach(function(n){ 
         console.log(n);
-
         photo_more_html.push(Hogan.compile(template.more).render(n));
       })
       $photo_more.append(photo_more_html.join(''));
-      console.log('photo_more_html==>'+ photo_more_html.join(''));
+      console.log('/n/r photo_more_html==>'+ photo_more_html.join(''));
 
       
       $photo_frame.find('#photo_frame')
