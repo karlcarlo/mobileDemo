@@ -628,7 +628,7 @@
     function goto_spot(elem){
 
       console.log('11111111111____goto_spot');
-      
+
       var $elem = $(elem)
         , spot_id = $elem.attr('data-spot-id')
 
@@ -648,7 +648,7 @@
         left: 0,
         top: 0
       }, function(){
-        render(get_photo_data(spot_id))
+        //render(get_photo_data(spot_id))
       })
     }
 
