@@ -244,9 +244,9 @@
       console.log('base_width: ' + base_width)
 
       // 获取宽度并设置为像素单位
-      // $photo_frame.find('.photo-wrapper').css({
-      //   width: base_width
-      // })
+      $photo_frame.find('.photo-wrapper').css({
+        width: base_width
+      })
 
       // 设置图册容器总宽度, 实际页数 + 封底
       // $photo_frame.find('#photo_frame').css({
