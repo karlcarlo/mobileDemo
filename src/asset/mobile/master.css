@@ -108,7 +108,7 @@ a.th {
 }
 
 img.photo {
-  max-width: 640px;
+  width: 100%;
 }
 @media screen and (max-width: 640px) and (orientation: portrait) {
   .photo-wrapper img.photo {
@@ -130,6 +130,7 @@ img.photo {
 #photo_frame .photo-wrapper {
   position: relative;
   float: left;
+  width: 100%;
   padding-bottom: 8.125%;
   background: url(img_cutline.png) no-repeat bottom;
   background-size: 100% auto;
@@ -137,13 +138,13 @@ img.photo {
   clear: none;
 }
 .photo-wrapper .img-mod {
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 20;
 }
 .photo-wrapper .img-mod img {
-  max-width: 640px;
-  min-width: 640px;
+  width: 100%;
 }
 #photo_frame img.hotspot {
   position: absolute;
