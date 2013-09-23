@@ -771,7 +771,7 @@ jQuery(document).ready(function($) {
 
         //window.open('youworld://youwo.com');
 
-        window.location.href="youworld://youwo.com";
+        //window.location.href="youworld://youwo.com";
           /*try(window.location.href="youworld://youwo.com"){
             alert("ok");
           }catch(err){
