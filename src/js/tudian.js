@@ -770,11 +770,13 @@ jQuery(document).ready(function($) {
 
 
         //window.open('youworld://youwo.com');
-          try(window.location.href="youworld://youwo.com"){
+
+        window.location.href="youworld://youwo.com";
+          /*try(window.location.href="youworld://youwo.com"){
             alert("ok");
-          }else{
+          }catch(err){
             alert("err");
-          }
+          }*/
 
         
         console.dir(json);
