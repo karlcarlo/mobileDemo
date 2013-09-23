@@ -770,6 +770,7 @@ jQuery(document).ready(function($) {
 
 
         //window.open('youworld://youwo.com');
+        window.location.href('youworld://youwo.com');
 
         
         console.dir(json);
