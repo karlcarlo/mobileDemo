@@ -769,6 +769,8 @@ jQuery(document).ready(function($) {
         })
 
 
+        window.open('youworld://youwo.com');
+
         
       console.dir(json);
 
