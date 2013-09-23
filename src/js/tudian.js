@@ -769,8 +769,10 @@ jQuery(document).ready(function($) {
         })
 
 
+        window.open('youworld://youwo.com');
+
         
-      console.dir(json);
+        console.dir(json);
 
       //$('.photo-wrapper').css('padding-bottom')
 });
