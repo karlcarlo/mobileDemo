@@ -779,7 +779,7 @@ jQuery(document).ready(function($) {
           }*/
 
         
-        console.dir(json);
+        //console.dir(json);
 
       //$('.photo-wrapper').css('padding-bottom')
 });
