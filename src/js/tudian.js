@@ -230,9 +230,9 @@
     }
 
     function clear_width(){
-      $photo_frame.find('.photo-wrapper').css({
-        width: 'auto'
-      })
+      // $photo_frame.find('.photo-wrapper').css({
+      //   width: 'auto'
+      // })
     }
 
     function fix_photos_wrapper(){
