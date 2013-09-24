@@ -132,9 +132,13 @@
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
           hotspot_fade()
+
+          console.log('not_hotspot_visible:::hotspot_fade');
         }else{
 
-          console.log('meiyou:::show');
+          console.log('yes_hotspot_visible:::hotspot_inversion');
+          hotspot_inversion()
+
 
         }
 
