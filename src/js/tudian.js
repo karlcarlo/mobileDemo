@@ -318,7 +318,7 @@
         temp_obj = Object.create(photo_list_obj)
         temp_obj.dom_id = get_spot_id(temp_obj.id)
         temp_obj.hotspot = []
-        temp_obj.total_page = objlength(photo_list) //pages.length
+        temp_obj.total_page = pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
         photo_list_obj.hotspot.forEach(function(id, i){
