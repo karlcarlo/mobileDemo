@@ -132,8 +132,11 @@
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
           hotspot_fade()
-        }
+        }else{
 
+          console.log('meiyou:::show');
+
+        }
 
       })
 
