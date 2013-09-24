@@ -444,10 +444,6 @@
       })
     }
 
-    // function scroll_top(){
-    //   window.scroll(0, 0)
-    // }
-
     function display(data){
       $('#start_x')[0].innerHTML = data.start_x
       $('#start_y')[0].innerHTML = data.start_y
@@ -475,17 +471,14 @@ jQuery(document).ready(function($) {
         $('.thumbnail').on('click', '[data-action="download"]', function(event){
           event.preventDefault()
           if(window.confirm("下载由我图记，查看全部内容","no")){
-            window.location.href="http://baidu.com"
-          }else{
-
+            window.location.href="http://sohu.com"
           }
-
         })
 
 
         $('.footer').on('click', '[data-action="create_album"]', function(event){
           event.preventDefault()
-          window.location.href="http://baidu.com"
+          window.location.href="http://sohu.com"
         })
 
 
