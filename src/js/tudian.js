@@ -133,19 +133,19 @@
       .on('click', '[data-action="hotspot_goto"]', function(event){
         
         event.preventDefault()
+        goto_spot(this)
 
 
-            if(!$(this).hasClass('expanding')){
-                goto_spot(this)
-            }else{
-                  back_spot(this)
-
-
-            };
+            // if(!$(this).hasClass('expanding')){
+            //     goto_spot(this)
+            // }else{
+            //       back_spot(this)
+            // };
 
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
+        back_spot(this)
 
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
