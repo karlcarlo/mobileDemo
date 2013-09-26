@@ -140,8 +140,7 @@
             goto_spot(this)
 
         }else{
-              photo_reset();
-              //back_spot(this)
+              back_spot(this)
         };
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
