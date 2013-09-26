@@ -336,19 +336,19 @@
 
       var temp_obj = {}
         , photo_list_obj = photo_list[id]
+        , photo_voice_obj = photo_list_obj.records
 
       if(photo_list_obj){
         temp_obj = Object.create(photo_list_obj)
         temp_obj.dom_id = get_spot_id(temp_obj.id)
         temp_obj.hotspot = []
+        temp_obj.records =[] 
         temp_obj.total_page = pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
         console.log('AAAAAAAAA++++photo_list_obj');
         console.dir(photo_list_obj);
 
-        photo_list_obj.records.forEach(function(id, i){
-         
             temp_obj.records.push({
               top:id.pos_top,
               left:id.pos_left,
