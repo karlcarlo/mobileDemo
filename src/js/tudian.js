@@ -78,8 +78,8 @@
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
 
 '<div class="pos-abs btn-voice">',
-'  <a href="javascript:;" class="btn"><i class="img-stop"></i>{{records_second}}"</a>',
-'  <a href="javascript:;" class="btn"><i class="img-play"></i>{{records_second}}"</a>',
+'  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
+'  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
 '  <audio controls="controls">',
 '    <source src="{{records_voice}}">',
 '     Your browser does not support the audio element.',
@@ -488,6 +488,30 @@
 
 
 jQuery(document).ready(function($) {
+
+       function vidplay() {
+         var video = document.getElementById("Video1");
+         var button = document.getElementById("play");
+         if (video.paused) {
+            video.play();
+            button.textContent = "||";
+         } else {
+            video.pause();
+            button.textContent = ">";
+         }
+      }
+
+      function restart() {
+          var video = document.getElementById("Video1");
+          video.currentTime = 0;
+      }
+
+      function skip(value) {
+          var video = document.getElementById("Video1");
+          video.currentTime += value;
+      }  
+
+
         
         $('#share').click(function(){
             $('.modal').show();
