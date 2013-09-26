@@ -424,7 +424,7 @@
 
       $parent = $('#' + parent_dom_id)
 
-      console.dir(photo_list_obj);
+      console.dir(elem);
 
       render({
         dom_id: parent_dom_id,
