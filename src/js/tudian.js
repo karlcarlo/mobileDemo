@@ -138,7 +138,7 @@
         if(!$(this).hasClass('expanding')){
          
             goto_spot(this)
-            
+
         }else{
 
              back_spot(this)
@@ -428,6 +428,9 @@
       }
 
       $parent = $('#' + parent_dom_id)
+
+
+      console.dir(photo_obj)
 
       render({
         dom_id: parent_dom_id,
