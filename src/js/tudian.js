@@ -77,10 +77,10 @@
 '<div id="{{dom_id}}" class="photo-wrapper">',
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
 
-'<div class="pos-abs btn-voice">',
+'<div class="pos-abs btn-voice" data-id="records_{{id}}">',
 '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
 '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
-'  <audio controls="controls" id="{{id}}">',
+'  <audio controls="controls" id="audio_{{id}}">',
 '    <source src="{{records_voice}}">',
 '     Your browser does not support the audio element.',
 '  </audio>',
