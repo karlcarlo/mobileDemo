@@ -78,10 +78,10 @@
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
 
 '<div class="pos-abs btn-voice">',
-'  <a href="javascript:;" class="btn"><i class="img-stop"></i>{{second}}"</a>',
-'  <a href="javascript:;" class="btn"><i class="img-play"></i>{{second}}"</a>',
+'  <a href="javascript:;" class="btn"><i class="img-stop"></i>{{records_second}}"</a>',
+'  <a href="javascript:;" class="btn"><i class="img-play"></i>{{records_second}}"</a>',
 '  <audio controls="controls">',
-'    <source src="{{voice}}">',
+'    <source src="{{records_voice}}">',
 '     Your browser does not support the audio element.',
 '  </audio>',
 '</div>',
@@ -343,24 +343,13 @@
         temp_obj = Object.create(photo_list_obj)
         temp_obj.dom_id = get_spot_id(temp_obj.id)
         temp_obj.hotspot = []
-        temp_obj.records =[] 
         temp_obj.total_page = pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
-        console.log('AAAAAAAAA++++photo_list_obj')
-        console.dir(photo_list_obj)
-
-            temp_obj.records.push({
-              top:photo_voice_obj.pos_top,
-              left:photo_voice_obj.pos_left,
-              voice:photo_voice_obj.dataUrl,
-              second:photo_voice_obj.duration
-            })
-
-            console.log('photo_list_obj.records= ' + photo_list_obj.records )
-            console.dir(temp_obj.records)
-          
-
+        temp_obj.records_top = photo_voice_obj.pos_top
+        temp_obj.records_left = photo_voice_obj.pos_left
+        temp_obj.records_voice = photo_voice_obj.dataUrl
+        temp_obj.records_second = photo_voice_obj.duration
 
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
