@@ -132,7 +132,7 @@
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
 
-        console.log( '$this.hasClass '+ $this.hasClass('expanding') );
+        console.log( '$this.hasClass '+ $(this).hasClass('expanding') );
 
         event.preventDefault()
         goto_spot(this)
