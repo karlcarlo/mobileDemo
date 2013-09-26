@@ -138,9 +138,11 @@
 
             if(!$(this).hasClass('expanding')){
                 goto_spot(this)
-                hotspot_inversion()
             }else{
                   //back_spot(this)
+                  
+          hotspot_active()
+          hotspot_fade()
 
             };
 
