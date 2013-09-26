@@ -347,6 +347,13 @@
         console.log('AAAAAAAAA++++photo_list_obj');
         console.dir(photo_list_obj);
 
+        photo_list_obj.records.forEach(function(id, i){
+
+          console.log('id= ' + id + '___i= ' + i);
+
+        })
+
+
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
             temp_obj.hotspot.push({
