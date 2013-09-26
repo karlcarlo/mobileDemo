@@ -337,7 +337,7 @@
       var temp_obj = {}
         , photo_list_obj = photo_list[id]
       
-      var photo_voice_obj = photo_list_obj.records
+      var photo_voice_obj = photo_list_obj.records[0]
 
       if(photo_list_obj){
         temp_obj = Object.create(photo_list_obj)
