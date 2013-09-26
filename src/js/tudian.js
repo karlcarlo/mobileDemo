@@ -48,7 +48,7 @@
     , template = {
 
       spot: [
-'<img class="hotspot blink" data-action="hotspot_goto" data-parent-id="{{id}}"  data-type="child"  data-id="{{id}}" data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+'<img class="hotspot blink" data-action="hotspot_goto" data-parent-id="{{id}}"  data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
 
       ].join(''),
 
@@ -138,6 +138,7 @@
         if(!$(this).hasClass('expanding')){
          
             goto_spot(this)
+            
         }else{
 
              back_spot(this)
@@ -410,6 +411,10 @@
     }
 
     function back_spot(elem){
+
+      console.log('[back_spot] = elem = ||| ' + elem)
+      console.dir(elem)
+
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
