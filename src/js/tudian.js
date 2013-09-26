@@ -424,6 +424,8 @@
 
       $parent = $('#' + parent_dom_id)
 
+      console.dir(photo_obj);
+
       render({
         dom_id: parent_dom_id,
         root_id: photo_obj.root_id
