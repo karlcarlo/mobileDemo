@@ -348,9 +348,17 @@
         console.dir(photo_list_obj);
 
         photo_list_obj.records.forEach(function(id, i){
+         
+            temp_obj.records.push({
+              top:id.pos_top,
+              left:id.pos_left,
+              voice:id.dataUrl,
+              second:id.duration
+            })
 
-          console.log('id= ' + id + '___i= ' + i);
-
+            console.log('id= ' + id + '___i= ' + i);
+            console.dir(id);
+          
         })
 
 
