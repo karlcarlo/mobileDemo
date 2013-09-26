@@ -77,7 +77,7 @@
 '<div id="{{dom_id}}" class="photo-wrapper">',
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
 
-'<div class="pos-abs btn-voice" data-id="records_{{id}}">',
+'<div class="pos-abs btn-voice" data-id="records_{{id}}" style="top:{{records_top}}%; left:{{records_left}}%;">',
 '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
 '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
 '  <audio controls="controls" id="audio_{{id}}">',
