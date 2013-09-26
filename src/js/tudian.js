@@ -136,11 +136,26 @@
 
             goto_spot(this)
 
-            // if(!$(this).hasClass('expanding')){
-            //     goto_spot(this)
-            // }else{
-            //       back_spot(this)
-            // };
+            if(!$(this).hasClass('expanding')){
+                goto_spot(this)
+            }else{
+                  back_spot(this)
+
+            
+                      var $expanded = $parent.find('img.expanding')
+
+                      $expanded
+                      .removeClass('expanding')
+                      .animate({
+                        width: $expanded.data('style_width'),
+                        height: $expanded.data('style_height'),
+                        left: photo_obj.left + '%',
+                        top: photo_obj.top + '%',
+                        'border-radius': '50%',
+                        'border-width': '0.2em'
+                      })
+
+            };
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
