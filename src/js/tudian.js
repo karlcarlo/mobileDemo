@@ -132,22 +132,15 @@
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
 
-        if($(this).hasClass('expanding')){
+        var _this = this;
+        if($(_this).hasClass('expanding')){
           event.preventDefault()
 
-          console.log( 'Photonote.is_hotspot_visible' + Photonote.is_hotspot_visible);
-
-          if(!Photonote.is_hotspot_visible){
-            hotspot_active()
-            hotspot_fade()
-          }else{
-            hotspot_inversion()
-          }
-
-
+          event.preventDefault()
+          back_spot(_this)
         }else{
             event.preventDefault()
-            goto_spot(this)
+            goto_spot(_this)
         };
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
