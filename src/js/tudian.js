@@ -337,7 +337,7 @@
       var temp_obj = {}
         , photo_list_obj = photo_list[id]
       
-      var photo_voice_obj = photo_list_obj.records
+      //var photo_voice_obj = photo_list_obj.records
 
       if(photo_list_obj){
         temp_obj = Object.create(photo_list_obj)
@@ -357,8 +357,8 @@
             //   second:photo_voice_obj.duration
             // })
 
-            console.log('photo_voice_obj= ' + photo_voice_obj )
-            console.dir(photo_voice_obj)
+            console.log('photo_list_obj.records= ' + photo_list_obj.records )
+            console.dir(photo_list_obj.records)
           
         })
 
