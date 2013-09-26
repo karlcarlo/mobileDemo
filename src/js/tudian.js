@@ -133,11 +133,14 @@
       .on('click', '[data-action="hotspot_goto"]', function(event){
 
         if($(this).hasClass('expanding')){
-            event.preventDefault()
-            back_spot(this)
+
+            hotspot_active()
+            hotspot_fade()
+        
+
         }else{
-          event.preventDefault()
-          goto_spot(this)
+            event.preventDefault()
+            goto_spot(this)
         };
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
