@@ -80,7 +80,7 @@
 '<div class="pos-abs btn-voice">',
 '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
 '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
-'  <audio controls="controls">',
+'  <audio controls="controls" id="{{id}}">',
 '    <source src="{{records_voice}}">',
 '     Your browser does not support the audio element.',
 '  </audio>',
