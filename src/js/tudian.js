@@ -135,7 +135,7 @@
         event.preventDefault()
 
             goto_spot(this)
-
+            
             if(!$(this).hasClass('expanding')){
                 goto_spot(this)
             }else{
@@ -156,10 +156,11 @@
                       })
 
             };
+
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
-        back_spot(this)
+        //back_spot(this)
 
         
         //hotspot_inversion()
