@@ -139,9 +139,9 @@
             if(!$(this).hasClass('expanding')){
                 goto_spot(this)
             }else{
-                  back_spot(this)
+                  //back_spot(this)
 
-            
+
                       var $expanded = $parent.find('img.expanding')
 
                       $expanded
