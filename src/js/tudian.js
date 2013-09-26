@@ -131,16 +131,16 @@
         hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
+        
+        event.preventDefault()
 
-        var _this = this;
-        if($(_this).hasClass('expanding')){
-          event.preventDefault()
 
-          event.preventDefault()
-          back_spot(_this)
+        if(!$(this).hasClass('expanding')){
+         
+            goto_spot(this)
         }else{
-            event.preventDefault()
-            goto_spot(_this)
+
+             back_spot(this)
         };
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
@@ -423,8 +423,6 @@
       }
 
       $parent = $('#' + parent_dom_id)
-
-      console.dir(elem);
 
       render({
         dom_id: parent_dom_id,
