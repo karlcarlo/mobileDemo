@@ -350,14 +350,14 @@
         console.dir(photo_list_obj);
 
             temp_obj.records.push({
-              top:id.pos_top,
-              left:id.pos_left,
-              voice:id.dataUrl,
-              second:id.duration
+              top:photo_voice_obj.pos_top,
+              left:photo_voice_obj.pos_left,
+              voice:photo_voice_obj.dataUrl,
+              second:photo_voice_obj.duration
             })
 
-            console.log('id= ' + id + '___i= ' + i);
-            console.dir(id);
+            console.log('photo_voice_obj= ' + photo_voice_obj );
+            console.dir(photo_voice_obj);
           
         })
 
