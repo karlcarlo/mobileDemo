@@ -77,14 +77,14 @@
 '<div id="{{dom_id}}" class="photo-wrapper">',
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
 
-'<div class="pos-abs btn-voice" data-id="records_{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
-'  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
-'  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
-'  <audio controls="controls" id="audio_{{id}}">',
-'    <source src="{{records_voice}}">',
-'     Your browser does not support the audio element.',
-'  </audio>',
-'</div>',
+// '<div class="pos-abs btn-voice" data-id="records_{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
+// '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
+// '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
+// '  <audio controls="controls" id="audio_{{id}}">',
+// '    <source src="{{records_voice}}">',
+// '     Your browser does not support the audio element.',
+// '  </audio>',
+// '</div>',
 
 '{{#hotspot}}',
 '{{>spot}}',
@@ -134,25 +134,18 @@
         
         event.preventDefault()
 
-            //goto_spot(this)
 
             if(!$(this).hasClass('expanding')){
                 goto_spot(this)
             }else{
-                  //back_spot(this)
-                  
-          hotspot_active()
-          hotspot_fade()
+                  back_spot(this)
+
 
             };
 
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
-        //back_spot(this)
-
-        
-        //hotspot_inversion()
 
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
@@ -359,10 +352,11 @@
         temp_obj.total_page = pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
-        temp_obj.records_top = photo_voice_obj.pos_top
-        temp_obj.records_left = photo_voice_obj.pos_left
-        temp_obj.records_voice = photo_voice_obj.dataUrl
-        temp_obj.records_second = photo_voice_obj.duration
+        //语音部分处理
+        // temp_obj.records_top = photo_voice_obj.pos_top
+        // temp_obj.records_left = photo_voice_obj.pos_left
+        // temp_obj.records_voice = photo_voice_obj.dataUrl
+        // temp_obj.records_second = photo_voice_obj.duration
 
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
