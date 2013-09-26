@@ -350,15 +350,15 @@
         console.log('AAAAAAAAA++++photo_list_obj')
         console.dir(photo_list_obj)
 
-            // temp_obj.records.push({
-            //   top:photo_voice_obj.pos_top,
-            //   left:photo_voice_obj.pos_left,
-            //   voice:photo_voice_obj.dataUrl,
-            //   second:photo_voice_obj.duration
-            // })
+            temp_obj.records.push({
+              top:photo_voice_obj.pos_top,
+              left:photo_voice_obj.pos_left,
+              voice:photo_voice_obj.dataUrl,
+              second:photo_voice_obj.duration
+            })
 
             console.log('photo_list_obj.records= ' + photo_list_obj.records )
-            console.dir(photo_list_obj.records)
+            console.dir(temp_obj.records)
           
 
 
