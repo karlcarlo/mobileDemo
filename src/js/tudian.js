@@ -134,6 +134,11 @@
 
         if($(this).hasClass('expanding')){
 
+            console.log('返回 comeback');
+            event.preventDefault()
+            back_spot(this)
+
+
             hotspot_active()
             hotspot_fade()
         
