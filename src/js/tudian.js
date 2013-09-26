@@ -48,7 +48,7 @@
     , template = {
 
       spot: [
-'<img class="hotspot blink" data-action="hotspot_goto" data-id="{{parent_id}}" data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+'<img class="hotspot blink" data-action="hotspot_goto" data-id="{{spot_id}}" data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
 
       ].join(''),
 
