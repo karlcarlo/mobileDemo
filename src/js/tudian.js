@@ -133,15 +133,17 @@
       .on('click', '[data-action="hotspot_goto"]', function(event){
 
         if($(this).hasClass('expanding')){
+          event.preventDefault()
 
-            console.log('返回 comeback');
-            event.preventDefault()
-            back_spot(this)
+          console.log( 'Photonote.is_hotspot_visible' + Photonote.is_hotspot_visible);
 
-
+          if(!Photonote.is_hotspot_visible){
             hotspot_active()
             hotspot_fade()
-        
+          }else{
+            hotspot_inversion()
+          }
+
 
         }else{
             event.preventDefault()
