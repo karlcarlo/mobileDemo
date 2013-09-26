@@ -61,9 +61,31 @@
 
       ].join(''),
 
+
+/*<div class="pos-abs btn-voice">
+  <a href="#" class="btn"><i class="img-stop"></i>60''</a>
+  <a href="#" class="btn"><i class="img-play"></i>60''</a>
+  <audio controls="controls">
+    <source src="">
+  Your browser does not support the audio element.
+  </audio>
+</div>*/
+
+
+
       photo: [
 '<div id="{{dom_id}}" class="photo-wrapper">',
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
+
+'<div class="pos-abs btn-voice">',
+'  <a href="javascript:;" class="btn"><i class="img-stop"></i>{{second}}"</a>',
+'  <a href="javascript:;" class="btn"><i class="img-play"></i>{{second}}"</a>',
+'  <audio controls="controls">',
+'    <source src="{{voice}}">',
+'     Your browser does not support the audio element.',
+'  </audio>',
+'</div>',
+
 '{{#hotspot}}',
 '{{>spot}}',
 '{{/hotspot}}',
@@ -321,6 +343,9 @@
         temp_obj.hotspot = []
         temp_obj.total_page = pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
+
+        console.log('AAAAAAAAA++++photo_list_obj');
+        console.dir(photo_list_obj);
 
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
