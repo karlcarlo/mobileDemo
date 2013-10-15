@@ -170,7 +170,7 @@ img.photo {
 .pagination {
   bottom: 0.5em;
   right: 3%;
-  color: #fff;
+  color: #c9caca;
   text-shadow: 0 1px 1px #666;
   font-size: 1.5em;
 }
@@ -219,7 +219,7 @@ img.photo {
   float: left;
   width: 21.53344208809135%;
   margin: 0 3.4257748776509% 3.4257748776509% 0;
-  box-shadow: 0 5px 6px -1px #000;
+  box-shadow: 0 4px 5px -1px #000;
 }
 .footer .general {
 }
@@ -227,7 +227,7 @@ img.photo {
   height: 4.75em;
   background: url(img_alart.png) no-repeat;
   background-size: 100% auto;
-  margin: 0.625em 0;
+  margin: 0.625em 0 1.2em;
 }
 .footer .btn-download a {
   height: 4.5em;
@@ -243,7 +243,7 @@ img.photo {
 }
 .footer .btn-group a {
   width: 48%;
-  margin: 1.5625em 0; 
+  margin: 1.2em 0; 
   padding: 15px 0;
   font-size: 2em;
   font-family: 'simhei';
@@ -363,6 +363,9 @@ img.photo {
     background-position: 2.5em 0.625em;
     background-size: 50% auto;
   }
+  .footer .img-alarm {
+    margin-bottom: 1em;
+  }
   .footer .btn-download a,
   .footer .img-alarm {
     height: 3em;
@@ -409,6 +412,9 @@ img.photo {
     background-size: 40% auto;
   }
   .footer .img-alarm {
+    margin-bottom: 1em;
+  }
+  .footer .img-alarm {
     height: 2.38em;
   }
   .footer .btn-download a {
@@ -420,8 +426,9 @@ img.photo {
     font-size: 1em;
     line-height: 1em;
   }
-  .footer .btn-group i {
-    margin: 0 -5px -2px 0; 
+  .footer .btn-group i.icon-pen,
+  .footer .btn-group i.icon-share {
+    margin: 0 -5px -4px 0;
     background-size: 75% auto;
   }
   .btn-voice .btn {
