@@ -48,7 +48,7 @@
     , template = {
 
       spot: [
-'<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
+'<img class="hotspot blink" data-action="hotspot_goto"   data-spot-id="{{spot_id}}" src="http://10.2.58.132/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});">'        
 
       ].join(''),
 
@@ -61,9 +61,31 @@
 
       ].join(''),
 
+
+/*<div class="pos-abs btn-voice">
+  <a href="#" class="btn"><i class="img-stop"></i>60''</a>
+  <a href="#" class="btn"><i class="img-play"></i>60''</a>
+  <audio controls="controls">
+    <source src="">
+  Your browser does not support the audio element.
+  </audio>
+</div>*/
+
+
+
       photo: [
 '<div id="{{dom_id}}" class="photo-wrapper">',
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
+
+// '<div class="pos-abs btn-voice" data-id="records_{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
+// '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
+// '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
+// '  <audio controls="controls" id="audio_{{id}}">',
+// '    <source src="{{records_voice}}">',
+// '     Your browser does not support the audio element.',
+// '  </audio>',
+// '</div>',
+
 '{{#hotspot}}',
 '{{>spot}}',
 '{{/hotspot}}',
@@ -109,15 +131,14 @@
         hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
+        
         event.preventDefault()
         goto_spot(this)
+
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
         event.preventDefault()
         back_spot(this)
-
-        
-        //hotspot_inversion()
 
         if(!Photonote.is_hotspot_visible){
           hotspot_active()
@@ -314,6 +335,8 @@
 
       var temp_obj = {}
         , photo_list_obj = photo_list[id]
+      
+      var photo_voice_obj = photo_list_obj.records[0]
 
       if(photo_list_obj){
         temp_obj = Object.create(photo_list_obj)
@@ -321,6 +344,12 @@
         temp_obj.hotspot = []
         temp_obj.total_page = pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
+
+        //语音部分处理
+        // temp_obj.records_top = photo_voice_obj.pos_top
+        // temp_obj.records_left = photo_voice_obj.pos_left
+        // temp_obj.records_voice = photo_voice_obj.dataUrl
+        // temp_obj.records_second = photo_voice_obj.duration
 
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
@@ -372,6 +401,10 @@
     }
 
     function back_spot(elem){
+
+      console.log('[back_spot] = elem = ||| ' + elem)
+      console.dir(elem)
+
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
@@ -459,6 +492,30 @@
 
 
 jQuery(document).ready(function($) {
+
+       function vidplay() {
+         var video = document.getElementById("Video1");
+         var button = document.getElementById("play");
+         if (video.paused) {
+            video.play();
+            button.textContent = "||";
+         } else {
+            video.pause();
+            button.textContent = ">";
+         }
+      }
+
+      function restart() {
+          var video = document.getElementById("Video1");
+          video.currentTime = 0;
+      }
+
+      function skip(value) {
+          var video = document.getElementById("Video1");
+          video.currentTime += value;
+      }  
+
+
         
         $('#share').click(function(){
             $('.modal').show();
