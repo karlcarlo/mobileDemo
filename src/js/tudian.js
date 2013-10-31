@@ -576,6 +576,24 @@ jQuery(document).ready(function($) {
         console.log('播放音频按钮事件 + id=' +id);
         document.getElementById('audio_'+id).play();
 
+        $(this).parent().addClass('hide').prev().removeClass('hide');
+
+        console.log('切换播放和停止按钮');
+
+    });
+
+
+    //播放音频按钮事件
+    $('.btn-voice a.btn i.img-stop').click(function(){
+
+        var id = $(this).parents('.btn-voice').attr('data-id');
+        
+        console.log('播放音频按钮事件 + id=' +id);
+        document.getElementById('audio_'+id).stop();
+
+        $(this).parent().addClass('hide').next().removeClass('hide');
+
+        console.log('切换播放和停止按钮');
 
     });
 
