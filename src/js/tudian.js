@@ -85,7 +85,7 @@
 '{{/hotspot}}',
 
 
-'<div class="pos-abs btn-voice" data-id="records_{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
+'<div class="pos-abs btn-voice" data-id="{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
 '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
 '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
 '  <audio controls="controls" id="audio_{{id}}">',
@@ -571,10 +571,12 @@ jQuery(document).ready(function($) {
     //播放音频按钮事件
     $('.btn-voice a.btn i.img-play').click(function(){
 
-        //var id = $(this).parents('.btn-voice').attr('data-id');
-        var id= 5;
+        var id = $(this).parents('.btn-voice').attr('data-id');
+        
         console.log('播放音频按钮事件 + id=' +id);
         document.getElementById('audio_'+id).play();
+
+
     });
 
 
