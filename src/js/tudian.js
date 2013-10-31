@@ -62,7 +62,9 @@
       ].join(''),
 
 
-/*<div class="pos-abs btn-voice">
+/*
+添加声音显示的HTML
+<div class="pos-abs btn-voice">
   <a href="#" class="btn"><i class="img-stop"></i>60''</a>
   <a href="#" class="btn"><i class="img-play"></i>60''</a>
   <audio controls="controls">
@@ -77,18 +79,21 @@
 '<div id="{{dom_id}}" class="photo-wrapper">',
 '<div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div>',
 
-// '<div class="pos-abs btn-voice" data-id="records_{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
-// '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
-// '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
-// '  <audio controls="controls" id="audio_{{id}}">',
-// '    <source src="{{records_voice}}">',
-// '     Your browser does not support the audio element.',
-// '  </audio>',
-// '</div>',
 
 '{{#hotspot}}',
 '{{>spot}}',
 '{{/hotspot}}',
+
+
+'<div class="pos-abs btn-voice" data-id="records_{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
+'  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
+'  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
+'  <audio controls="controls" id="audio_{{id}}">',
+'    <source src="{{records_voice}}">',
+'     Your browser does not support the audio element.',
+'  </audio>',
+'</div>',
+
 '<div data-action="hotspot_cover"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}" class="pos-abs img-mod"><img src="{{cover}}" /></div>',
 '<div data-action="hotspot_back" data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}"><img draggable="false" class="photo" src="{{src}}" alt=""></div>',
 '</div>',
@@ -346,10 +351,10 @@
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
         //语音部分处理
-        // temp_obj.records_top = photo_voice_obj.pos_top
-        // temp_obj.records_left = photo_voice_obj.pos_left
-        // temp_obj.records_voice = photo_voice_obj.dataUrl
-        // temp_obj.records_second = photo_voice_obj.duration
+        temp_obj.records_top = photo_voice_obj.pos_top
+        temp_obj.records_left = photo_voice_obj.pos_left
+        temp_obj.records_voice = photo_voice_obj.dataUrl
+        temp_obj.records_second = photo_voice_obj.duration
 
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
@@ -403,7 +408,7 @@
     function back_spot(elem){
 
       console.log('[back_spot] = elem = ||| ' + elem)
-      console.dir(elem)
+      //console.dir(elem)
 
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
@@ -553,5 +558,71 @@ jQuery(document).ready(function($) {
         //console.dir(json);
 
       //$('.photo-wrapper').css('padding-bottom')
+
+
+
+
+
+
+
+
+
+
+    //播放音频按钮事件
+    $('.btn-voice a.btn i.img-play').click(function(){
+
+        //var id = $(this).parents('.btn-voice').attr('data-id');
+        var id= 5;
+        console.log('播放音频按钮事件 + id=' +id);
+        document.getElementById('audio_'+id).play();
+    });
+
+
+
+
+
+
+
+
+
+      //来自于哪个平台
+      //wx , ios , android , pc
+    function diffserv(){
+      var sUserAgent = navigator.userAgent.toLowerCase();
+      var isIpad = sUserAgent.match(/ipad/i) == "ipad";
+      var isIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+      var isMidp = sUserAgent.match(/midp/i) == "midp";
+      var isUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+      var isUc = sUserAgent.match(/ucweb/i) == "ucweb";
+      var isAndroid = sUserAgent.match(/android/i) == "android";
+      var isCE = sUserAgent.match(/windows ce/i) == "windows ce";
+      var isWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+      if(isAndroid){
+        //android设备的处理
+        console.log('this is android');
+
+
+      }else if(isIphoneOs){
+        //iphone设备的处理
+        console.log('this is ios');
+
+
+      }else{
+        //其他设备，PC，ipad的处理
+        console.log('this is pc');
+
+
+      }
+
+    }
+    diffserv();
+
+
+
+
+
+
 });
+
 
