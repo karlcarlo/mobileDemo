@@ -351,10 +351,10 @@
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
         //语音部分处理
-        temp_obj.records_top = photo_voice_obj.pos_top
-        temp_obj.records_left = photo_voice_obj.pos_left
-        temp_obj.records_voice = photo_voice_obj.dataUrl
-        temp_obj.records_second = photo_voice_obj.duration
+        temp_obj.records_top = photo_voice_obj.pos_top || 0
+        temp_obj.records_left = photo_voice_obj.pos_left || 0
+        temp_obj.records_voice = photo_voice_obj.dataUrl || ''
+        temp_obj.records_second = photo_voice_obj.duration || 0
 
         photo_list_obj.hotspot.forEach(function(id, i){
           if(typeof photo_list[id] === 'object'){
