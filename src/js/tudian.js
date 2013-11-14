@@ -205,9 +205,12 @@
           , html = ''
 
         data.photos.push(get_photo_data(obj))
+        data.nodes = obj.roots;
 
-        console.log('111__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>');
+        console.log('111__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>'+idx);
         console.dir(data);
+
+        console.dir(obj);
 
         console.log('222__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>');
 
