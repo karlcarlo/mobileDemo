@@ -536,20 +536,17 @@ jQuery(document).ready(function($) {
 
 
         $('.thumbnail').on('click', '[data-action="download"]', function(event){
-          event.preventDefault()
+          event.preventDefault();
           if(window.confirm("下载由我图记，查看全部内容","no")){
-            window.location.href="http://sohu.com"
+            window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
           }
-        })
+        });
 
 
         $('.footer').on('click', '[data-action="create_album"]', function(event){
-          event.preventDefault()
-          window.location.href="http://sohu.com"
-        })
-
-
-        //window.open('youworld://youwo.com');
+          event.preventDefault();
+          window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
+        });
 
         //window.location.href="youworld://youwo.com";
           /*try(window.location.href="youworld://youwo.com"){
@@ -562,13 +559,6 @@ jQuery(document).ready(function($) {
         //console.dir(json);
 
       //$('.photo-wrapper').css('padding-bottom')
-
-
-
-
-
-
-
 
 
 
@@ -610,6 +600,7 @@ jQuery(document).ready(function($) {
       if(isAndroid){
         //android设备的处理
         console.log('this is android');
+        $('.footerbox').hide();
 
 
       }else if(isIphoneOs){
@@ -620,6 +611,7 @@ jQuery(document).ready(function($) {
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc');
+        $('.footerbox').hide();
 
 
       }
