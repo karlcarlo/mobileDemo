@@ -319,6 +319,7 @@ img.photo {
   font-size: 1.875em;
   font-weight: normal;
   color: #2aaa6e;
+  display: block;
 }
 .btn-voice .btn i {
   width: 23px;
