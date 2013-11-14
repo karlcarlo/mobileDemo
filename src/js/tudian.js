@@ -595,6 +595,7 @@ jQuery(document).ready(function($) {
       //来自于哪个平台
       //wx , ios , android , pc
     function diffserv(){
+      var nav = window.location.href;
       var sUserAgent = navigator.userAgent.toLowerCase();
       var isIpad = sUserAgent.match(/ipad/i) == "ipad";
       var isIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
@@ -620,9 +621,9 @@ jQuery(document).ready(function($) {
         //其他设备，PC，ipad的处理
         console.log('this is pc');
         $('.footerbox').hide();
-
-
       }
+
+      console.log('nav-------->'+nav + '___is wx: '+ nav.test(/wx/));
 
     }
     diffserv();
