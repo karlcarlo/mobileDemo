@@ -548,9 +548,6 @@ jQuery(document).ready(function($) {
           window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
         });
 
-
-        //window.open('youworld://youwo.com');
-
         //window.location.href="youworld://youwo.com";
           /*try(window.location.href="youworld://youwo.com"){
             alert("ok");
@@ -562,13 +559,6 @@ jQuery(document).ready(function($) {
         //console.dir(json);
 
       //$('.photo-wrapper').css('padding-bottom')
-
-
-
-
-
-
-
 
 
 
