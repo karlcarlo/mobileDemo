@@ -85,7 +85,7 @@
 '{{/hotspot}}',
 
 
-'<div class="pos-abs btn-voice {{^records_top}}hide{{/records_top}}" data-id="{{id}}" style="height:51px; width:98px; dispaly:inline-block; top:{{records_top}}%; left:{{records_left}}%;">',
+'<div class="pos-abs btn-voice {{^records_top}}hide{{/records_top}}" data-id="{{id}}" style="top:{{records_top}}%; left:{{records_left}}%;">',
 '  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
 '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
 '  <audio controls="controls" id="audio_{{id}}">',
