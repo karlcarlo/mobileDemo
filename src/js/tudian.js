@@ -206,6 +206,9 @@
 
         data.photos.push(get_photo_data(obj))
 
+        console.log('album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>');
+        console.dir(get_photo_data(obj));
+
         html = Hogan.compile(template.album).render(data, template)
 
         $photo_frame.append(html)
