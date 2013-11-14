@@ -600,7 +600,7 @@ jQuery(document).ready(function($) {
       if(isAndroid){
         //android设备的处理
         console.log('this is android');
-        $('.footer').hide();
+        $('.footerbox').hide();
 
 
       }else if(isIphoneOs){
@@ -611,7 +611,7 @@ jQuery(document).ready(function($) {
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc');
-        $('.footer').hide();
+        $('.footerbox').hide();
 
 
       }
