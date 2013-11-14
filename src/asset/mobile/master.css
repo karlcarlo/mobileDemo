@@ -137,6 +137,9 @@ img.photo {
   display: inline-block;
   clear: none;
 }
+#photo_frame .last-bg .photo-wrapper {
+  background-image: url(img_cutline_last.png);
+}
 .photo-wrapper .img-mod {
   width: 100%;
   top: 0;
