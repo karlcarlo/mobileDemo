@@ -536,17 +536,17 @@ jQuery(document).ready(function($) {
 
 
         $('.thumbnail').on('click', '[data-action="download"]', function(event){
-          event.preventDefault()
+          event.preventDefault();
           if(window.confirm("下载由我图记，查看全部内容","no")){
-            window.location.href="http://sohu.com"
+            window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
           }
-        })
+        });
 
 
         $('.footer').on('click', '[data-action="create_album"]', function(event){
-          event.preventDefault()
-          window.location.href="http://sohu.com"
-        })
+          event.preventDefault();
+          window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
+        });
 
 
         //window.open('youworld://youwo.com');
