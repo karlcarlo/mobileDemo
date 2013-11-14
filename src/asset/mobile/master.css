@@ -323,12 +323,16 @@ img.photo {
   font-weight: normal;
   color: #2aaa6e;
   display: block;
+  clear: both;
+  overflow: hidden;
 }
 .btn-voice .btn i {
+  float: left;
   width: 23px;
   height: 23px;
-  margin: -4px 8px 0 0;
-  display: inline-block;
+  margin: 3px 8px 0 0;
+  /*margin: -4px 8px 0 0;
+  display: inline-block;*/
   vertical-align: middle;
   overflow: hidden;
 }
@@ -388,6 +392,11 @@ img.photo {
   }
   .btn-voice .btn {
     font-size: 1.2em;
+    line-height: 1.2em;
+  }
+  .btn-voice .btn i {
+    margin-top: 1px;
+    margin-bottom: -1px;
   }
   .btn-voice .btn i.img-stop {
     height: 20px;
@@ -437,6 +446,11 @@ img.photo {
   }
   .btn-voice .btn {
     font-size: 1.2em;
+    line-height: 1.2em;
+  }
+  .btn-voice .btn i {
+    margin-top: 1px;
+    margin-bottom: 0;
   }
   .btn-voice .btn i.img-stop {
     height: 20px;
