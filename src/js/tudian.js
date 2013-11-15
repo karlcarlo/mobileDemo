@@ -629,9 +629,17 @@ jQuery(document).ready(function($) {
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc');
-        $('.ios_wx').hide();
-        $('.ios_wb').hide();
         $('.footerimg').hide();
+
+        if(/wx/.test(nav)){
+            //$('.footershare').hide();
+            //微信
+            $('.ios_wx').show();
+            $('.ios_wb').hide();
+
+        }else{
+          $('.footerbox').hide();
+        };
       }
 
 
