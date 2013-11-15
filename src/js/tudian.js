@@ -617,19 +617,21 @@ jQuery(document).ready(function($) {
         if(/wx/.test(nav)){
             //$('.footershare').hide();
             //微信
+            $('.ios_wx').show();
+            $('.ios_wb').hide();
 
         }else if(/wb/.test(nav)){
             //微薄
-            $('.footershare').hide();
+            $('.ios_wx').hide();
+            $('.ios_wb').show();
         };
-
 
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc');
         $('.ios_wx').hide();
         $('.ios_wb').hide();
-
+        $('.footerimg').hide();
       }
 
 
