@@ -627,8 +627,7 @@ jQuery(document).ready(function($) {
         $('.footershare').hide();
 
       }
-
-      console.log('nav-------->'+nav + '___is wx: '+ nav.test(/wx/));
+      
 
     }
     diffserv();
