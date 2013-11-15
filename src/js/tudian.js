@@ -631,12 +631,10 @@ jQuery(document).ready(function($) {
         console.log('this is pc');
         $('.footerimg').hide();
 
-        if(/wx/.test(nav)){
-            //$('.footershare').hide();
-            //微信
-            $('.ios_wx').show();
-            $('.ios_wb').hide();
-
+        if(/wb/.test(nav)){
+            //微薄
+            $('.ios_wx').hide();
+            $('.ios_wb').show();
         }else{
           $('.footerbox').hide();
         };
