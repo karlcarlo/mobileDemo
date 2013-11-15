@@ -614,9 +614,12 @@ jQuery(document).ready(function($) {
       }else if(isIphoneOs){
         //iphone设备的处理
         console.log('this is ios');
-        if(/wx/.test(window.location.href)){
+        if(/wx/.test(nav)){
             //$('.footershare').hide();
-        }else{
+            //微信
+
+        }else if(/wb/.test(nav)){
+            //微薄
             $('.footershare').hide();
         };
 
@@ -624,10 +627,11 @@ jQuery(document).ready(function($) {
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc');
-        $('.footershare').hide();
+        $('.ios_wx').hide();
+        $('.ios_wb').hide();
 
       }
-      
+
 
     }
     diffserv();
