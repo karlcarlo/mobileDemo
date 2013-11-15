@@ -634,7 +634,7 @@ jQuery(document).ready(function($) {
         if(/wb/.test(nav)){
             //微薄
             $('.ios_wx').hide();
-            $('.ios_wb').show();
+            $('.ios_wb').hide();
         }else{
           $('.footerbox').hide();
         };
