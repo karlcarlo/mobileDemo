@@ -611,16 +611,21 @@ jQuery(document).ready(function($) {
         console.log('this is android');
         $('.footerbox').hide();
 
-
       }else if(isIphoneOs){
         //iphone设备的处理
         console.log('this is ios');
+        if(/wx/.test(window.location.href)){
+            //$('.footershare').hide();
+        }else{
+            $('.footershare').hide();
+        };
 
 
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc');
-        $('.footerbox').hide();
+        $('.footershare').hide();
+
       }
 
       console.log('nav-------->'+nav + '___is wx: '+ nav.test(/wx/));
