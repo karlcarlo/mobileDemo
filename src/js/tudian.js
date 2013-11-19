@@ -648,7 +648,7 @@ jQuery(document).ready(function($) {
 
 
 
-    $('window').onload(function(){
+    $('window').load(function(){
         var thisNav = window.location.href;
         setTimeout(function(){
           window.location = json.ios_jump;
