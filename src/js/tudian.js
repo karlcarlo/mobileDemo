@@ -86,7 +86,7 @@
 
 
 '<div class="pos-abs btn-voice {{^records_top}}hide{{/records_top}}" data-id="{{id}}" style="top:{{records_top}}%; left:{{records_left}}%;">',
-'  <a href="javascript:;" class="btn hide"><i class="img-stop"></i>{{records_second}}"</a>',
+'  <a href="javascript:;" class="btn " style="display:none;"><i class="img-stop"></i>{{records_second}}"</a>',
 '  <a href="javascript:;" class="btn "><i class="img-play"></i>{{records_second}}"</a>',
 '  <audio controls="controls" id="audio_{{id}}">',
 '    <source src="{{records_voice}}">',
@@ -614,6 +614,18 @@ jQuery(document).ready(function($) {
       }else if(isIphoneOs){
         //iphone设备的处理
         console.log('this is ios');
+
+          function jumpApp(jump){ 
+              return function(){    
+                setTimeout(function(){    
+                      window.location = jump;                     
+                  }, 100);        
+              };    
+          }    
+
+          jumpApp(json.iso_jump);
+
+
         if(/wx/.test(nav)){
             //$('.footershare').hide();
             //微信
