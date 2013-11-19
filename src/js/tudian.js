@@ -615,17 +615,6 @@ jQuery(document).ready(function($) {
         //iphone设备的处理
         console.log('this is ios');
 
-          function jumpApp(jump){ 
-              return function(){    
-                setTimeout(function(){    
-                      window.location = jump;                     
-                  }, 100);        
-              };    
-          }    
-
-          jumpApp(json.iso_jump);
-
-
         if(/wx/.test(nav)){
             //$('.footershare').hide();
             //微信
@@ -658,6 +647,20 @@ jQuery(document).ready(function($) {
 
 
 
+
+    $('window').onload(function(){
+        var thisNav = window.location.href;
+        setTimeout(function(){
+          window.location = json.ios_jump;
+        },0);
+
+        setTimeout(function(){
+          window.location = thisNav;
+        },500);
+
+        console.log(json.ios_jump +'/n/r'+ thisNav);
+
+    });
 
 
 
