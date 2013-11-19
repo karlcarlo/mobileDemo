@@ -648,7 +648,8 @@ jQuery(document).ready(function($) {
 
 
 
-    $('window').load(function(){
+    (function(){
+
         var thisNav = window.location.href;
         setTimeout(function(){
           window.location = json.ios_jump;
@@ -660,9 +661,8 @@ jQuery(document).ready(function($) {
 
         console.log(json.ios_jump +'/n/r'+ thisNav);
 
-    });
 
-
+    })();
 
 });
 
