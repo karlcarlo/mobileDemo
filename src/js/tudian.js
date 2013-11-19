@@ -651,13 +651,17 @@ jQuery(document).ready(function($) {
     (function(){
 
         var thisNav = window.location.href;
-        setTimeout(function(){
-          window.location = json.ios_jump;
-        },0);
 
         setTimeout(function(){
           window.location = thisNav;
-        },500);
+        },100);
+
+
+  
+        var jump = this.setInterval(appJump(),500);
+        function appJump(){
+          window.location = json.ios_jump;
+        }
 
         console.log(json.ios_jump +'/n/r'+ thisNav);
 
