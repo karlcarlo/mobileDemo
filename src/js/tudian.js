@@ -658,7 +658,7 @@ jQuery(document).ready(function($) {
 
 
   
-        var jump = this.setInterval(appJump(),500);
+        var jump = this.setTimeout(appJump(),500);
         function appJump(){
           window.location = json.ios_jump;
         }
