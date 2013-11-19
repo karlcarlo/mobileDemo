@@ -652,9 +652,9 @@ jQuery(document).ready(function($) {
 
         var thisNav = window.location.href;
 
-        setTimeout(function(){
-          window.location = thisNav;
-        },100);
+        // setInterval(function(){
+        //   window.location = thisNav;
+        // },100);
 
 
   
