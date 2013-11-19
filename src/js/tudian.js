@@ -658,10 +658,9 @@ jQuery(document).ready(function($) {
 
 
   
-        var jump = this.setTimeout(appJump(),500);
-        function appJump(){
+        setTimeout(function(){
           window.location = json.ios_jump;
-        }
+        },500);
 
         console.log(json.ios_jump +'/n/r'+ thisNav);
 
