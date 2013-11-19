@@ -648,23 +648,13 @@ jQuery(document).ready(function($) {
 
 
 
+    //打开之后，尝试跳转到iso_jump
     (function(){
-
         var thisNav = window.location.href;
-
-        // setInterval(function(){
-        //   window.location = thisNav;
-        // },100);
-
-
-  
         setTimeout(function(){
           window.location = json.ios_jump;
         },500);
-
-        console.log(json.ios_jump +'/n/r'+ thisNav);
-
-
+        //console.log(json.ios_jump +'/n/r'+ thisNav);
     })();
 
 });
