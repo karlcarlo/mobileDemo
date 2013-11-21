@@ -615,6 +615,19 @@ jQuery(document).ready(function($) {
         //iphone设备的处理
         console.log('this is ios');
 
+        
+
+
+        //打开之后，尝试跳转到iso_jump
+        (function(){
+            var thisNav = window.location.href;
+            setTimeout(function(){
+              window.location = json.ios_jump;
+            },500);
+            //console.log(json.ios_jump +'/n/r'+ thisNav);
+        })();
+
+
         if(/wx/.test(nav)){
             //$('.footershare').hide();
             //微信
@@ -645,17 +658,6 @@ jQuery(document).ready(function($) {
     }
     diffserv();
 
-
-
-
-    //打开之后，尝试跳转到iso_jump
-    (function(){
-        var thisNav = window.location.href;
-        setTimeout(function(){
-          window.location = json.ios_jump;
-        },500);
-        //console.log(json.ios_jump +'/n/r'+ thisNav);
-    })();
 
 });
 
