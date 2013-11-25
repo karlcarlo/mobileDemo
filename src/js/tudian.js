@@ -608,7 +608,6 @@ jQuery(document).ready(function($) {
 
       if(isAndroid){
         //android设备的处理
-        alert('android设备的处理');
         $('.footerimg').hide();
         $('.footerbox').hide();
 
@@ -641,22 +640,18 @@ jQuery(document).ready(function($) {
         console.log('this is pc note3');
         $('.footerimg').hide();
 
+        $('.ios_wx').hide();
+        $('.ios_wb').hide();
 
         //pc  平铺+下载按钮
-        //android  平铺
+        //android  平铺 【over】
         //ios 5+ max8 minphoto + 下载
 
         //iso wx +分享
         //iso wb -分享
 
+        
 
-        if(/wb/.test(nav)){
-            //微薄
-            $('.ios_wx').hide();
-            $('.ios_wb').hide();
-        }else{
-          $('.footerbox').hide();
-        };
       }
 
 
