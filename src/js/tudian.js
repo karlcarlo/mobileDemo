@@ -609,13 +609,12 @@ jQuery(document).ready(function($) {
       if(isAndroid){
         //android设备的处理
         console.log('this is android');
+        $('.footerimg').hide();
         $('.footerbox').hide();
 
       }else if(isIphoneOs){
         //iphone设备的处理
         console.log('this is ios');
-
-        
 
 
         //打开之后，尝试跳转到iso_jump
@@ -644,6 +643,15 @@ jQuery(document).ready(function($) {
         //其他设备，PC，ipad的处理
         console.log('this is pc');
         $('.footerimg').hide();
+
+
+        //pc  平铺+下载按钮
+        //android  平铺
+        //ios 5+ max8 minphoto + 下载
+
+        //iso wx +分享
+        //iso wb -分享
+
 
         if(/wb/.test(nav)){
             //微薄
