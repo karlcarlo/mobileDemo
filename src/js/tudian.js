@@ -623,6 +623,14 @@ jQuery(document).ready(function($) {
         })();
 
 
+        //ios 5+ max8 minphoto + 下载
+        //iso wx +分享
+        //iso wb -分享
+
+        $('#photo_frame > div#album_4').nextAll('.album-wrapper').remove();
+
+
+
         if(/wx/.test(nav)){
             //$('.footershare').hide();
             //微信
@@ -643,15 +651,11 @@ jQuery(document).ready(function($) {
         $('.ios_wx').hide();
         $('.ios_wb').hide();
 
-        //pc  平铺+下载按钮
+
+        $('#photo_frame > div#album_4').nextAll('.album-wrapper').remove();
+
+        //pc  平铺+下载按钮 【over】
         //android  平铺 【over】
-        //ios 5+ max8 minphoto + 下载
-
-        //iso wx +分享
-        //iso wb -分享
-
-        
-
       }
 
 
