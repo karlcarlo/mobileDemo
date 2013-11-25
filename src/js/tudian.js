@@ -638,7 +638,7 @@ jQuery(document).ready(function($) {
 
       }else{
         //其他设备，PC，ipad的处理
-        console.log('this is pc');
+        console.log('this is pc note3');
         $('.footerimg').hide();
 
 
