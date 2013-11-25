@@ -355,7 +355,7 @@
         temp_obj = Object.create(photo_list_obj)
         temp_obj.dom_id = get_spot_id(temp_obj.id)
         temp_obj.hotspot = []
-        temp_obj.total_page = pages.length + photo_more.length
+        temp_obj.total_page = pages.length //pages.length + photo_more.length
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
         //语音部分处理
