@@ -608,15 +608,12 @@ jQuery(document).ready(function($) {
 
       if(isAndroid){
         //android设备的处理
-        console.log('this is android');
+
         $('.footerimg').hide();
         $('.footerbox').hide();
 
       }else if(isIphoneOs){
         //iphone设备的处理
-        console.log('this is ios');
-
-
         //打开之后，尝试跳转到iso_jump
         (function(){
             var thisNav = window.location.href;
