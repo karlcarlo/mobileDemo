@@ -608,7 +608,7 @@ jQuery(document).ready(function($) {
 
       if(isAndroid){
         //android设备的处理
-
+        alert('android设备的处理');
         $('.footerimg').hide();
         $('.footerbox').hide();
 
