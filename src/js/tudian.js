@@ -652,8 +652,6 @@ jQuery(document).ready(function($) {
         $('.ios_wb').hide();
 
 
-        $('#photo_frame > div#album_4').nextAll('.album-wrapper').remove();
-
         //pc  平铺+下载按钮 【over】
         //android  平铺 【over】
       }
