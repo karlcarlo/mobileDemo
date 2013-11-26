@@ -565,7 +565,6 @@ jQuery(document).ready(function($) {
 
     //录音播放按钮高度减掉自身一半
     // $.each($('.btn-voice'),function(i,n){
-    //     //var original_style = $(n).attr('style');
     //     $(n).attr('style', $(n).attr('style') + 'margin-top:-' +  Math.floor($(n).height()/2) + 'px;');
     // });
 
