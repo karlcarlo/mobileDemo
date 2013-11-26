@@ -199,9 +199,9 @@
       // render albums
       pages.forEach(function(obj, idx){
 
-        var is_last = !!(obj.length == pages);
+        var is_last = !!(idx == pages.length);
 
-        console.log('>>>>>>> is_last >>>' + obj.length  +   '   >>idx= ' + idx +  '  pages: ' +pages);
+        console.log('>>>>>>> is_last >>>'  +   '   >>idx= ' + idx +  '  is_last: ' +is_last);
 
         var data = {
             page_num: idx,
