@@ -153,7 +153,6 @@
 
                     console.log('倒数3秒  开始~~~'  +  $(this).attr('data-spot-id') );
 
-                    console.dir(this);
               setTimeout(function(){                    
                     
                     console.log('倒数3秒  之后~~~');
