@@ -163,7 +163,7 @@
                     var a = $(this).parents().find('.album-wrapper > #spot_'+spotID + ' > div[data-action|="hotspot_back"]');
                     //var b = $(a ' div[data-action|="hotspot_back"]');
 
-                    console.log('ba   \n\r  /n/r' + a);
+                    console.log('b--------------a   \n\r  /n/r' + a);
                     console.dir(a.html());
 
 
