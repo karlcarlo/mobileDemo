@@ -155,10 +155,10 @@
               setTimeout(function(){                    
                     
                     console.log('倒数3秒  之后~~~');
-                    event.preventDefault()
-                    //back_spot(this)
 
-                    hotspot_fade()
+                    $('div [data-action="hotspot_back"] [data-id="3"]').click();
+
+
               }, 3000)
 
 
