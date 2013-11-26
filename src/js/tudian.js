@@ -155,7 +155,7 @@
 
                     var spotID = $(this).attr('data-spot-id');
 
-                    var a = $(this).parent().parent().find('div#spot_'+ spotID);
+                    var a = $(this).parent();
 
                     console.log('a' + a);
                     console.dir(a.html());
