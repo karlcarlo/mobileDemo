@@ -150,11 +150,15 @@
             //2013-11-26 add 打开后3秒自动关闭图片
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
+
+                    console.log('倒数3秒  开始~~~');
               setTimeout(function(){                    
                     
+                    console.log('倒数3秒  之后~~~');
                     event.preventDefault()
-                    back_spot(this)
+                    //back_spot(this)
 
+                    hotspot_fade()
               }, 3000)
 
 
