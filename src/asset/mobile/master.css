@@ -411,19 +411,19 @@ img.photo {
 }
 @media screen and (orientation: portrait) and (max-width: 420px)  {
   .btn-voice .btn {
-    padding: 3px 10px;
-    border-radius: 15px;
+    padding: 2px 8px;
+    border-radius: 12px;
   }
   .btn-voice .btn i.img-play {
-    height: 16px;
-    width: 13px;
-    margin-top: 4px;
+    height: 15px;
+    width: 12px;
+    margin-top: 3px;
     margin-right: 4px;
   }
   .btn-voice .btn i.img-stop {
     height: 14px;
     width: 14px;
-    margin-top: 4px;
+    margin-top: 3px;
     margin-right: 4px;
   }
   .pagination {
@@ -452,8 +452,8 @@ img.photo {
     margin: 0 2px -3px;
   }
   .btn-voice .btn {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.1em;
   }
   .btn-voice .btn i {
     margin-top: 1px;
@@ -506,16 +506,16 @@ img.photo {
     margin: 0 2px -3px;
   }
   .btn-voice .btn {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.1em;
   }
   .btn-voice .btn i {
     margin-top: 1px;
     margin-bottom: 0;
   }
   .btn-voice .btn i.img-stop {
-    height: 16px;
-    width: 16px;
+    height: 13px;
+    width: 13px;
   }
   .btn-voice .btn i.img-play {
     background-size: 100% auto;
