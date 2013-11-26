@@ -440,7 +440,7 @@
       //console.dir(elem)
 
       console.log('this elem  kaishi');
-      console.log(dir);
+      console.dir(elem);
 
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
