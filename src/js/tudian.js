@@ -556,19 +556,6 @@ jQuery(document).ready(function($) {
           window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
         });
 
-        //window.location.href="youworld://youwo.com";
-          /*try(window.location.href="youworld://youwo.com"){
-            alert("ok");
-          }catch(err){
-            alert("err");
-          }*/
-
-        
-        //console.dir(json);
-
-      //$('.photo-wrapper').css('padding-bottom')
-
-
 
     //播放音频按钮事件
     $('.btn-voice a.btn i.img-play').click(function(){
@@ -584,6 +571,18 @@ jQuery(document).ready(function($) {
         $(this).parent().addClass('hide').next().removeClass('hide');
     });
 
+
+
+    //录音播放按钮高度减掉自身一半
+
+    $.each($('.btn-voice'),function(i,n){
+
+        var original_style = $(n).attr('style');
+        console.log('original_style:' + original_style + '////$(n).height()/2='+ ($(n).height()/2) );
+        $(n).attr('style', original_style + ' ' +  Math.floor( $(n).height()/2 ) + ';';
+
+
+    });
 
 
 
