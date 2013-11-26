@@ -227,26 +227,30 @@ img.photo {
 .footer .general {
 }
 .footer .img-alarm {
-  height: 4.75em;
   background: url(img_alart.png) no-repeat;
   background-size: 100% auto;
   margin: 0.625em 0 1.2em;
+  padding: 6.4% 0;
+}
+.footer .btn-download {
+  margin-bottom: 1.5em;
 }
 .footer .btn-download a {
-  height: 4.5em;
   background: url(btn_download.png) no-repeat;
   background-size: 100% 100%;
+  padding: 6% 0;
   border-radius: 8px;
   box-shadow: 0 5px 6px -1px #000;
   display: block;
   overflow: hidden;
 }
 .footer .btn-group {
+  margin-bottom: 1.5em;
+  overflow: hidden;
   clear: both;
 }
 .footer .btn-group a {
   width: 48%;
-  margin: 1.2em 0; 
   padding: 15px 0;
   font-size: 2em;
   font-family: 'simhei';
@@ -285,9 +289,11 @@ img.photo {
 }
 .footer .btn-group i.icon-pen {
   background: url(icon_pen.png) no-repeat;
+  background-size: 100% auto;
 }
 .footer .btn-group i.icon-share {
   background: url(icon_share.png) no-repeat;
+  background-size: 100% auto;
 }
 .modal {
   position: fixed;
@@ -361,7 +367,7 @@ img.photo {
   height: 0;
   visibility: hidden;
 }
-@media screen and (max-width: 640px) and (orientation: portrait) {
+@media screen and (orientation: portrait) and (max-width: 640px)  {
   .photo-wrapper .img-mod img {
     max-width: auto;
     min-width: inherit;
@@ -374,10 +380,6 @@ img.photo {
   .footer .img-alarm {
     margin-bottom: 1em;
   }
-  .footer .btn-download a,
-  .footer .img-alarm {
-    height: 3em;
-  }
   .footer .btn-group a {
     padding: 10px 0;
     line-height: 1.5em;
@@ -385,7 +387,6 @@ img.photo {
   }
   .footer .btn-group i {
     margin-right: 2px;
-    background-size: 90% auto;
   }
   .pagination {
     font-size: 1em;
@@ -429,6 +430,44 @@ img.photo {
   .pagination {
     bottom: 1%;
   }
+  .footer .img-alarm {
+    height: 2.95em;
+    margin-bottom: 0.5em;
+  }
+  .footer .btn-download a {
+    height: 2.5em;
+  }
+  .footer .btn-download,
+  .footer .btn-group {
+    margin-bottom: 1em;
+  }
+  .footer .btn-group a {
+    width: 48.5%;
+    padding: 7px 0 3px 0;
+    font-size: 1em;
+    line-height: 1em;
+  }
+  .footer .btn-group i.icon-pen,
+  .footer .btn-group i.icon-share {
+    width: 22px;
+    height: 25px;
+    margin: 0 2px -3px;
+  }
+  .btn-voice .btn {
+    font-size: 1.2em;
+    line-height: 1.2em;
+  }
+  .btn-voice .btn i {
+    margin-top: 1px;
+    margin-bottom: 0;
+  }
+  .btn-voice .btn i.img-stop {
+    height: 16px;
+    width: 16px;
+  }
+  .btn-voice .btn i.img-play {
+    background-size: 100% auto;
+  }
 }
 @media screen and (orientation: portrait) and (max-width: 320px)  {
   #photo_frame img.hotspot {
@@ -447,13 +486,15 @@ img.photo {
     background-size: 40% auto;
   }
   .footer .img-alarm {
-    margin-bottom: 1em;
-  }
-  .footer .img-alarm {
     height: 2.38em;
+    margin-bottom: 0.5em;
   }
   .footer .btn-download a {
     height: 2.5em;
+  }
+  .footer .btn-download,
+  .footer .btn-group {
+    margin-bottom: 1em;
   }
   .footer .btn-group a {
     width: 48.5%;
@@ -463,8 +504,9 @@ img.photo {
   }
   .footer .btn-group i.icon-pen,
   .footer .btn-group i.icon-share {
-    margin: 0 -5px -4px 0;
-    background-size: 75% auto;
+    width: 22px;
+    height: 25px;
+    margin: 0 2px -3px;
   }
   .btn-voice .btn {
     font-size: 1.2em;
