@@ -53,7 +53,7 @@
       ].join(''),
 
       album: [
-'<div id="album_{{page_num}}" class="album-wrapper">',
+'<div id="album_{{page_num}}" class="album-wrapper {{#last}}last-bg{{/last}}">',
 '{{#photos}}',
 '{{>photo}}',
 '{{/photos}}',
@@ -179,7 +179,7 @@
 
 
       window.addEventListener('orientationchange', function(event){
-        console.log('orientationchange')
+        //console.log('orientationchange')
         clear_width()
         fix_photos_wrapper()
       })
@@ -200,19 +200,13 @@
       pages.forEach(function(obj, idx){
         var data = {
             page_num: idx,
-            photos: []
+            photos: [],
+            last:!!((idx+1) == pages.length)
           }
           , html = ''
 
         data.photos.push(get_photo_data(obj))
         data.nodes = obj.roots;
-
-        console.log('111__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>'+idx);
-        console.dir(data);
-
-        console.dir(obj);
-
-        console.log('222__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>');
 
         html = Hogan.compile(template.album).render(data, template)
 
@@ -234,8 +228,6 @@
       $photo_more.append(photo_more_html.join(''));
 
 
-
-      
       $photo_frame.find('#photo_frame')
         .append(template.backcover)
 
@@ -254,7 +246,7 @@
       Photonote.base_width = base_width
       Photonote.critical = base_width * 0.3
 
-      console.log('base_width: ' + base_width)
+      //console.log('base_width: ' + base_width)
 
       // 获取宽度并设置为像素单位
       // $photo_frame.find('.photo-wrapper').css({
@@ -275,7 +267,7 @@
 
 
     function hotspot_active(){
-      console.log('hotspot_active')
+      //console.log('hotspot_active')
       clearTimeout(Photonote.hotspot_timer)
       $photo_frame.find('.hotspot').show()
       Photonote.is_hotspot_visible = true
@@ -283,7 +275,7 @@
     }
 
     function hotspot_inversion(){
-      console.log('inversion:' + Photonote.is_hotspot_visible)
+      //console.log('inversion:' + Photonote.is_hotspot_visible)
       if(Photonote.is_hotspot_visible){
         hotspot_disable()
       }
@@ -294,7 +286,7 @@
     }
 
     function hotspot_fade(){
-      console.log('hotspot_fade')
+      //console.log('hotspot_fade')
       clearTimeout(Photonote.hotspot_timer)
       Photonote.hotspot_timer = setTimeout(function(){
         $photo_frame.find('.hotspot').fadeOut('slow')
@@ -303,7 +295,7 @@
     }
 
     function hotspot_disable(){
-      console.log('hotspot_disable')
+      //console.log('hotspot_disable')
       clearTimeout(Photonote.hotspot_timer)
       $photo_frame.find('.hotspot').hide()
       Photonote.is_hotspot_visible = false
@@ -359,7 +351,6 @@
         temp_obj.current_page = pages.indexOf(temp_obj.root_id || temp_obj.id) - 0 + 1
 
         //语音部分处理
-        console.dir(photo_voice_obj);
         if(photo_voice_obj){
 
           temp_obj.records_top = photo_voice_obj.pos_top
@@ -419,7 +410,6 @@
 
     function back_spot(elem){
 
-      console.log('[back_spot] = elem = ||| ' + elem)
       //console.dir(elem)
 
       var $elem = $(elem)
@@ -556,19 +546,6 @@ jQuery(document).ready(function($) {
           window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
         });
 
-        //window.location.href="youworld://youwo.com";
-          /*try(window.location.href="youworld://youwo.com"){
-            alert("ok");
-          }catch(err){
-            alert("err");
-          }*/
-
-        
-        //console.dir(json);
-
-      //$('.photo-wrapper').css('padding-bottom')
-
-
 
     //播放音频按钮事件
     $('.btn-voice a.btn i.img-play').click(function(){
@@ -584,6 +561,13 @@ jQuery(document).ready(function($) {
         $(this).parent().addClass('hide').next().removeClass('hide');
     });
 
+
+
+    //录音播放按钮高度减掉自身一半
+    $.each($('.btn-voice'),function(i,n){
+        //var original_style = $(n).attr('style');
+        $(n).attr('style', $(n).attr('style') + 'margin-top:-' +  Math.floor($(n).height()/2) + 'px;');
+    });
 
 
 
@@ -619,10 +603,12 @@ jQuery(document).ready(function($) {
             setTimeout(function(){
               window.location = json.ios_jump;
             },500);
-            //console.log(json.ios_jump +'/n/r'+ thisNav);
         })();
 
 
+
+        //pc  平铺+下载按钮 【over】
+        //android  平铺 【over】
         //ios 5+ max8 minphoto + 下载
         //iso wx +分享
         //iso wb -分享
@@ -650,10 +636,6 @@ jQuery(document).ready(function($) {
 
         $('.ios_wx').hide();
         $('.ios_wb').hide();
-
-
-        //pc  平铺+下载按钮 【over】
-        //android  平铺 【over】
       }
 
 
