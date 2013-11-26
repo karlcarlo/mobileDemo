@@ -245,12 +245,11 @@ img.photo {
   overflow: hidden;
 }
 .footer .btn-group {
-  margin-bottom: 1.5em;
-  overflow: hidden;
   clear: both;
 }
 .footer .btn-group a {
   width: 48%;
+  margin-bottom: 1em;
   padding: 15px 0;
   font-size: 2em;
   font-family: 'simhei';
@@ -437,8 +436,7 @@ img.photo {
   .footer .btn-download a {
     height: 2.5em;
   }
-  .footer .btn-download,
-  .footer .btn-group {
+  .footer .btn-download {
     margin-bottom: 1em;
   }
   .footer .btn-group a {
@@ -489,12 +487,11 @@ img.photo {
     height: 2.38em;
     margin-bottom: 0.5em;
   }
+  .footer .btn-download {
+    margin-bottom: 1em;
+  }
   .footer .btn-download a {
     height: 2.5em;
-  }
-  .footer .btn-download,
-  .footer .btn-group {
-    margin-bottom: 1em;
   }
   .footer .btn-group a {
     width: 48.5%;
