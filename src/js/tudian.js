@@ -153,7 +153,12 @@
 
                     console.log('倒数3秒  开始~~~'  +  $(this).attr('data-spot-id') );
 
-                    $(this).attr('data-spot-id');
+                    var spotID = $(this).attr('data-spot-id');
+
+                    var a = $(this).parents('.album-wrapper').find('div#spot_'+ spotID);
+
+                    console.log('a' , a);
+                    console.dir(a);
 
                     console.dir(this);
               setTimeout(function(){                    
