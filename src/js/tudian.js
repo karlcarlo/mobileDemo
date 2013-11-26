@@ -136,12 +136,17 @@
         hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
-        
+        console.log('  click  139 line');
         event.preventDefault()
         goto_spot(this)
 
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
+
+
+
+        console.log('  click  148 line');
+
         event.preventDefault()
         back_spot(this)
 
@@ -567,10 +572,6 @@ jQuery(document).ready(function($) {
     // $.each($('.btn-voice'),function(i,n){
     //     $(n).attr('style', $(n).attr('style') + 'margin-top:-' +  Math.floor($(n).height()/2) + 'px;');
     // });
-
-
-
-
 
 
 
