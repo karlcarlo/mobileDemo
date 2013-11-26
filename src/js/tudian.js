@@ -53,7 +53,7 @@
       ].join(''),
 
       album: [
-'<div id="album_{{page_num}}" class="album-wrapper">',
+'<div id="album_{{page_num}}" class="album-wrapper {{#last}}last-bg{{/last}}">',
 '{{#photos}}',
 '{{>photo}}',
 '{{/photos}}',
@@ -198,21 +198,20 @@
 
       // render albums
       pages.forEach(function(obj, idx){
+
+        var is_last = !!(obj.length == pages);
+
+        console.log('>>>>>>> is_last >>>' + obj.length  +   '   >>idx= ' + idx +  '  pages: ' +pages);
+
         var data = {
             page_num: idx,
-            photos: []
+            photos: [],
+            last:is_last
           }
           , html = ''
 
         data.photos.push(get_photo_data(obj))
         data.nodes = obj.roots;
-
-        console.log('111__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>'+idx);
-        console.dir(data);
-
-        console.dir(obj);
-
-        console.log('222__album----num-------------data::::::::::::::::>>>>>>>>>>>>>>>>>>>>>');
 
         html = Hogan.compile(template.album).render(data, template)
 
@@ -234,8 +233,6 @@
       $photo_more.append(photo_more_html.join(''));
 
 
-
-      
       $photo_frame.find('#photo_frame')
         .append(template.backcover)
 
