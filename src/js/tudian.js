@@ -439,6 +439,9 @@
 
       //console.dir(elem)
 
+      console.log('this elem  kaishi');
+      console.log(dir);
+
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
