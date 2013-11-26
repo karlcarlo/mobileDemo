@@ -581,7 +581,7 @@ jQuery(document).ready(function($) {
     $.each(btnvoiceList,function(i,n){
 
         var original_style = $(n).attr('style');
-        console.log('original_style:' + original_style   + '    $(n).height()== ' + $(n).height() );
+        console.log('original_style:' + original_style   + '    $(n).height()== ' +  typeof( $(n).height()/2  ) );
         //console.log('original_style:' + original_style + '////$(n).height()/2='+ ($(n).height()/2) );
         //$(n).attr('style', original_style + ' ' +  Math.floor( $(n).height()/2 ) + ';';
 
