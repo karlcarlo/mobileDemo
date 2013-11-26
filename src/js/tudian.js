@@ -157,8 +157,8 @@
 
                     var a = $(this).parents('.album-wrapper').find('div#spot_'+ spotID);
 
-                    console.log('a' , a);
-                    console.dir(a);
+                    console.log('a' + a);
+                    console.dir(a.html());
 
                     console.dir(this);
               setTimeout(function(){                    
