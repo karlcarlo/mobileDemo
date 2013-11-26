@@ -608,16 +608,11 @@ jQuery(document).ready(function($) {
 
       if(isAndroid){
         //android设备的处理
-        console.log('this is android');
+        $('.footerimg').hide();
         $('.footerbox').hide();
 
       }else if(isIphoneOs){
         //iphone设备的处理
-        console.log('this is ios');
-
-        
-
-
         //打开之后，尝试跳转到iso_jump
         (function(){
             var thisNav = window.location.href;
@@ -626,6 +621,14 @@ jQuery(document).ready(function($) {
             },500);
             //console.log(json.ios_jump +'/n/r'+ thisNav);
         })();
+
+
+        //ios 5+ max8 minphoto + 下载
+        //iso wx +分享
+        //iso wb -分享
+
+        $('#photo_frame > div#album_4').nextAll('.album-wrapper').remove();
+
 
 
         if(/wx/.test(nav)){
@@ -642,16 +645,15 @@ jQuery(document).ready(function($) {
 
       }else{
         //其他设备，PC，ipad的处理
-        console.log('this is pc');
+        console.log('this is pc note3');
         $('.footerimg').hide();
 
-        if(/wb/.test(nav)){
-            //微薄
-            $('.ios_wx').hide();
-            $('.ios_wb').hide();
-        }else{
-          $('.footerbox').hide();
-        };
+        $('.ios_wx').hide();
+        $('.ios_wb').hide();
+
+
+        //pc  平铺+下载按钮 【over】
+        //android  平铺 【over】
       }
 
 
