@@ -149,17 +149,11 @@
 
             //2013-11-26 add 打开后3秒自动关闭图片
               //console.log('hotspot_fade')
-              clearTimeout(Photonote.openphoto_timer)
-              Photonote.openphoto_timer = setTimeout(function(){                    
+              //clearTimeout(Photonote.openphoto_timer)
+              setTimeout(function(){                    
                     
                     event.preventDefault()
                     back_spot(this)
-
-                    if(!Photonote.is_hotspot_visible){
-                      hotspot_active()
-                      hotspot_fade()
-                    }
-
 
               }, 3000)
 
