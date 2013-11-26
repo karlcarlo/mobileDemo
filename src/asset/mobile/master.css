@@ -415,14 +415,14 @@ img.photo {
     border-radius: 12px;
   }
   .btn-voice .btn i.img-play {
-    height: 15px;
-    width: 12px;
+    height: 13px;
+    width: 10px;
     margin-top: 3px;
     margin-right: 4px;
   }
   .btn-voice .btn i.img-stop {
-    height: 14px;
-    width: 14px;
+    height: 10px;
+    width: 10px;
     margin-top: 3px;
     margin-right: 4px;
   }
@@ -452,8 +452,8 @@ img.photo {
     margin: 0 2px -3px;
   }
   .btn-voice .btn {
-    font-size: 1.1em;
-    line-height: 1.1em;
+    font-size: 1em;
+    line-height: 1em;
   }
   .btn-voice .btn i {
     margin-top: 1px;
@@ -506,16 +506,16 @@ img.photo {
     margin: 0 2px -3px;
   }
   .btn-voice .btn {
-    font-size: 1.1em;
-    line-height: 1.1em;
+    font-size: 1em;
+    line-height: 1em;
   }
   .btn-voice .btn i {
     margin-top: 1px;
     margin-bottom: 0;
   }
   .btn-voice .btn i.img-stop {
-    height: 13px;
-    width: 13px;
+    height: 10px;
+    width: 10px;
   }
   .btn-voice .btn i.img-play {
     background-size: 100% auto;
