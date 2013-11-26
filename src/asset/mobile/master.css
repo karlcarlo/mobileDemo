@@ -412,19 +412,19 @@ img.photo {
 }
 @media screen and (orientation: portrait) and (max-width: 420px)  {
   .btn-voice .btn {
-    padding: 5px 12px;
+    padding: 3px 10px;
     border-radius: 15px;
   }
   .btn-voice .btn i.img-play {
-    height: 19px;
-    width: 16px;
-    margin-top: 2px;
+    height: 16px;
+    width: 13px;
+    margin-top: 4px;
     margin-right: 4px;
   }
   .btn-voice .btn i.img-stop {
-    height: 16px;
-    width: 16px;
-    margin-top: 2px;
+    height: 14px;
+    width: 14px;
+    margin-top: 4px;
     margin-right: 4px;
   }
   .pagination {
@@ -471,8 +471,8 @@ img.photo {
 }
 @media screen and (orientation: portrait) and (max-width: 320px)  {
   #photo_frame img.hotspot {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
   .pagination {
     bottom: 0.8%;
