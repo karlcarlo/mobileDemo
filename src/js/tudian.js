@@ -155,7 +155,7 @@
 
                     var spotID = $(this).attr('data-spot-id');
 
-                    var a = $(this).parent();
+                    var a = $(this).parents('.album-wrapper');
 
                     console.log('a' + a);
                     console.dir(a.html());
