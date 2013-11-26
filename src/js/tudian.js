@@ -575,11 +575,15 @@ jQuery(document).ready(function($) {
 
     //录音播放按钮高度减掉自身一半
 
-    $.each($('.btn-voice'),function(i,n){
+    var btnvoiceList = $('.btn-voice');
+    console.log('btnvoiceList.len : ' + btnvoiceList.length );
+
+    $.each(btnvoiceList,function(i,n){
 
         var original_style = $(n).attr('style');
-        console.log('original_style:' + original_style + '////$(n).height()/2='+ ($(n).height()/2) );
-        $(n).attr('style', original_style + ' ' +  Math.floor( $(n).height()/2 ) + ';';
+        console.log('original_style:' + original_style   );
+        //console.log('original_style:' + original_style + '////$(n).height()/2='+ ($(n).height()/2) );
+        //$(n).attr('style', original_style + ' ' +  Math.floor( $(n).height()/2 ) + ';';
 
 
     });
