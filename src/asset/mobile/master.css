@@ -245,12 +245,11 @@ img.photo {
   overflow: hidden;
 }
 .footer .btn-group {
-  margin-bottom: 1.5em;
-  overflow: hidden;
   clear: both;
 }
 .footer .btn-group a {
   width: 48%;
+  margin-bottom: 1em;
   padding: 15px 0;
   font-size: 2em;
   font-family: 'simhei';
@@ -412,19 +411,19 @@ img.photo {
 }
 @media screen and (orientation: portrait) and (max-width: 420px)  {
   .btn-voice .btn {
-    padding: 3px 10px;
-    border-radius: 15px;
+    padding: 2px 8px;
+    border-radius: 12px;
   }
   .btn-voice .btn i.img-play {
-    height: 16px;
-    width: 13px;
-    margin-top: 4px;
+    height: 15px;
+    width: 12px;
+    margin-top: 3px;
     margin-right: 4px;
   }
   .btn-voice .btn i.img-stop {
     height: 14px;
     width: 14px;
-    margin-top: 4px;
+    margin-top: 3px;
     margin-right: 4px;
   }
   .pagination {
@@ -437,8 +436,7 @@ img.photo {
   .footer .btn-download a {
     height: 2.5em;
   }
-  .footer .btn-download,
-  .footer .btn-group {
+  .footer .btn-download {
     margin-bottom: 1em;
   }
   .footer .btn-group a {
@@ -454,8 +452,8 @@ img.photo {
     margin: 0 2px -3px;
   }
   .btn-voice .btn {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.1em;
   }
   .btn-voice .btn i {
     margin-top: 1px;
@@ -489,12 +487,11 @@ img.photo {
     height: 2.38em;
     margin-bottom: 0.5em;
   }
+  .footer .btn-download {
+    margin-bottom: 1em;
+  }
   .footer .btn-download a {
     height: 2.5em;
-  }
-  .footer .btn-download,
-  .footer .btn-group {
-    margin-bottom: 1em;
   }
   .footer .btn-group a {
     width: 48.5%;
@@ -509,16 +506,16 @@ img.photo {
     margin: 0 2px -3px;
   }
   .btn-voice .btn {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.1em;
   }
   .btn-voice .btn i {
     margin-top: 1px;
     margin-bottom: 0;
   }
   .btn-voice .btn i.img-stop {
-    height: 16px;
-    width: 16px;
+    height: 13px;
+    width: 13px;
   }
   .btn-voice .btn i.img-play {
     background-size: 100% auto;
