@@ -152,6 +152,9 @@
               //clearTimeout(Photonote.openphoto_timer)
 
                     console.log('倒数3秒  开始~~~');
+
+
+                    console.dir(this);
               setTimeout(function(){                    
                     
                     console.log('倒数3秒  之后~~~');
