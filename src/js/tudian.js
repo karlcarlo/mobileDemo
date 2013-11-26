@@ -156,7 +156,7 @@
                     var spotID = $(this).attr('data-spot-id');
 
                     var a = $(this).parents().find('.album-wrapper').find('div#spot_'+spotID);
-                    var b = $(a ' [data-action="hotspot_back"]');
+                    var b = $(a ' div[data-action|="hotspot_back"]');
 
                     console.log('b   \n\r  /n/r' + b);
                     console.dir(b.html());
