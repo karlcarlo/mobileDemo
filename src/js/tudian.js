@@ -151,8 +151,9 @@
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
 
-                    console.log('倒数3秒  开始~~~');
+                    console.log('倒数3秒  开始~~~'  +  $(this).attr('data-spot-id') );
 
+                    $(this).attr('data-spot-id');
 
                     console.dir(this);
               setTimeout(function(){                    
