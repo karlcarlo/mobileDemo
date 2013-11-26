@@ -136,16 +136,42 @@
         hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
-        console.log('  click  139 line');
+        console.log('  click  139 line 点击打开 3秒后自动关闭');
+
         event.preventDefault()
         goto_spot(this)
+
+
+          //3秒后关闭
+
+
+
+
+            //2013-11-26 add 打开后3秒自动关闭图片
+            (function openphoto_fade(){
+              //console.log('hotspot_fade')
+              clearTimeout(Photonote.openphoto_timer)
+              Photonote.openphoto_timer = setTimeout(function(){                    
+                    
+                    event.preventDefault()
+                    back_spot(this)
+
+                    if(!Photonote.is_hotspot_visible){
+                      hotspot_active()
+                      hotspot_fade()
+                    }
+
+
+              }, 3000)
+            })();
+
 
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
 
 
 
-        console.log('  click  148 line');
+        console.log('  click  148 line   点击关闭的事件 ');
 
         event.preventDefault()
         back_spot(this)
