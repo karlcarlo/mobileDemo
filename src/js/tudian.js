@@ -151,7 +151,7 @@
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
-              Photonote.backspot_timer.spotID = setTimeout(function(){                    
+              Photonote.backspot_timer.push('spotID') = setTimeout(function(){                    
                     $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 5000)
 
@@ -165,7 +165,7 @@
         console.dir(this.target);
 
         var spotID = $(this).attr('data-id')
-        clearTimeout(Photonote.backspot_timer.spotID)
+        clearTimeout(Photonote.backspot_timer[spotID])
 
         event.preventDefault()
         back_spot(this)
