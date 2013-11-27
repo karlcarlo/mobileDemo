@@ -154,26 +154,10 @@
                     console.log('倒数3秒  开始~~~'  +  $(this).attr('data-spot-id') );
 
               setTimeout(function(){                    
-                    
+                  
                     console.log('倒数3秒  之后~~~');
-
-
-                    $('#spot_2 > div[data-action="hotspot_back"]').click();
-
-
                     var spotID = $(this).attr('data-spot-id');
-
-                    var a = $(this).parents().find('.album-wrapper > #spot_'+spotID + ' > div[data-action|="hotspot_back"]');
-                    //var b = $(a ' div[data-action|="hotspot_back"]');
-
-                    console.log('b--------------a   \n\r  /n/r' + a);
-                    console.dir(a.html());
-
-
-
-                    $('div [data-action="hotspot_back"] [data-id="3"]').click();
-
-
+                    $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 3000)
 
 
