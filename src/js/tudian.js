@@ -137,8 +137,7 @@
         hotspot_fade()
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
-        console.log('  click  139 line 点击打开 3秒后自动关闭');
-
+        
         event.preventDefault()
         goto_spot(this)
 
@@ -162,7 +161,7 @@
 
 
         clearTimeout(Photonote.backspot_timer)
-        console.log('  click  148 line   点击关闭的事件 ');
+        //console.log('  click  148 line   点击关闭的事件 ');
 
         event.preventDefault()
         back_spot(this)
