@@ -158,7 +158,7 @@
                     console.log('倒数3秒  之后~~~');
 
 
-                    $('#spot_2 > div[data-action="hotspot_back"]').target();
+                    $('#spot_2 > div[data-action="hotspot_back"]').click();
 
 
                     var spotID = $(this).attr('data-spot-id');
