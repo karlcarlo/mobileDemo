@@ -151,7 +151,7 @@
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
-              Photonote.backspot_timer[spotID] = setTimeout(function(){                    
+              Photonote.backspot_timer.spotID = setTimeout(function(){                    
                     $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 5000)
 
@@ -164,8 +164,8 @@
         console.log('  click  148 line   点击关闭的事件  >>>  '  +  $(this).attr('data-id') );
         console.dir(this.target);
 
-        
-        clearTimeout(Photonote.backspot_timer[$(this).attr('data-id')])
+        var spotID = $(this).attr('data-id')
+        clearTimeout(Photonote.backspot_timer.spotID)
 
         event.preventDefault()
         back_spot(this)
