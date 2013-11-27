@@ -3,6 +3,7 @@
 
     Photonote = {
       hotspot_timer: null,
+      backspot_timer: null,
       touchstart_x: 0,
       touchstart_y: 0,
       wrapper_start_x: 0,
@@ -151,7 +152,7 @@
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
-              setTimeout(function(){                    
+              Photonote.backspot_timer = setTimeout(function(){                    
                     $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 5000)
 
@@ -160,7 +161,7 @@
       .on('click', '[data-action="hotspot_back"]', function(event){
 
 
-
+        clearTimeout(Photonote.backspot_timer)
         console.log('  click  148 line   点击关闭的事件 ');
 
         event.preventDefault()
@@ -432,7 +433,7 @@
     function back_spot(elem){
 
       //console.dir(elem)
-      
+
 
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
