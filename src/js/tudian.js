@@ -153,9 +153,9 @@
 
                     console.log('倒数3秒  开始~~~'  +  $(this).attr('data-spot-id') );
 
+              var spotID = $(this).attr('data-spot-id');
               setTimeout(function(){                    
                   
-                    var spotID = $(this).attr('data-spot-id');
                     console.log('倒数3秒  之后~~~'  + spotID);
                     $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 3000)
