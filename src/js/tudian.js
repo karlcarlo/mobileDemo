@@ -158,6 +158,9 @@
                     console.log('倒数3秒  之后~~~');
 
 
+                    $('#spot_2 > div[data-action="hotspot_back"]').target();
+
+
                     var spotID = $(this).attr('data-spot-id');
 
                     var a = $(this).parents().find('.album-wrapper > #spot_'+spotID + ' > div[data-action|="hotspot_back"]');
