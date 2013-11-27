@@ -164,6 +164,9 @@
         console.log('  click  148 line   点击关闭的事件  >>>  '  +  $(this).attr('data-id') );
         console.dir(this.target);
 
+        
+        clearTimeout(Photonote.backspot_timer[$(this).attr('data-id')])
+
         event.preventDefault()
         back_spot(this)
 
