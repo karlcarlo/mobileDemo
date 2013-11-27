@@ -153,7 +153,7 @@
               var spotID = $(this).attr('data-spot-id');
               setTimeout(function(){                    
                     $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
-              }, 5000)
+              }, 4000)
 
 
       })
