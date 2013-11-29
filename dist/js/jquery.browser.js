@@ -1,2 +1,2 @@
-/*! ux_tudian 2013-11-15 */
+/*! ux_tudian 2013-11-29 */
 (function(t,e){"use strict";var i,r;t.uaMatch=function(t){t=t.toLowerCase();var e=/(chrome)[ \/]([\w.]+)/.exec(t)||/(webkit)[ \/]([\w.]+)/.exec(t)||/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(t)||/(msie) ([\w.]+)/.exec(t)||0>t.indexOf("compatible")&&/(mozilla)(?:.*? rv:([\w.]+)|)/.exec(t)||[],i=/(ipad)/.exec(t)||/(iphone)/.exec(t)||/(android)/.exec(t)||[];return{browser:e[1]||"",version:e[2]||"0",platform:i[0]||""}},i=t.uaMatch(e.navigator.userAgent),r={},i.browser&&(r[i.browser]=!0,r.version=i.version),i.platform&&(r[i.platform]=!0),r.chrome?r.webkit=!0:r.webkit&&(r.safari=!0),t.browser=r})(jQuery,window);
