@@ -3,6 +3,7 @@
 
     Photonote = {
       hotspot_timer: null,
+      backspot_timer: null,
       touchstart_x: 0,
       touchstart_y: 0,
       wrapper_start_x: 0,
@@ -140,8 +141,32 @@
         event.preventDefault()
         goto_spot(this)
 
+
+          //3秒后关闭
+
+
+
+
+          //2013-11-26 add 打开后3秒自动关闭图片
+              //console.log('hotspot_fade')
+              //clearTimeout(Photonote.openphoto_timer)
+              var spotID = $(this).attr('data-spot-id');
+              setTimeout(function(){                    
+                    $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
+              }, 4000)
+
+
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
+
+
+        //clearTimeout(Photonote.backspot_timer)
+        // console.log('  click  148 line   点击关闭的事件  >>>  '  +  $(this).attr('data-id') );
+        // console.dir(this.target);
+
+        // var spotID = $(this).attr('data-id')
+        // clearTimeout(Photonote.backspot_timer[spotID])
+
         event.preventDefault()
         back_spot(this)
 
@@ -412,6 +437,7 @@
 
       //console.dir(elem)
 
+
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
@@ -567,10 +593,6 @@ jQuery(document).ready(function($) {
     // $.each($('.btn-voice'),function(i,n){
     //     $(n).attr('style', $(n).attr('style') + 'margin-top:-' +  Math.floor($(n).height()/2) + 'px;');
     // });
-
-
-
-
 
 
 
