@@ -388,8 +388,8 @@ img.photo {
     margin-right: 2px;
   }
   .pagination {
-    font-size: 1em;
-    bottom: 1.5%;
+    font-size: 1.5em;
+    bottom: 2%;
   }
   .btn-voice .btn {
     font-size: 1.2em;
@@ -409,7 +409,27 @@ img.photo {
     background-size: 100% auto;
   }
 }
-@media screen and (orientation: portrait) and (max-width: 420px)  {
+@media screen and (orientation: portrait) and (max-width: 440px) {
+  .pagination {
+    font-size: 1.2em;
+    bottom: 0.3em;
+  }
+  .btn-voice .btn {
+    padding: 4px 14px;
+  }
+  .btn-voice .btn i.img-stop {
+    height: 16px;
+    width: 16px;
+    margin-top: 3px;
+  }
+  .btn-voice .btn i.img-play {
+    height: 18px;
+    width: 15px;
+    background-size: 100% auto;
+    margin-top: 3px;
+  }
+}
+@media screen and (orientation: portrait) and (max-width: 385px)  {
   .btn-voice .btn {
     padding: 2px 8px;
     border-radius: 12px;
@@ -427,7 +447,8 @@ img.photo {
     margin-right: 4px;
   }
   .pagination {
-    bottom: 1%;
+    font-size: 1em;
+    bottom: 0.3em;
   }
   .footer .img-alarm {
     height: 2.95em;
@@ -473,7 +494,8 @@ img.photo {
     height: 50px;
   }
   .pagination {
-    bottom: 0.8%;
+    font-size: 1em;
+    bottom: 0.3em;
   }
   .photo-wrapper .img-mod img {
     max-width: auto;
