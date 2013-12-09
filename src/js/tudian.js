@@ -617,6 +617,13 @@ jQuery(document).ready(function($) {
         $('.footerbox').hide();
 
       }else if(isIphoneOs){
+
+
+        //android设备的处理
+        $('.footerimg').hide();
+        $('.footerbox').hide();
+
+        /*
         //iphone设备的处理
         //打开之后，尝试跳转到iso_jump
         (function(){
@@ -648,7 +655,7 @@ jQuery(document).ready(function($) {
             //微薄
             $('.ios_wx').hide();
             $('.ios_wb').show();
-        };
+        };*/
 
       }else{
         //其他设备，PC，ipad的处理
