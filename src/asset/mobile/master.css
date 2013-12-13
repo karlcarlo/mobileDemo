@@ -28,16 +28,27 @@ a.th {
 .pos-abs {
   position: absolute;
 }
+.modal {
+  position: fixed;
+  _position: absolute;
+  min-width: 40em;
+  z-index: 1050;
+  background-color: rgba(0,0,0,0.6);
+  outline: none;
+  top:0;
+  background-image: url(img_alart_bg.png);
+  background-repeat: no-repeat;
+  background-position: center 0.625em;
+  background-size: 70% auto;
+}
 .arrow-group {
   position: relative;
   max-width: 52em;
-  /*min-height: 60em;*/
   margin: 0 auto;
   display: block;
 }
 .arrow-group a.pos-abs {
   top: 30%;
-  /*display: none;*/
 }
 .arrow-group i {
   background: url(icon_arrow.png) no-repeat 0 0;
@@ -64,7 +75,7 @@ a.th {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-@media screen and (min-width: 320px) and (orientation: portrait) {
+@media screen and (orientation: portrait) and (min-width: 320px) {
   .arrow-group a {
     margin: 0 10px;
     padding: 9px 14px;
@@ -82,8 +93,7 @@ footer.foot {
    context
 ----------------------------------------- */
 .download {
-  background: url(img_download_bg.jpg) repeat-y;
-  background-size: 100% auto;
+  background: url(img_download_bg.jpg) repeat;
 }
 .main:before {
   content: " ";
@@ -127,7 +137,6 @@ img.photo {
   border: 3px solid #fff;
   display: none;
 }
-
 #photo_frame {
   position: relative;
 }
@@ -162,9 +171,7 @@ img.photo {
 }
 .stamp img.expanding {
 }
-
-
-
+/*pagination*/
 .pagination {
   bottom: 0.5em;
   right: 3%;
@@ -173,52 +180,13 @@ img.photo {
   font-size: 1.5em;
 }
 
-@keyframes fade {
-    from { border-color: #FFF; }
-    70% { border-color: rgba(255, 255, 255, 0.4); }
-    to { border-color: #FFF; }
-}
- 
-@-webkit-keyframes fade {
-    from { border-color: #FFF; }
-    75% { border-color: rgba(255, 255, 255, 0.4); }
-    to { border-color: #FFF; }
-}
-
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
-.blink:hover {
-  /*-webkit-animation-fill-mode: backwards;*/
-  -webkit-animation-duration: 1000ms;
-}
-
-
 #console {
   position: absolute;
   top: 0;
   left: 0;
   background-color: #fff;
 }
-
 .draging {
-}
-
-.modal {
-  position: fixed;
-  _position: absolute;
-  min-width: 40em;
-  /*min-height: 60em;*/
-  z-index: 1050;
-  background-color: rgba(0,0,0,0.6);
-  outline: none;
-  top:0;
-  background-image: url(img_alart_bg.png);
-  background-repeat: no-repeat;
-  background-position: center 0.625em;
-  background-size: 70% auto;
 }
 .photo-wrapper .btn-voice {
   top: 10px;
@@ -248,8 +216,6 @@ img.photo {
   width: 23px;
   height: 23px;
   margin: 3px 8px 0 0;
-  /*margin: -4px 8px 0 0;
-  display: inline-block;*/
   vertical-align: middle;
   overflow: hidden;
 }
@@ -353,11 +319,6 @@ img.photo {
 }
 
 @media screen and (orientation: portrait) and (max-width: 640px)  {
-  /*.photo-wrapper .img-mod img {
-    max-width: auto;
-    min-width: inherit;
-    width: 100%;
-  }*/
   .modal {
     background-position: 2.5em 0.625em;
     background-size: 50% auto;
@@ -487,10 +448,6 @@ img.photo {
     font-size: 1em;
     bottom: 0.3em;
   }
-  /*.photo-wrapper .img-mod img {
-    max-width: auto;
-    width: 100%;
-  }*/
   .modal {
     background-position: 2.5em 0.625em;
     background-size: 40% auto;
@@ -534,36 +491,24 @@ img.photo {
   }
 }
 
-
-/*download*/
-/*.download .main {
-  background: url(img_download_bg.jpg);
-  background-size: 100% auto;
-}*/
-.pic-box {
-  min-height: 354px;
-  background-color: #fff;
-  margin: 5px 40px;
-  overflow: hidden;
+@keyframes fade {
+    from { border-color: #FFF; }
+    70% { border-color: rgba(255, 255, 255, 0.4); }
+    to { border-color: #FFF; }
 }
-.pic-box img {
-  width: 100%;
-  height: 100%;
-  min-height: 354px;
-  /*min-height: 100%;*/
-  background-position: center 0;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  border: 3px solid #fff;
+ 
+@-webkit-keyframes fade {
+    from { border-color: #FFF; }
+    75% { border-color: rgba(255, 255, 255, 0.4); }
+    to { border-color: #FFF; }
 }
 
-@media screen and (min-width: 640px) {
-  .pic-box {
-    margin: 1.5625% 12.5%;
-  }
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
 }
-@media screen and (min-width: 321px) {
-  .pic-box img {
-    border: 6px solid #fff;
-  }
+
+.blink:hover {
+  /*-webkit-animation-fill-mode: backwards;*/
+  -webkit-animation-duration: 1000ms;
 }
