@@ -248,12 +248,11 @@ img.photo {
 /*another*/
 .pop-alert {
   position: relative;
-  height: 22px;
   margin: 0 50px 12px;
+  padding: 5px 0;
   background-color: rgba(255,255,255,0.5);
   color: #3d434e;
   font-size: 0.875em;
-  line-height: 22px;
   border-radius: 10px;
 }
 .pop-alert i.arrow-down {
@@ -290,6 +289,16 @@ img.photo {
   display: block;
   overflow: hidden;
 }
+.btns a.btn-download:active {
+  background: #fd865c;
+  background: -moz-linear-gradient(top, #fc612b 0%, #fd865c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fc612b), color-stop(100%, #fd865c));
+  background: -webkit-linear-gradient(top, #fc612b 0%, #fd865c 100%);
+  background: -o-linear-gradient(top, #fc612b 0%, #fd865c 100%);
+  background: -ms-linear-gradient(top, #fc612b 0%, #fd865c 100%);
+  background: linear-gradient(top bottom, #fc612b 0%, #fd865c 100%);
+  box-shadow: 0 1px 1px #fec0aa inset, 0 0 0;
+}
 .btns a.btn-download i.img-btn-text {
   width: 153px;
   height: 24px;
@@ -317,7 +326,48 @@ img.photo {
   vertical-align: middle;
   display: inline-block;
 }
-
+@media screen and (min-width: 760px) {
+ .alert-msg {
+    padding: 15px 0;
+    font-size: 1.25em;
+ }
+ .alert-msg i.img-open {
+  width: 30px;
+  height: 30px;
+  margin: -5px 5px 0
+ }
+}
+@media screen and (min-width: 640px) {
+  .stamp .album-wrapper {
+    margin: 10px 0 30px;
+  }
+  .photo-wrapper .img-mod img,
+  img.photo {
+    border-width: 6px;
+  }
+  .pop-alert {
+    margin-bottom: 22px;
+    padding: 8px 0;
+    font-size: 1.75em;
+  }
+  .pop-alert i.arrow-down {
+    bottom: -10px;
+    border-left-width: 10px;
+    border-right-width: 10px ;
+    border-top-width: 10px;
+  }
+  .btns a.btn-download {
+    padding: 12px 0;
+    border-radius: 6px;
+  }
+  .btns a.btn-download i.img-btn-text {
+    width: 305px;
+    height: 48px;
+  }
+  .alert-msg {
+    margin-top: 20px;
+  }
+}
 @media screen and (orientation: portrait) and (max-width: 640px)  {
   .modal {
     background-position: 2.5em 0.625em;
