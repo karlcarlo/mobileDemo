@@ -152,7 +152,7 @@
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
               setTimeout(function(){                    
-                    $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
+                    //$('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 4000)
 
 
