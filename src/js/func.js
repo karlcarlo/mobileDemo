@@ -495,8 +495,8 @@ jQuery(document).ready(function($) {
 
 
     //设置左右翻页按钮的位置和定位
-    var topOffset = Math.floor( clientHeight/2 - $('#arrow a.pos-abs').innerHeight()/2 );
-    $('#arrow').attr('style','top:' + topOffset+'px; z-index:200;');
+    var topOffset = Math.floor( clientHeight/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
+    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200;');
 
     //取图片的宽高
     setTimeout(function(){
