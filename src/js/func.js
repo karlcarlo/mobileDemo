@@ -534,6 +534,12 @@ jQuery(document).ready(function($) {
 
 
 
+      //Charles替换线上代码
+        $('.footerimg').remove();
+        $('.footerbox').remove();
+
+
+
 
     //左右翻页
 
