@@ -544,6 +544,23 @@ jQuery(document).ready(function($) {
     },500);
 
 
+    //给body绑定一个全局的click时间，获取坐标！
+    //判断是向左还是向右反转图片
+    $('#photo_frame').on('click', '.img-mod', function(event){
+
+      var xpos = event.clientX;
+      var zpos = window.innerWidth/2;
+      if(xpos > zpos){
+        //点击点在右侧，向下一个，→翻
+        transitionLeft();
+      }else{
+        transitionRight();
+      }
+
+
+      console.log('zpos='+zpos,'  click=' + xpos , typeof xpos,photo_border, window.innerWidth,window.innerWidth/2,photo_size[0],photo_size[0]/2);
+
+    });
 
 
     //初始化一些参数    //左右翻页
