@@ -25,7 +25,9 @@
       move_timer: 0,
       is_moving: false,
       base_width: 0,
-      critical: 0
+      critical: 0,
+      photo_size:[0,0],
+      photo_border:0
     }
 
     var photo_list = window.json.nodes
@@ -43,13 +45,11 @@
       ].join('')
 
       , album: [
-          //'<div style="z-index:{{index}}"  {{#notfirst}}data-init="zoom"{{/notfirst}} class="item-wrapper item {{#notfirst}}hide{{/notfirst}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
           '<div  id="album_{{page_num}}" class="album-wrapper  albumleft  item {{#notfirst}}hide{{/notfirst}}" data-id="{{page_num}}"   style="z-index:{{index}}"  {{#notfirst}}data-init="zoom"{{/notfirst}}  {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
           '   {{#photos}}',
           '       {{>photo}}',
           '   {{/photos}}',
-          '</div>',
-          //'</div>'
+          '</div>'
       ].join('')
 
       , photo: [
@@ -74,7 +74,7 @@
           '    <div id="mod_{{id}}" data-action="hotspot_cover"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}" class="pos-abs img-mod picmod">',
           '        <img src="{{cover}}" style="height: 745px; display: inline-block;"/>',
           '    </div>',
-          '    <div class="picroot" data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
+          '    <div class="picroot" id="picroot{{id}}" data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
           '        <img alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" style="background-image: url({{src}}); display: inline-block;" class="photo" draggable="false"/>',
           '    </div>',
           '</div>',
@@ -128,7 +128,7 @@
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
               setTimeout(function(){                    
-                    $('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
+                    //$('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
               }, 4000);
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
@@ -192,11 +192,6 @@
     }
 
 
-
-
-
-
-
     function clear_width(){
       // $photo_frame.find('.photo-wrapper').css({
       //   width: 'auto'
@@ -204,8 +199,6 @@
     }
 
     function fix_photos_wrapper(){
-
-      console.log( 'fix_photos_wrapper@@@@@' );
 
       var base_width = $photo_frame.find('.photo-wrapper').eq(0).width()
 
@@ -236,8 +229,7 @@
       //console.log('inversion:' + Photonote.is_hotspot_visible)
       if(Photonote.is_hotspot_visible){
         hotspot_disable()
-      }
-      else{
+      }else{
         //hotspot_active()
       }
     }
@@ -254,15 +246,10 @@
 
     function render(data){
 
+      console.log( 'render    ----------> photo_size ' +  photo_size ,  ',photo_border ' +photo_border);
 
-      var elePhoto = $('div[data-type="root"] img.photo');
-      var photoSize = [elePhoto.outerWidth()  , elePhoto.outerHeight()];
-      var offset = (window.innerWidth - elePhoto.innerWidth())/2;
-
-
-      data.spot_width=photoSize[0];
-      data.spot_height=photoSize[1];
-
+      data.spot_width=photo_size[0] + photo_border*2;
+      data.spot_height=photo_size[1] + photo_border*2;
 
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
@@ -275,6 +262,7 @@
 
       }
       else{
+
         var html = Hogan.compile(template.photospot).render(data, template)
           , $photo_wrapper;
         $album_wrapper.append(html)
@@ -357,26 +345,39 @@
 
       $elem.siblings('img.hotspot').fadeOut()
 
-
       //缓存原始高度，96x96 or 60x60
       $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
       $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
 
-      var elePhoto = $('div[data-type="root"] img.photo');
-      var photoSize = [elePhoto.outerWidth() , elePhoto.outerHeight()];
-      var offset = (window.innerWidth - photoSize[0])/2;
+
+
+      var offsetParent = $elem.parent().offset();
+      var offsetChild = $elem.offset();
+      console.log( 'offsetParent.left-xxxxx-' + offsetParent.left +','+ offsetParent.top  );
+      console.log( 'offset.left-xxxxx-' + offsetChild.left +','+ offsetChild.top  );
+
+      //设置左侧留白
+      var offset = Math.floor( (Math.abs(offsetChild.left) - Math.abs(offsetParent.left)) )  -86 + photo_border +2;
+      var top = photo_border  ;
+
+
+      console.log(' ---------- > ' ,  $elem,  '---->photoSize \n ',photo_size,  'offset \r ',offset);
+
+      console.log(' ---------- > offsetChild.left ' , Math.abs(offsetChild.left)  ,'offsetParent.left '+  Math.abs(offsetParent.left)  ,  '  offset: ' + offset);
+
+
 
 
       $elem
       .addClass('expanding')
       .animate({
-        width: photoSize[0],//图宽
-        height: photoSize[1],//图高
+        width: photo_size[0],//图宽
+        height: photo_size[1],//图高
         'border-radius': 0,
         'border-width': 0,
-        left:offset,//（屏幕宽- 图片款）/2
-        top: -(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
-      }, function(){
+        left:offset/2,//（屏幕宽- 图片款）/2
+        top: top //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
+      },8000, function(){
         render(get_photo_data(spot_id))
       })
     }
@@ -472,19 +473,18 @@
 jQuery(document).ready(function($) {
 
 
-    var windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderHeight;
+    var windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderNum;
     //初始化设置图高为屏幕高度 
     function oResize() {
       mt = parseInt($('.stamp .album-wrapper').css('marginTop'));
-      borderHeight = parseInt($('.photo-wrapper .img-mod img, img.photo').css('border-width').slice(0,-2));
+      borderNum = parseInt($('.photo-wrapper .img-mod img, img.photo').css('border-width').slice(0,-2));
       windowHieght=window.innerHeight;
       windowWidth=window.innerWidth;
       clientHeight = windowHieght - mt*2;
       clientWidth = windowWidth - mt*2;
-      $('div[data-type="root"] img.photo').height(clientHeight - borderHeight*2).show();
-      $('.photo-wrapper .img-mod img').height(clientHeight - borderHeight*2).show();
+      $('div[data-type="root"] img.photo').height(clientHeight - borderNum*2).show();
+      $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
 
-      console.log('  borderHeight=' + borderHeight);
 
       $('#photo_frame').css({'height':(mt*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
     }
@@ -504,11 +504,8 @@ jQuery(document).ready(function($) {
       var picmod = $('div.picmod img')[0];
       picHeight = picroot.height;
       picWidth = picroot.width;
-      //borderHeight = parseInt($(picroot).css('border-width').slice(0,-2));
-
       modHeight = picmod.height;
       modWidth = picmod.width;
-
 
       //设置所有的picroot下的img.photo的width=modWidth
       $('div.picroot img.photo').width(modWidth);
@@ -517,38 +514,44 @@ jQuery(document).ready(function($) {
       var ml = Math.floor(($('#photo_frame').width()-modWidth) /2);
       $('div.albumleft').css('margin-left', ml+'px');
 
-    },100);
+    },200);
 
 
 
 
     setTimeout(function(){
-
-      console.log('windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderHeight');
-      console.log(windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderHeight);
-
       //初始化的时候设置第二项的data-active=next
       $('.item[data-active=on]').next().attr('data-active','next');
 
       //初始化除了第一张图以外所有图的宽高，缩小，适应放大
       $('div[data-init="zoom"]').css({"top":"40px","left":"30px"});
-      $('div[data-init="zoom"] img').css({"height": (modHeight + borderHeight*2 -80)+ "px","width": (modWidth + borderHeight*2 -60)+"px"});
+      $('div[data-init="zoom"] img').css({"height": (modHeight + borderNum*2 -80)+ "px","width": (modWidth + borderNum*2 -60)+"px"});
       
       $('img[data-action="hotspot_goto"]').css({"width":"26px","height":"0px"});
-    },200);
+
+      var picRoot1=$('#picroot1 img');
+      photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
+      photo_border = borderNum;
+
+var log = ' ,   windowHieght = ' +    windowHieght +
+          ' ,   windowWidth = ' +    windowWidth +
+          ' ,   clientHeight = ' +    clientHeight +
+          ' ,   clientWidth = ' +    clientWidth +
+          ' ,   mt = ' +    mt +
+          ' ,   picHeight = ' +    picHeight +
+          ' ,   picWidth = ' +    picWidth +
+          ' ,   modHeight = ' +    modHeight +
+          ' ,   modWidth = ' +    modWidth +
+          ' ,   borderNum = ' +    borderNum ;
+          console.log("BB" + log);
+
+
+    },500);
 
 
 
-      //Charles替换线上代码
-        $('.footerimg').remove();
-        $('.footerbox').remove();
 
-
-
-
-    //左右翻页
-
-    //初始化一些参数
+    //初始化一些参数    //左右翻页
     var begin = true,end = false,speed = 600,onmotion = false;
     $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
         transitionRight();
@@ -715,7 +718,6 @@ jQuery(document).ready(function($) {
           video.currentTime += value;
       }  
 
-
         
         $('#share').click(function(){
             $('.modal').show();
@@ -763,8 +765,6 @@ jQuery(document).ready(function($) {
     // });
 
 
-
-
       //来自于哪个平台
       //wx , ios , android , pc
     function diffserv(){
@@ -800,38 +800,19 @@ jQuery(document).ready(function($) {
             },500);
         })();
 
-
-
-        //pc  平铺+下载按钮 【over】
-        //android  平铺 【over】
-        //ios 5+ max8 minphoto + 下载
         //iso wx +分享
         //iso wb -分享
 
-        //之前第5个之后隐藏，现在全部显示出来
-        //$('#photo_frame > div#album_4').nextAll('.album-wrapper').remove();
-
         if(/wx/.test(nav)){
-            //$('.footershare').hide();
-            //微信
-            $('.ios_wx').show();
-            $('.ios_wb').hide();
 
         }else if(/wb/.test(nav)){
-            //微薄
-            $('.ios_wx').hide();
-            $('.ios_wb').show();
+
         };
 
       }else{
         //其他设备，PC，ipad的处理
         console.log('this is pc note3');
-        $('.footerimg').hide();
-
-        $('.ios_wx').hide();
-        $('.ios_wb').hide();
       }
-
 
     }
     diffserv();
