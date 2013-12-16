@@ -516,7 +516,6 @@ jQuery(document).ready(function($) {
 
 
 
-
     setTimeout(function(){
       //初始化的时候设置第二项的data-active=next
       $('.item[data-active=on]').next().attr('data-active','next');
@@ -525,7 +524,7 @@ jQuery(document).ready(function($) {
       $('div[data-init="zoom"]').css({"top":"40px","left":"30px"});
       $('div[data-init="zoom"] img').css({"height": (modHeight + borderNum*2 -80)+ "px","width": (modWidth + borderNum*2 -60)+"px"});
       
-      $('img[data-info="hotspot_zoom"]').css({"width":"26px","height":"0px"});
+      $('img[data-info="hotspot_zoom"]').css({"width":"60px","height":"60px"});
 
       var picRoot1=$('#picroot1 img');
       photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
@@ -647,7 +646,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','next');
         });
 
-        $('.item[data-id=' + on + '] img').animate({
+        $('.item[data-id=' + on + '] img[data-info^="hotspot_zoom"]').animate({
           width:'-=60'
           , height:'-=80'
           , opacity:1
