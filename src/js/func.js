@@ -487,7 +487,7 @@ jQuery(document).ready(function($) {
       $('#photo_frame').css({'height':(mt*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
     }
     window.addEventListener("orientationchange", function(){
-      setTimeout("oResize()",20);
+      setTimeout("oResize()",100);
     } , false);
     oResize();
 
