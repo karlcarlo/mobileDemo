@@ -483,14 +483,11 @@ jQuery(document).ready(function($) {
       $('div[data-type="root"] img.photo').height(clientHeight - borderNum*2).show();
       $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
 
-
       $('#photo_frame').css({'height':(mt*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
     }
     window.addEventListener("orientationchange", function(){
       setTimeout("oResize()",100);
     } , false);
-    oResize();
-
 
     //设置左右翻页按钮的位置和定位
     var topOffset = Math.floor( clientHeight/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
@@ -518,6 +515,9 @@ jQuery(document).ready(function($) {
 
 
     setTimeout(function(){
+
+
+      oResize();
       //初始化的时候设置第二项的data-active=next
       $('.item[data-active=on]').next().attr('data-active','next');
 
@@ -530,6 +530,7 @@ jQuery(document).ready(function($) {
       var picRoot1=$('#picroot1 img');
       photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
       photo_border = borderNum;
+
 
 
     },500);
