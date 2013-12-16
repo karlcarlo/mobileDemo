@@ -215,6 +215,7 @@ img.photo {
   clear: both;
   overflow: hidden;
 }
+.btn-voice .voice-hide{display: none;}
 .btn-voice .btn i {
   float: left;
   width: 23px;

@@ -59,7 +59,7 @@
           '    <div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div> pagination',
           '    -->',
           '    <div class="pos-abs btn-voice {{^records_top}}hide{{/records_top}}" data-id="{{id}}" style="top:{{records_top}}%; left:{{records_left}}%;">',
-          '        <a class="btn" href="#"><i class="img-stop"></i>{{records_second}}"</a>',
+          '        <a class="btn voice-hide" href="#"><i class="img-stop"></i>{{records_second}}"</a>',
           '        <a class="btn" href="#"><i class="img-play"></i>{{records_second}}"</a>',
           '        <audio controls="controls" id="audio_{{id}}">',
           '        <source type="audio/mpeg" src="{{records_voice}}"></source>',
@@ -718,14 +718,14 @@ jQuery(document).ready(function($) {
     $('.btn-voice a.btn i.img-play').click(function(){
         var id = $(this).parents('.btn-voice').attr('data-id');
         document.getElementById('audio_'+id).play();
-        $(this).parent().addClass('hide').prev().removeClass('hide');
+        $(this).parent().addClass('voice-hide').prev().removeClass('voice-hide');
     });
 
     //停止播放音频按钮事件
     $('.btn-voice a.btn i.img-stop').click(function(){
         var id = $(this).parents('.btn-voice').attr('data-id');        
         document.getElementById('audio_'+id).pause();
-        $(this).parent().addClass('hide').next().removeClass('hide');
+        $(this).parent().addClass('voice-hide').next().removeClass('voice-hide');
     });
 
 
