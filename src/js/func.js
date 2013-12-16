@@ -471,19 +471,6 @@
 
 jQuery(document).ready(function($) {
 
-
-    
-    //iphone设备的处理
-    //打开之后，尝试跳转到iso_jump
-    (function(){
-        var thisNav = window.location.href;
-        setTimeout(function(){
-          window.location = json.ios_jump;
-        },500);
-    })();
-
-
-
     var windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderNum;
     //初始化设置图高为屏幕高度 
     function oResize() {
@@ -753,17 +740,9 @@ jQuery(document).ready(function($) {
       var isWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
 
       if(isAndroid){
-        //android设备的处理
-        $('.footerimg').hide();
-        $('.footerbox').hide();
 
-      }else if(isIphoneOs){
+      }else if(isIphoneOs || isIpad){
 
-        //android设备的处理
-        $('.footerimg').hide();
-        $('.footerbox').hide();
-
-        
         //iphone设备的处理
         //打开之后，尝试跳转到iso_jump
         (function(){
@@ -773,14 +752,6 @@ jQuery(document).ready(function($) {
             },500);
         })();
 
-        //iso wx +分享
-        //iso wb -分享
-
-        if(/wx/.test(nav)){
-
-        }else if(/wb/.test(nav)){
-
-        };
 
       }else{
         //其他设备，PC，ipad的处理
@@ -789,8 +760,6 @@ jQuery(document).ready(function($) {
 
     }
     diffserv();
-
-
 });
 
 
