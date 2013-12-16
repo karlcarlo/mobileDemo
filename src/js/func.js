@@ -72,10 +72,10 @@
           '    {{/hotspot}}',
 
           '    <div id="mod_{{id}}" data-action="hotspot_cover"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}" class="pos-abs img-mod picmod">',
-          '        <img src="{{cover}}" style="height: 745px; display: inline-block;"/>',
+          '        <img data-info="backcover_zoom" src="{{cover}}" style="height: 745px; display: inline-block;"/>',
           '    </div>',
           '    <div class="picroot" id="picroot{{id}}" data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
-          '        <img alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" style="background-image: url({{src}}); display: inline-block;" class="photo" draggable="false"/>',
+          '        <img data-info="backcover_zoom" alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" style="background-image: url({{src}}); display: inline-block;" class="photo" draggable="false"/>',
           '    </div>',
           '</div>',
 
@@ -579,7 +579,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','prev');
         });
 
-        $('.item[data-id=' + on + '] img[data-info^="hotspot_zoom"]').animate({
+        $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
           opacity:0.3
           , width:'+=60'
           , height:'+=120'
@@ -593,7 +593,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','on');
         });
 
-        $('.item[data-id=' + next + '] img').animate({
+        $('.item[data-id=' + next + '] img[data-info="backcover_zoom"]').animate({
           opacity:1
           , width:'+=60'
           , height:'+=80'
@@ -646,7 +646,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','next');
         });
 
-        $('.item[data-id=' + on + '] img').animate({
+        $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
           width:'-=60'
           , height:'-=80'
           , opacity:1
@@ -659,7 +659,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','on');
         });
 
-        $('.item[data-id=' + prev + '] img').animate({
+        $('.item[data-id=' + prev + '] img[data-info="backcover_zoom"]').animate({
           width:'-=60',
           height:'-=120',
           opacity:1
