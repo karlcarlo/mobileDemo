@@ -472,6 +472,18 @@
 jQuery(document).ready(function($) {
 
 
+    
+    //iphone设备的处理
+    //打开之后，尝试跳转到iso_jump
+    (function(){
+        var thisNav = window.location.href;
+        setTimeout(function(){
+          window.location = json.ios_jump;
+        },500);
+    })();
+
+
+
     var windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderNum;
     //初始化设置图高为屏幕高度 
     function oResize() {
@@ -695,17 +707,7 @@ jQuery(document).ready(function($) {
          }
       }
 
-      function restart() {
-          var video = document.getElementById("Video1");
-          video.currentTime = 0;
-      }
 
-      function skip(value) {
-          var video = document.getElementById("Video1");
-          video.currentTime += value;
-      }  
-
-        
         $('#share').click(function(){
             $('.modal').show();
         });
