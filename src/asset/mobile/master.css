@@ -195,7 +195,7 @@ img.photo {
 .photo-wrapper .btn-voice {
   top: 10px;
   left: 0;
-  z-index: 30;
+  z-index: 90;
 }
 .btn-voice .btn {
   padding: 8px 20px;
