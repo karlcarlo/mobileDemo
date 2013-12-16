@@ -41,7 +41,7 @@
     , template = {
 
       spot: [
-          '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
+          '<img class="hotspot blink"  {{#notfirst}}data-info="hotspot_zoom"{{/notfirst}}" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
       ].join('')
 
       , album: [
@@ -84,7 +84,7 @@
       , photospot: [
 
           '<div class="photo-wrapper" id="{{dom_id}}">',
-          '    <div data-action="hotspot_back"   {{#notfirst}} data-info="hotspot_zoom" {{/notfirst}}"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
+          '    <div data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
           '        <img alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" style="background-image: url({{src}}); display: inline-block; width:{{spot_width}}px; height:{{spot_height}}px;" class="photo" draggable="false"/>',
           '    </div>',
           '</div>',
@@ -246,14 +246,9 @@
 
     function render(data){
 
-      console.log( 'render    ----------> photo_size ' +  photo_size ,  ',photo_border ' +photo_border);
-
       data.spot_width=photo_size[0] + photo_border*2;
       data.spot_height=photo_size[1] + photo_border*2;
 
-
-
-      console.dir(data);
 
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
@@ -531,23 +526,11 @@ jQuery(document).ready(function($) {
       $('div[data-init="zoom"]').css({"top":"40px","left":"30px"});
       $('div[data-init="zoom"] img').css({"height": (modHeight + borderNum*2 -80)+ "px","width": (modWidth + borderNum*2 -60)+"px"});
       
-      $('img[data-action="hotspot_goto"]').css({"width":"26px","height":"0px"});
+      $('img[data-info="hotspot_zoom"]').css({"width":"26px","height":"0px"});
 
       var picRoot1=$('#picroot1 img');
       photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
       photo_border = borderNum;
-
-var log = ' ,   windowHieght = ' +    windowHieght +
-          ' ,   windowWidth = ' +    windowWidth +
-          ' ,   clientHeight = ' +    clientHeight +
-          ' ,   clientWidth = ' +    clientWidth +
-          ' ,   mt = ' +    mt +
-          ' ,   picHeight = ' +    picHeight +
-          ' ,   picWidth = ' +    picWidth +
-          ' ,   modHeight = ' +    modHeight +
-          ' ,   modWidth = ' +    modWidth +
-          ' ,   borderNum = ' +    borderNum ;
-          console.log("BB" + log);
 
 
     },500);
