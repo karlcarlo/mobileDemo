@@ -84,7 +84,7 @@
       , photospot: [
 
           '<div class="photo-wrapper" id="{{dom_id}}">',
-          '    <div data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
+          '    <div data-action="hotspot_back"   {{#notfirst}} data-info="hotspot_zoom" {{/notfirst}}"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
           '        <img alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" style="background-image: url({{src}}); display: inline-block; width:{{spot_width}}px; height:{{spot_height}}px;" class="photo" draggable="false"/>',
           '    </div>',
           '</div>',
