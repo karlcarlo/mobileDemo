@@ -579,7 +579,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','prev');
         });
 
-        $('.item[data-id=' + on + '] img').animate({
+        $('.item[data-id=' + on + '] img[data-info^="hotspot_zoom"]').animate({
           opacity:0.3
           , width:'+=60'
           , height:'+=120'
@@ -646,7 +646,7 @@ jQuery(document).ready(function($) {
           $(this).attr('data-active','next');
         });
 
-        $('.item[data-id=' + on + '] img[data-info^="hotspot_zoom"]').animate({
+        $('.item[data-id=' + on + '] img').animate({
           width:'-=60'
           , height:'-=80'
           , opacity:1
