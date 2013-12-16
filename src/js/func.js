@@ -339,6 +339,9 @@
 
     function goto_spot(elem){
 
+
+      console.log('goto_spot-----> line 343 行');
+
       var $elem = $(elem)
         , spot_id = $elem.attr('data-spot-id')
 
@@ -376,12 +379,15 @@
         'border-width': 0,
         left:offset/2,//（屏幕宽- 图片款）/2
         top: top //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
-      },200, function(){
+      },300, function(){
         render(get_photo_data(spot_id))
       })
     }
 
     function back_spot(elem){
+
+      console.log('back_spot-----> line 386 行');
+
 
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
@@ -420,6 +426,10 @@
     }
 
     function photo_reset(){
+
+      console.log('photo_reset-----> line 424 行');
+
+
       rendered.forEach(function(dom_id, i){
         var id = dom_id.substring(dom_id.indexOf('_') + 1)
           , $elem = $('#' + dom_id)
