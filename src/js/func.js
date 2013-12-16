@@ -512,7 +512,7 @@ jQuery(document).ready(function($) {
       var ml = Math.floor(($('#photo_frame').width()-modWidth) /2);
       $('div.albumleft').css('margin-left', ml+'px');
 
-    },200);
+    },300);
 
 
 
