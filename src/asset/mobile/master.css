@@ -125,7 +125,7 @@ footer.foot {
   position: absolute;
 }
 .stamp .album-wrapper {
-  position: relative;
+  position: absolute;
   min-height: 354px;
   margin: 5px 0 30px;
   overflow: hidden;

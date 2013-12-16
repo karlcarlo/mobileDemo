@@ -43,13 +43,13 @@
       ].join('')
 
       , album: [
-          '<div style="z-index:{{index}}"  {{#notfirst}}data-init="zoom"{{/notfirst}} class="item-wrapper item {{#notfirst}}hide{{/notfirst}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
-          '<div id="album_{{page_num}}" class="album-wrapper  albumleft" data-id="{{page_num}}">',
+          //'<div style="z-index:{{index}}"  {{#notfirst}}data-init="zoom"{{/notfirst}} class="item-wrapper item {{#notfirst}}hide{{/notfirst}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
+          '<div  id="album_{{page_num}}" class="album-wrapper  albumleft  item {{#notfirst}}hide{{/notfirst}}" data-id="{{page_num}}"   style="z-index:{{index}}"  {{#notfirst}}data-init="zoom"{{/notfirst}}  {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
           '   {{#photos}}',
           '       {{>photo}}',
           '   {{/photos}}',
           '</div>',
-          '</div>'
+          //'</div>'
       ].join('')
 
       , photo: [
@@ -514,13 +514,18 @@ jQuery(document).ready(function($) {
       $('div.picroot img.photo').width(modWidth);
 
       //设置左侧留白
-      var ml = Math.floor((windowWidth-modWidth) /2) - borderHeight*2;
-      $('div.albumleft').attr('style','margin-left:'+ml+'px');
+      var ml = Math.floor(($('#photo_frame').width()-modWidth) /2);
+      $('div.albumleft').css('margin-left', ml+'px');
 
-    },50);
+    },100);
+
+
 
 
     setTimeout(function(){
+
+      console.log('windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderHeight');
+      console.log(windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderHeight);
 
       //初始化的时候设置第二项的data-active=next
       $('.item[data-active=on]').next().attr('data-active','next');
@@ -834,3 +839,40 @@ jQuery(document).ready(function($) {
 
 });
 
+
+
+
+/*
+
+<div id="album_0" class="album-wrapper">
+  <div id="spot_001" class="photo-wrapper">
+    <!///<div class="pos-abs pagination"><span class="current">1</span>/<span class="total">2</span></div>///>
+    <div class="pos-abs btn-voice">
+      <a href="#" class="btn"><i class="img-stop"></i>6''</a>
+      <a href="#" class="btn"><i class="img-play"></i>60''</a>
+      <audio controls="controls">
+        <source src="http://fennudegongniu.com/COFFdD0xMzgwMDEyNjM1Jmk9MS4yMDIuMTk4LjEyMyZ1PVNvbmdzL3YyL2ZhaW50UUMvZDAvNWUvMDhhMWEzYjE4ODJiZDc2YzM1YmY5NWM5OTE3YTVlZDAubXAzJm09MWRiMmNhOTk3NDA1YzI3ODU5ODgyZjM2NzkwN2NhNGEmdj1kb3duJm49SW50ZXJuYXRpb25hbHVkZSZzPU1hdHQlMjBQb2tvcmEmcD1z.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+    </div>
+    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="002" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top: 29%; left: 24%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a02.jpg);"/>
+    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="003" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top: 50%; left: 20%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a03.jpg);"/> 
+
+    <div class="pos-abs img-mod"><img src="http://img.itc.cn/ph0/c041be72b01cb60edf76dc02833a6a8b.png" /></div>
+
+    <div data-action="hotspot_back" data-id="001" data-parent-id="" data-type="root">
+      <img draggable="false" class="photo" style="background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a01.jpg);" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" alt="">
+    </div>
+  </div>
+</div>
+
+<div id="album_1" class="album-wrapper last-bg hide">
+  <div id="spot_004" class="photo-wrapper">
+    <//-- <div class="pos-abs pagination"><span class="current">2</span>/<span class="total">2</span></div> //>
+    <img style="top: 18%; left: 38%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a05.jpg);" alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" data-spot-id="005" data-action="hotspot_goto" class="hotspot blink"/>
+    <div class="pos-abs img-mod"><img src="http://img.itc.cn/ph0/c041be72b01cb60edf76dc02833a6a8b.png" /></div>
+    <div data-type="root" data-parent-id="" data-id="004" data-action="hotspot_back"><img alt="" style="background-image:url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a04.jpg);" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" class="photo" draggable="false"/></div>
+  </div>
+</div>
+
+*/
