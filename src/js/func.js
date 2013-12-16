@@ -357,7 +357,7 @@
       console.log( 'offset.left-xxxxx-' + offsetChild.left +','+ offsetChild.top  );
 
       //设置左侧留白
-      var offset = Math.floor( (Math.abs(offsetChild.left) - Math.abs(offsetParent.left)) )  -86 + photo_border +2;
+      var offset = Math.floor( (Math.abs(offsetChild.left) - Math.abs(offsetParent.left)) )  -86 + photo_border*2;
       var top = photo_border  ;
 
 
@@ -377,7 +377,7 @@
         'border-width': 0,
         left:offset/2,//（屏幕宽- 图片款）/2
         top: top //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
-      },8000, function(){
+      },200, function(){
         render(get_photo_data(spot_id))
       })
     }
@@ -725,22 +725,6 @@ var log = ' ,   windowHieght = ' +    windowHieght +
         $('.modal').click(function(){
             $('.modal').hide();
         });
-
-
-/*
-        $('.thumbnail').on('click', '[data-action="download"]', function(event){
-          event.preventDefault();
-          if(window.confirm("下载由我图记，查看全部内容","no")){
-            window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
-          }
-        });
-
-
-        $('.footer').on('click', '[data-action="create_album"]', function(event){
-          event.preventDefault();
-          window.location.href="https://itunes.apple.com/cn/app/you-wo-tu-ji/id703248106?mt=8"
-        });
-*/
 
 
     //播放音频按钮事件
