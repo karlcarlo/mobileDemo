@@ -251,6 +251,9 @@
       data.spot_width=photo_size[0] + photo_border*2;
       data.spot_height=photo_size[1] + photo_border*2;
 
+      
+
+
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
       if(rendered.indexOf(data.dom_id) !== -1){
