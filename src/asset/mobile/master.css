@@ -113,9 +113,13 @@ footer.foot {
   text-align: center;
   display: block;
   overflow: hidden;
+  min-height: 450px;
 }
 .stamp > div {
   text-align: center;
+}
+.stamp .item-wrapper {
+  position: absolute;
 }
 .stamp .album-wrapper {
   position: absolute;
@@ -148,7 +152,7 @@ img.photo {
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 50;
 }
 .stamp img.hotspot {
   position: absolute;
@@ -161,7 +165,7 @@ img.photo {
   background-position: center;
   background-size: 100% auto;
   background-origin: border-box;
-  z-index: 50;
+  z-index: 80;
 }
 .stamp img.hotspot:hover {
   cursor: pointer; 
@@ -188,7 +192,7 @@ img.photo {
 .photo-wrapper .btn-voice {
   top: 10px;
   left: 0;
-  z-index: 30;
+  z-index: 90;
 }
 .btn-voice .btn {
   padding: 8px 20px;
@@ -208,6 +212,7 @@ img.photo {
   clear: both;
   overflow: hidden;
 }
+.btn-voice .voice-hide{display: none;}
 .btn-voice .btn i {
   float: left;
   width: 23px;
