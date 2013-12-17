@@ -492,7 +492,7 @@ jQuery(document).ready(function($) {
       clientWidth = windowWidth - mt*2;
 
       var imgHeight = clientHeight - borderNum*2;
-      var imgWidth = Math.floor((320*imgHeight)/548);
+      var imgWidth = Math.floor((320*imgHeight)/480);
 
       console.log('imgHeight'+imgHeight, 'imgWidth'+imgWidth);
 
