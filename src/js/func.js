@@ -483,7 +483,7 @@ jQuery(document).ready(function($) {
 
     var windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderNum;
     //初始化设置图高为屏幕高度 
-    function oResize() {
+    function onResize() {
       mt = parseInt($('.stamp .album-wrapper').css('marginTop'));
       borderNum = parseInt($('.photo-wrapper .img-mod img, img.photo').css('border-width').slice(0,-2));
       windowHieght=window.innerHeight;
@@ -494,20 +494,19 @@ jQuery(document).ready(function($) {
       var imgHeight = clientHeight - borderNum*2;
       var imgWidth = Math.floor((320*imgHeight)/480);
 
-      console.log('imgHeight'+imgHeight, 'imgWidth'+imgWidth);
+      console.log('onResize imgHeight'+imgHeight, 'imgWidth'+imgWidth);
 
       $('div[data-type="root"] img.photo').height(imgHeight).show();
       $('div[data-type="root"] img.photo').width(imgWidth).show();
       $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
       $('.photo-wrapper .img-mod img').width(imgWidth).show();
 
-
       $('#photo_frame').css({'height':(mt*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
     }
     window.addEventListener("orientationchange", function(){
-      setTimeout("oResize()",100);
+      setTimeout("onResize()",100);
     } , false);
-    oResize();
+    onResize();
 
 
     //设置左右翻页按钮的位置和定位
@@ -527,7 +526,7 @@ jQuery(document).ready(function($) {
       $('div.picroot img.photo').width(modWidth);
 
       //设置左侧留白
-      var ml = Math.floor(($('#photo_frame').width()-modWidth) /2);
+      var ml = Math.floor(($('#photo_frame').width()-modWidth-borderNum*2) /2);
       $('div.albumleft').css('margin-left', ml+'px');
 
     },300);
