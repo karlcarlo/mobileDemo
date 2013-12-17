@@ -499,6 +499,7 @@ jQuery(document).ready(function($) {
       $('div[data-type="root"] img.photo').height(imgHeight).show();
       $('div[data-type="root"] img.photo').width(imgWidth).show();
       $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
+      $('.photo-wrapper .img-mod img').width(imgWidth).show();
 
 
       $('#photo_frame').css({'height':(mt*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
@@ -565,7 +566,7 @@ jQuery(document).ready(function($) {
       }
 
 
-      console.log('zpos='+zpos,'  click=' + xpos , typeof xpos,photo_border, window.innerWidth,window.innerWidth/2,photo_size[0],photo_size[0]/2);
+      //console.log('zpos='+zpos,'  click=' + xpos , typeof xpos,photo_border, window.innerWidth,window.innerWidth/2,photo_size[0],photo_size[0]/2);
 
     });
 
