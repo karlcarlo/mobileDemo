@@ -531,10 +531,10 @@ jQuery(document).ready(function($) {
       $('.item[data-active=on]').next().attr('data-active','next');
 
       //初始化除了第一张图以外所有图的宽高，缩小，适应放大
-      $('div[data-init="zoom"]').css({"top":"40px","left":"30px"});
-      $('div[data-init="zoom"] img').css({"height": (modHeight + borderNum*2 -80)+ "px","width": (modWidth + borderNum*2 -60)+"px"});
+      // $('div[data-init="zoom"]').css({"top":"40px","left":"30px"});
+      // $('div[data-init="zoom"] img').css({"height": (modHeight + borderNum*2 -80)+ "px","width": (modWidth + borderNum*2 -60)+"px"});
       
-      $('img[data-info="hotspot_zoom"]').css({"width":"60px","height":"60px"});
+      // $('img[data-info="hotspot_zoom"]').css({"width":"60px","height":"60px"});
 
       var picRoot1=$('#picroot1 img');
       photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
@@ -564,7 +564,7 @@ jQuery(document).ready(function($) {
 
 
     //初始化一些参数    //左右翻页
-    var begin = true,end = false,speed = 600,onmotion = false;
+    var begin = true,end = false,speed = 500,onmotion = false;
     $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
         transitionRight();
     });
@@ -600,30 +600,31 @@ jQuery(document).ready(function($) {
         $('.item[data-active=prev]').attr('data-active','no');
 
         $('.item[data-id=' + on + ']').animate({
-          top:'-=60'
-          , left:'-'+(windowWidth+60)
+          //top:'-=60', 
+          left:-windowWidth
         },speed,function(){
           $(this).attr('data-active','prev');
         });
 
-        $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
-          opacity:0.3
-          , width:'+=60'
-          , height:'+=120'
+        $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({          
+          // width:'+=60', 
+          // height:'+=120',
+          // opacity:0.3
         },speed);
 
         //$('.item[data-id=' + next + ']').css({'top':'40px','left':'30px'});
         $('.item[data-id=' + next + ']').animate({
-          top:'0',
+          //top:'0',
           left:'0'
         },speed,function(){
           $(this).attr('data-active','on');
         });
 
         $('.item[data-id=' + next + '] img[data-info="backcover_zoom"]').animate({
-          opacity:1
-          , width:'+=60'
-          , height:'+=80'
+          // width:'+=60', 
+          // height:'+=80',
+          // opacity:1
+          
         },speed,function(){
 
           //正在运动中不能再次触发
@@ -667,29 +668,29 @@ jQuery(document).ready(function($) {
         $('.item[data-active=next]').attr('data-active','no');
 
         $('.item[data-id=' + on + ']').animate({
-          top:'+=40',
-          left:'+=30'
+          // top:'+=40',
+          // left:'+=30'
         },speed,function(){
           $(this).attr('data-active','next');
         });
 
         $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
-          width:'-=60'
-          , height:'-=80'
-          , opacity:1
+          // width:'-=60', 
+          // height:'-=80', 
+          // opacity:1
         },speed);
 
         $('.item[data-id=' + prev + ']').animate({
-          top:'0',
+          //top:'0',
           left:'0'
         },speed,function(){
           $(this).attr('data-active','on');
         });
 
         $('.item[data-id=' + prev + '] img[data-info="backcover_zoom"]').animate({
-          width:'-=60',
-          height:'-=120',
-          opacity:1
+          // width:'-=60',
+          // height:'-=120',
+          // opacity:1
         },speed,function(){
 
           //正在运动中不能再次触发
@@ -823,5 +824,161 @@ jQuery(document).ready(function($) {
     <div data-type="root" data-parent-id="" data-id="004" data-action="hotspot_back"><img alt="" style="background-image:url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a04.jpg);" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" class="photo" draggable="false"/></div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function transitionLeft(){
+
+  console.log('向左转 下一个--->  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
+
+    if (onmotion) {
+        return;
+    }else if(end){
+        $('html, body, .foot').animate({scrollTop: $(document).height()}, 600); 
+        return false; 
+    }
+    onmotion = true;
+
+    //取得 当前on的id，以及下一个的id
+    var on    = $('.item[data-active=on]').attr('data-id');
+    var next  = $('.item[data-active=next]').attr('data-id');
+    //设置下一个显示， , 并且设置当前为next的下一个元素为next
+
+    var nextID = $('.item[data-active=next]').next().attr('data-id');
+    if(nextID){
+      $('.item[data-active=next]').removeClass('hide').next().attr('data-active','next');
+    }else{
+      $('.item[data-active=next]').removeClass('hide');
+    }
+
+    //设置当前的prev为no
+    $('.item[data-active=prev]').attr('data-active','no');
+
+    $('.item[data-id=' + on + ']').animate({
+      top:'-=60'
+      , left:'-'+(windowWidth+60)
+    },speed,function(){
+      $(this).attr('data-active','prev');
+    });
+
+    $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
+      opacity:0.3
+      , width:'+=60'
+      , height:'+=120'
+    },speed);
+
+    //$('.item[data-id=' + next + ']').css({'top':'40px','left':'30px'});
+    $('.item[data-id=' + next + ']').animate({
+      top:'0',
+      left:'0'
+    },speed,function(){
+      $(this).attr('data-active','on');
+    });
+
+    $('.item[data-id=' + next + '] img[data-info="backcover_zoom"]').animate({
+      opacity:1
+      , width:'+=60'
+      , height:'+=80'
+    },speed,function(){
+
+      //正在运动中不能再次触发
+      onmotion = false;
+    });
+
+    if($('.item[data-active=next]').next().attr('data-id')){
+
+      begin = false;
+      end = false;    
+    }else{
+      end = true;   
+
+    }
+
+}
+
+
+function transitionRight(){
+
+    console.log('向右转  <---- 上一个  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
+
+    if(begin || onmotion){    
+      return;
+    }
+    onmotion = true;
+
+    //取得 当前on的id，以及下一个的id
+    var on    = $('.item[data-active=on]').attr('data-id');
+    var prev  = $('.item[data-active=prev]').attr('data-id');
+    //设置下一个显示， , 并且设置当前为next的下一个元素为next
+
+    var prevID = $('.item[data-active=prev]').prev().attr('data-id');
+    if(prevID){
+      $('.item[data-active=prev]').prev().attr('data-active','prev');
+    }else{
+      $('.item[data-active=prev]');
+    }
+
+    //设置当前的next为no
+    $('.item[data-active=next]').attr('data-active','no');
+
+    $('.item[data-id=' + on + ']').animate({
+      top:'+=40',
+      left:'+=30'
+    },speed,function(){
+      $(this).attr('data-active','next');
+    });
+
+    $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
+      width:'-=60'
+      , height:'-=80'
+      , opacity:1
+    },speed);
+
+    $('.item[data-id=' + prev + ']').animate({
+      top:'0',
+      left:'0'
+    },speed,function(){
+      $(this).attr('data-active','on');
+    });
+
+    $('.item[data-id=' + prev + '] img[data-info="backcover_zoom"]').animate({
+      width:'-=60',
+      height:'-=120',
+      opacity:1
+    },speed,function(){
+
+      //正在运动中不能再次触发
+      onmotion = false;
+    });
+
+    if($('.item[data-active=prev]').prev().attr('data-id')){
+      begin = false;
+      end = false;    
+    }else{
+      begin = true;   
+    }
+}
+
+
+
+
 
 */
