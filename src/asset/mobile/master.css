@@ -429,9 +429,9 @@ img.photo {
   }
 }
 @media screen and (orientation: portrait) and (max-width: 385px)  {
-  #photo_frame img.hotspot {
-    width: 50px;
-    height: 50px;
+  .stamp img.hotspot {
+    width: 45px;
+    height: 45px;
   }
   .btn-voice .btn {
     padding: 2px 8px;
@@ -492,9 +492,9 @@ img.photo {
   }
 }
 @media screen and (orientation: portrait) and (max-width: 320px)  {
-  #photo_frame img.hotspot {
-    width: 50px;
-    height: 50px;
+  .stamp img.hotspot {
+    width: 45px;
+    height: 45px;
   }
   .pagination {
     font-size: 1em;
