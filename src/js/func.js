@@ -490,7 +490,14 @@ jQuery(document).ready(function($) {
       windowWidth=window.innerWidth;
       clientHeight = windowHieght - mt*2;
       clientWidth = windowWidth - mt*2;
-      $('div[data-type="root"] img.photo').height(clientHeight - borderNum*2).show();
+
+      var imgHeight = clientHeight - borderNum*2;
+      var imgWidth = Math.floor((320*imgHeight)/548);
+
+      console.log('imgHeight'+imgHeight, 'imgWidth'+imgWidth);
+
+      $('div[data-type="root"] img.photo').height(imgHeight).show();
+      $('div[data-type="root"] img.photo').width(imgWidth).show();
       $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
 
 
