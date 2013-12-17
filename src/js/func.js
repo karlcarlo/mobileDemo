@@ -75,7 +75,7 @@
           '        <img data-info="backcover_zoom" src="{{cover}}" style="height: 745px; display: inline-block;"/>',
           '    </div>',
           '    <div class="picroot" id="picroot{{id}}" data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
-          '        <img data-info="backcover_zoom" alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" style="background-image: url({{src}}); display: inline-block;" class="photo" draggable="false"/>',
+          '        <img data-info="backcover_zoom" alt="" src="{{src}}" style="display: inline-block;" class="photo" draggable="false"/>',
           '    </div>',
           '</div>',
 
