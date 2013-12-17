@@ -772,12 +772,14 @@ jQuery(document).ready(function($) {
 
         //iphone设备的处理
         //打开之后，尝试跳转到iso_jump
-        (function(){
-            var thisNav = window.location.href;
-            setTimeout(function(){
-              window.location = json.ios_jump;
-            },500);
-        })();
+
+        //为了测试ipad，暂时禁止掉！
+        // (function(){
+        //     var thisNav = window.location.href;
+        //     setTimeout(function(){
+        //       window.location = json.ios_jump;
+        //     },500);
+        // })();
 
 
       }else{
