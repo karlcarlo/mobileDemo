@@ -43,12 +43,9 @@ a.th {
 }
 .arrow-group {
   position: relative;
-  max-width: 52em;
+  max-width: 40em;
   margin: 0 auto;
   display: block;
-}
-.arrow-group a.pos-abs {
-  top: 30%;
 }
 .arrow-group i {
   background: url(icon_arrow.png) no-repeat 0 0;
@@ -57,7 +54,7 @@ a.th {
   display: inline-block;
 }
 .arrow-group a {
-  padding: 18px 28px;
+  /*padding: 18px 28px;*/
   opacity: 0.6;
   display: block;
   z-index: 50;
@@ -121,9 +118,9 @@ footer.foot {
   text-align: center;
 }
 .stamp .album-wrapper {
-  position: relative;
+  position: absolute;
   min-height: 354px;
-  margin: 5px 0 30px;
+  margin: 10px 0;
   overflow: hidden;
 }
 .photo-wrapper .img-mod img,
@@ -339,7 +336,7 @@ img.photo {
 }
 @media screen and (min-width: 640px) {
   .stamp .album-wrapper {
-    margin: 10px 0 30px;
+    margin: 10px 0;
   }
   .photo-wrapper .img-mod img,
   img.photo {
