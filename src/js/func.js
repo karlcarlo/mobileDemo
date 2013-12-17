@@ -41,7 +41,7 @@
     , template = {
 
       spot: [
-          '<img class="hotspot blink"  {{#notfirst}}data-info="hotspot_zoom"{{/notfirst}}" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
+          '<img class="hotspot blink"  {{#notfirst}}data-info="hotspot_zoom"{{/notfirst}}" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
       ].join('')
 
       , album: [
@@ -93,11 +93,11 @@
 
       , backcover: [
           '<div id="backcover" class="stamp second photo-wrapper">',
-          '  <div><img draggable="false" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg.jpg"></div>',
+          '  <div><img draggable="false" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg.jpg"></div>',
           '  <div class="pos-rel png-box">',
-          '    <img draggable="false" class="second-bg" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg_p1.png">',
-          '    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://10.2.58.132/ux_tudian/src/asset/nil.png" alt=""></a></div>',
-          '    <img draggable="false" class="second-bg" src="http://10.2.58.132/ux_tudian/src/asset/mobile/img_second_bg_p2.png">',
+          '    <img draggable="false" class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p1.png">',
+          '    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://s5.suc.itc.cn/ux_tudian/asset/nil.png" alt=""></a></div>',
+          '    <img draggable="false" class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p2.png">',
           '  </div>',
           '</div>'
       ].join('')
@@ -511,7 +511,7 @@ jQuery(document).ready(function($) {
 
     //设置左右翻页按钮的位置和定位
     var topOffset = Math.floor( clientHeight/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
-    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; max-width:'+windowWidth+'px;');
+    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; width:'+windowWidth+'px; max-width:'+windowWidth+'px;');
 
     //取图片的宽高
     setTimeout(function(){
