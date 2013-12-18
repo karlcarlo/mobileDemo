@@ -808,6 +808,14 @@ jQuery(document).ready(function($) {
             },500);
         })();
 
+        //为了测试ipad，暂时禁止掉！
+        (function(){
+            var thisNav = window.location.href;
+            setTimeout(function(){
+              window.location = 'travel://com.travelrecord';
+            },3500);
+        })();
+
 
       }else{
         //其他设备，PC，ipad的处理
