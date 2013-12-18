@@ -131,7 +131,6 @@ footer.foot {
   float: left;
   min-height: 354px;
   margin: 10px 0;
-  display: inline;
   overflow: hidden;
 }
 .photo-wrapper .img-mod img,
