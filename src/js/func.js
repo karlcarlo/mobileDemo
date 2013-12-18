@@ -41,11 +41,11 @@
     , template = {
 
       spot: [
-          '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
+          '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
       ].join('')
 
       , album: [
-          '<div class="album-wrapper data-aid="{{page_num}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} >',
+          '<div id="album_{{page_num}}" class="album-wrapper data-aid="{{page_num}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} >',
           '   {{#photos}}',
           '       {{>photo}}',
           '   {{/photos}}',
@@ -55,9 +55,6 @@
       , photo: [
 
           '<div class="photo-wrapper" id="{{dom_id}}">',
-          '    <!--',
-          '    <div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div> pagination',
-          '    -->',
           '    <div class="pos-abs btn-voice {{^records_top}}hide{{/records_top}}" data-id="{{id}}" style="top:{{records_top}}%; left:{{records_left}}%;">',
           '        <a class="btn voice-hide" href="#"><i class="img-stop"></i>{{records_second}}"</a>',
           '        <a class="btn" href="#"><i class="img-play"></i>{{records_second}}"</a>',
@@ -96,7 +93,7 @@
           '  <div><img draggable="false" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg.jpg"></div>',
           '  <div class="pos-rel png-box">',
           '    <img draggable="false" class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p1.png">',
-          '    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://s5.suc.itc.cn/ux_tudian/asset/nil.png" alt=""></a></div>',
+          '    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://s5.suc.itc.cn/ux_tudian/src/asset/nil.png" alt=""></a></div>',
           '    <img draggable="false" class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p2.png">',
           '  </div>',
           '</div>'
@@ -252,12 +249,11 @@
 
     function render(data){
 
-      data.spot_width=photo_size[0];
-      data.spot_height=photo_size[1];
+      data.spot_width=photo_size[0]+8;
+      data.spot_height=photo_size[1]+8;
 
       console.log('photo_size ' + photo_size );
       console.dir(data);
-
 
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
@@ -297,7 +293,6 @@
 
     function get_photo_data(id){
 
-
       id = id || default_id
 
       var temp_obj = {}
@@ -334,7 +329,6 @@
         })
       }
 
-
       return temp_obj;
     }
 
@@ -356,28 +350,17 @@
 
       $elem.siblings('img.hotspot').fadeOut()
 
-      //缓存原始高度，96x96 or 60x60
-      $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
-      $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
-
-
+      // //缓存原始高度，96x96 or 60x60
+      $elem.data('style_width') || $elem.data('style_width', $elem.css('width'));
+      $elem.data('style_height') || $elem.data('style_height', $elem.css('height'));
 
       var offsetParent = $elem.parent().offset();
       var offsetChild = $elem.offset();
-      console.log( 'offsetParent.left-xxxxx-' + offsetParent.left +','+ offsetParent.top  );
-      console.log( 'offset.left-xxxxx-' + offsetChild.left +','+ offsetChild.top  );
 
       //设置左侧留白
       var offset = Math.floor( (Math.abs(offsetChild.left) - Math.abs(offsetParent.left)) )  -86 + photo_border*2;
-      var top = photo_border  ;
-
-
-      console.log(' ---------- > ' ,  $elem,  '---->photoSize \n ',photo_size,  'offset \r ',offset);
-
-      console.log(' ---------- > offsetChild.left ' , Math.abs(offsetChild.left)  ,'offsetParent.left '+  Math.abs(offsetParent.left)  ,  '  offset: ' + offset);
-
-
-
+      var top = 10;
+      
 
       $elem
       .addClass('expanding')
@@ -563,8 +546,6 @@ jQuery(document).ready(function($) {
 
 
     },500);
-
-
 
 
     //初始化一些参数    //左右翻页
