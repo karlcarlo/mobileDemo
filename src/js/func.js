@@ -579,6 +579,19 @@ jQuery(document).ready(function($) {
         transitionLeft();
     });
 
+
+
+    //隐藏第一页的←翻箭头
+    function hideFirstArrows(){
+        if(begin){
+          $('div.arrow-group a').first().hide();
+        }else{
+          $('div.arrow-group a').first().show();
+        }
+    }
+
+    hideFirstArrows();
+
     function transitionLeft(){
 
       console.log('向左转 下一个--->  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
@@ -647,6 +660,8 @@ jQuery(document).ready(function($) {
 
         }
 
+          //隐藏第一个的←翻按钮
+          hideFirstArrows();
     }
 
 
@@ -654,7 +669,7 @@ jQuery(document).ready(function($) {
 
         console.log('向右转  <---- 上一个  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
 
-        if(begin || onmotion){    
+        if(begin || onmotion){
           return;
         }
         onmotion = true;
@@ -707,9 +722,14 @@ jQuery(document).ready(function($) {
         if($('.item[data-active=prev]').prev().attr('data-id')){
           begin = false;
           end = false;    
+
         }else{
           begin = true;   
         }
+
+        
+          //隐藏第一个的←翻按钮
+          hideFirstArrows();
     }
 
 
@@ -781,12 +801,20 @@ jQuery(document).ready(function($) {
         //打开之后，尝试跳转到iso_jump
 
         //为了测试ipad，暂时禁止掉！
-        // (function(){
-        //     var thisNav = window.location.href;
-        //     setTimeout(function(){
-        //       window.location = json.ios_jump;
-        //     },500);
-        // })();
+        (function(){
+            var thisNav = window.location.href;
+            setTimeout(function(){
+              window.location = json.ios_jump;
+            },500);
+        })();
+
+        //为了测试ipad，暂时禁止掉！
+        (function(){
+            var thisNav = window.location.href;
+            setTimeout(function(){
+              window.location = 'travel://com.travelrecord';
+            },1000);
+        })();
 
 
       }else{
