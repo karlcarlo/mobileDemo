@@ -568,7 +568,7 @@ jQuery(document).ready(function($) {
 
 
     //初始化一些参数    //左右翻页
-    var speed = 500, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
+    var speed = 400, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
 
     $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
         if(indexNum != 1){
@@ -594,10 +594,14 @@ jQuery(document).ready(function($) {
 
       if(xpos > zpos){
         //点击点在右侧，向下一个，→翻
-        if(indexNum != pageNum){
+
+        console.log('transitionLeft(); →翻 indexNum: ' + indexNum);
+        if(indexNum < pageNum){
+
             indexNum+=1;
             transitionLeft();
         }
+
         console.log('transitionLeft(); →翻 indexNum: ' + indexNum);
       }else{
 
@@ -638,7 +642,7 @@ jQuery(document).ready(function($) {
 
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum-1)
-        },speed,function(){
+        },speed,'swing',function(){
           //正在运动中不能再次触发
 
           onmotion = false;
@@ -659,7 +663,7 @@ jQuery(document).ready(function($) {
       
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum -1)
-        },speed,function(){
+        },speed,'swing',function(){
           //正在运动中不能再次触发
           onmotion = false;
 
