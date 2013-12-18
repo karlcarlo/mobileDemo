@@ -45,7 +45,7 @@
       ].join('')
 
       , album: [
-          '<div class="album-wrapper {{#first}}albumleft{{/first}} {{#notfirst}}hide{{/notfirst}}" data-id="{{page_num}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
+          '<div class="album-wrapper data-aid="{{page_num}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} >',
           '   {{#photos}}',
           '       {{>photo}}',
           '   {{/photos}}',
@@ -490,30 +490,28 @@
 
 jQuery(document).ready(function($) {
 
-    var boxWidth,windowHieght,windowWidth,clientHeight,clientWidth,marginTop,picHeight,picWidth,modHeight,modWidth,imgHeight,imgWidth,borderNum=4;
+    var boxWidth,windowHieght,windowWidth,picHeight,picWidth,modHeight,modWidth,imgHeight,imgWidth,borderNum=4;
     //初始化设置图高为屏幕高度 
     function onResize() {
-      marginTop = parseInt($('.stamp .album-wrapper').css('marginTop'));
       windowHieght=window.innerHeight;
       windowWidth=window.innerWidth;
-      clientHeight = windowHieght - marginTop*2;
-      clientWidth = windowWidth - marginTop*2;
 
-      imgHeight = clientHeight - borderNum*2;
+      imgHeight = windowHieght - 28;
       imgWidth = Math.floor((320*imgHeight)/480);
-      boxWidth = (imgWidth+8) * window.json.roots.length + Math.floor( (windowWidth - imgWidth - 8) /2 );;
+      boxWidth = (imgWidth+8) * window.json.roots.length;
 
 
       $('#photo_frame').css('width',boxWidth+'px');
+      $('#photo_box').css({'width':(imgWidth+8)+'px', 'height':(imgHeight+8)+'px'});
 
       console.log('onResize imgHeight'+imgHeight, '   imgWidth'+imgWidth , '   boxWidth :' + boxWidth);
 
       $('div[data-type="root"] img.photo').height(imgHeight).show();
       $('div[data-type="root"] img.photo').width(imgWidth).show();
-      $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
+      $('.photo-wrapper .img-mod img').height(windowHieght - borderNum*2).show();
       $('.photo-wrapper .img-mod img').width(imgWidth).show();
 
-      $('#photo_frame').css({'height':(marginTop*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
+      $('#photo_frame').css({'height': windowHieght+'px'});
     }
     window.addEventListener("orientationchange", function(){
       setTimeout("onResize()",100);
@@ -522,7 +520,7 @@ jQuery(document).ready(function($) {
 
 
     //设置左右翻页按钮的位置和定位
-    var topOffset = Math.floor( clientHeight/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
+    var topOffset = Math.floor( windowHieght/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
     $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; max-width:'+windowWidth+'px;');
 
     //取图片的宽高
@@ -542,9 +540,8 @@ jQuery(document).ready(function($) {
 
       console.log(  '//设置左侧留白 ml '  + ml);
       console.log(  ' 111  windowHieght,windowWidth,clientHeight,clientWidth,marginTop,picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth' );
-      console.log(  windowHieght,windowWidth,clientHeight,clientWidth,marginTop,picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth );
+      console.log(  windowHieght,windowWidth, picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth );
 
-      $('div.albumleft').css('margin-left', ml+'px');
 
     },300);
 
@@ -574,14 +571,18 @@ jQuery(document).ready(function($) {
     var speed = 500, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
 
     $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
-
-        indexNum += 1;
-        transitionRight();
+        if(indexNum != 1){
+            indexNum-=1;
+            transitionRight();
+        }
     });
-    $('div.arrow-group a.pos-abs i.icon-arrow-right').click(function() {
 
-        indexNum -= 1;
-        transitionLeft();
+    $('div.arrow-group a.pos-abs i.icon-arrow-right').click(function() {
+        //点击点在右侧，向下一个，→翻
+        if(indexNum != pageNum){
+            indexNum+=1;
+            transitionLeft();
+        }
     });
 
     //给body绑定一个全局的click时间，获取坐标！
@@ -632,11 +633,17 @@ jQuery(document).ready(function($) {
         }
         onmotion = true;
 
+
+        $('.hotspot[data-action="hotspot_goto"]').hide();
+
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum-1)
         },speed,function(){
           //正在运动中不能再次触发
+
           onmotion = false;
+
+          $('.hotspot[data-action="hotspot_goto"]').hide();
         });
         //隐藏第一个的←翻按钮
         hideFirstArrows();
@@ -647,12 +654,16 @@ jQuery(document).ready(function($) {
 
       console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
+
+        $('.hotspot[data-action="hotspot_goto"]').hide();
       
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum -1)
         },speed,function(){
           //正在运动中不能再次触发
           onmotion = false;
+
+          $('.hotspot[data-action="hotspot_goto"]').show();
         });
         //隐藏第一个的←翻按钮
         hideFirstArrows();

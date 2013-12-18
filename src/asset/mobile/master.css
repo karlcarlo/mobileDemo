@@ -113,6 +113,9 @@ footer.foot {
 #container {
   
 }
+
+.photo_box{margin: 10px auto 20px; overflow: hidden;}
+
 /*stamp*/
 .stamp {
   clear: both;
@@ -130,7 +133,7 @@ footer.foot {
 .stamp .album-wrapper {
   float: left;
   min-height: 354px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   overflow: hidden;
 }
 .photo-wrapper .img-mod img,
@@ -346,10 +349,10 @@ img.photo {
  }
 }
 @media screen and (min-width: 640px) {
-  .stamp .album-wrapper {
+  /*.stamp .album-wrapper {
     margin: 10px 0;
   }
-  /*.photo-wrapper .img-mod img,
+  .photo-wrapper .img-mod img,
   img.photo {
     border-width: 6px;
   }*/
