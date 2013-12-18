@@ -582,6 +582,8 @@ jQuery(document).ready(function($) {
         if(indexNum != pageNum){
             indexNum+=1;
             transitionLeft();
+        }else{
+
         }
     });
 
@@ -595,17 +597,23 @@ jQuery(document).ready(function($) {
       if(xpos > zpos){
         //点击点在右侧，向下一个，→翻
 
-        console.log('transitionLeft(); →翻 indexNum: ' + indexNum);
+        console.log('a   transitionLeft(); →翻 indexNum: ' + indexNum);
         if(indexNum < pageNum){
-
             indexNum+=1;
             transitionLeft();
+        }else if(indexNum == pageNum){
+                $('html, body, .foot').animate({scrollTop: $(document).height()}, 400);           
         }
 
-        console.log('transitionLeft(); →翻 indexNum: ' + indexNum);
+        console.log('b   transitionLeft(); →翻 indexNum: ' + indexNum);
       }else{
-
-        if(indexNum != 1){
+        
+        if(indexNum == pageNum){
+            $('html, body, .foot').animate({scrollTop:0}, 400,function(){                
+                indexNum = pageNum - 1;
+                transitionRight();
+            });     
+        }else if(indexNum != 1){
             indexNum-=1;
             transitionRight();
         }
@@ -631,14 +639,14 @@ jQuery(document).ready(function($) {
 
         if (onmotion) {
             return;
-        }else if(indexNum == pageNum){
-            $('html, body, .foot').animate({scrollTop: $(document).height()}, 600); 
-            return false; 
         }
         onmotion = true;
 
 
-        $('.hotspot[data-action="hotspot_goto"]').fadeOut(200);
+        $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+
+
+        console.log('in the left---> ' + indexNum , '  imgWidth=' + (imgWidth+8)*(indexNum-1));
 
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum-1)
@@ -659,7 +667,7 @@ jQuery(document).ready(function($) {
       console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
 
-        $('.hotspot[data-action="hotspot_goto"]').fadeOut(200);
+        $('.hotspot[data-action="hotspot_goto"]').fadeOut();
       
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum -1)
