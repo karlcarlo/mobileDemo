@@ -354,14 +354,6 @@
       $elem.data('style_width') || $elem.data('style_width', $elem.css('width'));
       $elem.data('style_height') || $elem.data('style_height', $elem.css('height'));
 
-      var offsetParent = $elem.parent().offset();
-      var offsetChild = $elem.offset();
-
-      //设置左侧留白
-      var offset = Math.floor( (Math.abs(offsetChild.left) - Math.abs(offsetParent.left)) )  -86 + photo_border*2;
-      var top = 10;
-      
-
       $elem
       .addClass('expanding')
       .animate({
@@ -369,9 +361,9 @@
         height: photo_size[1],//图高
         'border-radius': 0,
         'border-width': 0,
-        left:offset/2,//（屏幕宽- 图片款）/2
-        top: top //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
-      },300, function(){
+        left:0,//（屏幕宽- 图片款）/2
+        top: 0 //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
+      },400, function(){
         render(get_photo_data(spot_id))
       })
     }
