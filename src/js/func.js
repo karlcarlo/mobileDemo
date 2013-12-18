@@ -813,7 +813,7 @@ jQuery(document).ready(function($) {
             var thisNav = window.location.href;
             setTimeout(function(){
               window.location = 'travel://com.travelrecord';
-            },3500);
+            },1000);
         })();
 
 
