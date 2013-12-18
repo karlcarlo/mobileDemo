@@ -10,7 +10,7 @@ body {
 
 /* Grid HTML Classes */
 .row {max-width: 40em;overflow: hidden;}
-
+.row.no-auto {margin: 0;}
 .row.collapse > .column,
 .row.collapse > .columns {
   position: relative;
