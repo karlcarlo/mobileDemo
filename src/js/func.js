@@ -41,7 +41,7 @@
     , template = {
 
       spot: [
-          '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
+          '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
       ].join('')
 
       , album: [
@@ -738,8 +738,8 @@ jQuery(document).ready(function($) {
       Your browser does not support the audio element.
       </audio>
     </div>
-    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="002" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top: 29%; left: 24%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a02.jpg);"/>
-    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="003" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top: 50%; left: 20%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a03.jpg);"/> 
+    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="002" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top: 29%; left: 24%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a02.jpg);"/>
+    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="003" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top: 50%; left: 20%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a03.jpg);"/> 
 
     <div class="pos-abs img-mod"><img src="http://img.itc.cn/ph0/c041be72b01cb60edf76dc02833a6a8b.png" /></div>
 
@@ -752,7 +752,7 @@ jQuery(document).ready(function($) {
 <div id="album_1" class="album-wrapper last-bg hide">
   <div id="spot_004" class="photo-wrapper">
     <//-- <div class="pos-abs pagination"><span class="current">2</span>/<span class="total">2</span></div> //>
-    <img style="top: 18%; left: 38%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a05.jpg);" alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" data-spot-id="005" data-action="hotspot_goto" class="hotspot blink"/>
+    <img style="top: 18%; left: 38%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a05.jpg);" alt="" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" data-spot-id="005" data-action="hotspot_goto" class="hotspot blink"/>
     <div class="pos-abs img-mod"><img src="http://img.itc.cn/ph0/c041be72b01cb60edf76dc02833a6a8b.png" /></div>
     <div data-type="root" data-parent-id="" data-id="004" data-action="hotspot_back"><img alt="" style="background-image:url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a04.jpg);" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" class="photo" draggable="false"/></div>
   </div>
