@@ -9,7 +9,7 @@ body {
 }
 
 /* Grid HTML Classes */
-.row {max-width: 40em;}
+.row {max-width: 40em;overflow: hidden;}
 
 .row.collapse > .column,
 .row.collapse > .columns {
@@ -122,9 +122,10 @@ footer.foot {
   position: absolute;
 }
 .stamp .album-wrapper {
-  position: absolute;
+  float: left;
   min-height: 354px;
   margin: 10px 0;
+  display: inline;
   overflow: hidden;
 }
 .photo-wrapper .img-mod img,
@@ -135,7 +136,7 @@ img.photo {
   background-position: center 0;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  border: 3px solid #fff;
+  border: 4px solid #fff;
   display: none;
 }
 #photo_frame {
@@ -143,9 +144,9 @@ img.photo {
 }
 .stamp .photo-wrapper {
   position: relative;
-  float: left;
+  /*float: left;*/
   width: 100%;
-  display: inline-block;
+  display: block;
   clear: none;
 }
 .photo-wrapper .img-mod {
@@ -343,10 +344,10 @@ img.photo {
   .stamp .album-wrapper {
     margin: 10px 0;
   }
-  .photo-wrapper .img-mod img,
+  /*.photo-wrapper .img-mod img,
   img.photo {
     border-width: 6px;
-  }
+  }*/
   .pop-alert {
     margin-bottom: 22px;
     padding: 8px 0;
