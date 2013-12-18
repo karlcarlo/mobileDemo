@@ -124,18 +124,16 @@
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
-              setTimeout(function(){                    
+             /* setTimeout(function(){                    
                     //$('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
-              }, 4000);
+                    //back_spot(this);
+              }, 4000);*/
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
 
         event.preventDefault()
-        back_spot(this)
+        back_spot(this);
 
-        if(!Photonote.is_hotspot_visible){
-          //hotspot_active()
-        }
       })
       .on('click', '[data-action="hotspot_cover"]', function(event){
         event.preventDefault()
@@ -373,6 +371,7 @@
       console.log('back_spot-----> line 386 行');
 
 
+
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
         , parent_dom_id = get_spot_id(parent_id)
@@ -581,6 +580,9 @@ jQuery(document).ready(function($) {
     function transitionLeft(){
       console.log('向左转 开始：：下一个--->  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
+        //关闭打开的图点 
+        setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
+     
         if (onmotion) {
             return;
         }
@@ -606,6 +608,9 @@ jQuery(document).ready(function($) {
 
       console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
+        //关闭打开的图点 
+        setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
+        
         if(indexNum == pageNum){
             $('html, body, .foot').animate({scrollTop:0}, 0);     
         }
