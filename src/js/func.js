@@ -634,7 +634,7 @@ jQuery(document).ready(function($) {
         onmotion = true;
 
 
-        $('.hotspot[data-action="hotspot_goto"]').hide();
+        $('.hotspot[data-action="hotspot_goto"]').fadeOut(200);
 
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum-1)
@@ -643,7 +643,7 @@ jQuery(document).ready(function($) {
 
           onmotion = false;
 
-          $('.hotspot[data-action="hotspot_goto"]').hide();
+          $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
         });
         //隐藏第一个的←翻按钮
         hideFirstArrows();
@@ -655,7 +655,7 @@ jQuery(document).ready(function($) {
       console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
 
-        $('.hotspot[data-action="hotspot_goto"]').hide();
+        $('.hotspot[data-action="hotspot_goto"]').fadeOut(200);
       
         $('#photo_frame').animate({
           left:-(imgWidth + 8) * (indexNum -1)
@@ -663,7 +663,7 @@ jQuery(document).ready(function($) {
           //正在运动中不能再次触发
           onmotion = false;
 
-          $('.hotspot[data-action="hotspot_goto"]').show();
+          $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
         });
         //隐藏第一个的←翻按钮
         hideFirstArrows();
