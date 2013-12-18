@@ -571,20 +571,12 @@ jQuery(document).ready(function($) {
     var speed = 400, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
 
     $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
-        if(indexNum != 1){
-            indexNum-=1;
-            transitionRight();
-        }
+        transitionRight();
     });
 
     $('div.arrow-group a.pos-abs i.icon-arrow-right').click(function() {
         //点击点在右侧，向下一个，→翻
-        if(indexNum != pageNum){
-            indexNum+=1;
-            transitionLeft();
-        }else{
-
-        }
+        transitionLeft();
     });
 
     //给body绑定一个全局的click时间，获取坐标！
@@ -596,29 +588,9 @@ jQuery(document).ready(function($) {
 
       if(xpos > zpos){
         //点击点在右侧，向下一个，→翻
-
-        console.log('a   transitionLeft(); →翻 indexNum: ' + indexNum);
-        if(indexNum < pageNum){
-            indexNum+=1;
-            transitionLeft();
-        }else if(indexNum == pageNum){
-                $('html, body, .foot').animate({scrollTop: $(document).height()}, 400);           
-        }
-
-        console.log('b   transitionLeft(); →翻 indexNum: ' + indexNum);
+        transitionLeft();
       }else{
-        
-        if(indexNum == pageNum){
-            $('html, body, .foot').animate({scrollTop:0}, 400,function(){                
-                indexNum = pageNum - 1;
-                transitionRight();
-            });     
-        }else if(indexNum != 1){
-            indexNum-=1;
-            transitionRight();
-        }
-
-        console.log('transitionRight(); ←翻 indexNum: ' +indexNum);
+        transitionRight();
       }
 
     });
@@ -634,31 +606,26 @@ jQuery(document).ready(function($) {
     hideFirstArrows();
 
     function transitionLeft(){
-
       console.log('向左转 开始：：下一个--->  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
         if (onmotion) {
             return;
         }
         onmotion = true;
+        if(indexNum < pageNum){
+            indexNum+=1;
+            $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+            $('#photo_frame').animate({
+                left:-(imgWidth + 8) * (indexNum-1)
+            },speed,'swing',function(){
+                onmotion = false;
+                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+            });
 
-
-        $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-
-
-        console.log('in the left---> ' + indexNum , '  imgWidth=' + (imgWidth+8)*(indexNum-1));
-
-        $('#photo_frame').animate({
-          left:-(imgWidth + 8) * (indexNum-1)
-        },speed,'swing',function(){
-          //正在运动中不能再次触发
-
-          onmotion = false;
-
-          $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
-        });
-        //隐藏第一个的←翻按钮
-        hideFirstArrows();
+            hideFirstArrows();
+        }else if(indexNum == pageNum){
+              $('html, body, .foot').animate({scrollTop: $(document).height()}, 400);           
+        }
     }
 
 
@@ -666,19 +633,21 @@ jQuery(document).ready(function($) {
 
       console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
+        if(indexNum == pageNum){
+            $('html, body, .foot').animate({scrollTop:0}, 0);     
+        }
 
-        $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-      
-        $('#photo_frame').animate({
-          left:-(imgWidth + 8) * (indexNum -1)
-        },speed,'swing',function(){
-          //正在运动中不能再次触发
-          onmotion = false;
-
-          $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
-        });
-        //隐藏第一个的←翻按钮
-        hideFirstArrows();
+        if(indexNum != 1){
+              indexNum-=1;
+              $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+              $('#photo_frame').animate({
+                left:-(imgWidth + 8) * (indexNum -1)
+              },speed,'swing',function(){
+                onmotion = false;
+                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+              });
+              hideFirstArrows();            
+        }
     }
 
 
