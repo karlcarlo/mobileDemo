@@ -579,6 +579,8 @@ jQuery(document).ready(function($) {
             hideFirstArrows();
         }else if(indexNum == pageNum){
               $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);           
+        }else if(indexNum < pageNum){
+              $('html, body, .foot').animate({scrollTop: $(document).height()}, 0);
         }
     }
 
