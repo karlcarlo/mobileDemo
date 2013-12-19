@@ -484,8 +484,10 @@ jQuery(document).ready(function($) {
 
     //设置左右翻页按钮的位置和定位
     var topOffset = Math.floor( windowHieght/2 - $('.arrow-group a').innerHeight()/2 );
-    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; width:'+arrowWidth+'px;');
+    $('.arrow-group').attr('style','width:'+arrowWidth+'px;');
+    $('.arrow-group a').attr('style','top:' + topOffset+'px; z-index:200; ');
 
+    
     //取图片的宽高
     setTimeout(function(){
       var picroot = $('div.picroot img.photo')[0];
@@ -508,12 +510,9 @@ jQuery(document).ready(function($) {
 
 
     setTimeout(function(){
-
       var picRoot1=$('#picroot1 img');
       photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
       photo_border = borderNum;
-
-
     },500);
 
 
@@ -591,9 +590,8 @@ jQuery(document).ready(function($) {
         //关闭打开的图点 
         setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
         
-        if(indexNum == pageNum){
-            $('html, body, .foot').animate({scrollTop:0}, 0);     
-        }
+        $('html, body, .foot').animate({scrollTop:0}, 0);     
+        
 
         if(indexNum != 1){
               indexNum-=1;
