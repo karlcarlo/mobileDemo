@@ -115,25 +115,12 @@
 
       })
       .on('click', '[data-action="hotspot_goto"]', function(event){
-        
-        event.preventDefault()
-        goto_spot(this)
-
-          //3秒后关闭
-          //2013-11-26 add 打开后3秒自动关闭图片
-              //console.log('hotspot_fade')
-              //clearTimeout(Photonote.openphoto_timer)
-              var spotID = $(this).attr('data-spot-id');
-             /* setTimeout(function(){                    
-                    //$('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
-                    //back_spot(this);
-              }, 4000);*/
+        event.preventDefault();
+        goto_spot(this);
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
-
-        event.preventDefault()
+        event.preventDefault();
         back_spot(this);
-
       })
       .on('click', '[data-action="hotspot_cover"]', function(event){
         event.preventDefault()
@@ -361,7 +348,7 @@
         'border-width': 0,
         left:0,//（屏幕宽- 图片款）/2
         top: 0 //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
-      },400, function(){
+      },300, function(){
         render(get_photo_data(spot_id))
       })
     }
@@ -369,8 +356,6 @@
     function back_spot(elem){
 
       console.log('back_spot-----> line 386 行');
-
-
 
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
@@ -402,7 +387,7 @@
         top: photo_obj.top + '%',
         'border-radius': '50%',
         'border-width': '0.2em'
-      })
+      },300)
 
 
 
@@ -493,9 +478,13 @@ jQuery(document).ready(function($) {
     onResize();
 
 
+
+
+    var arrowWidth = $('.no-auto').width();
+
     //设置左右翻页按钮的位置和定位
-    var topOffset = Math.floor( windowHieght/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
-    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; max-width:'+windowWidth+'px;');
+    var topOffset = Math.floor( windowHieght/2 - $('.arrow-group a').innerHeight()/2 );
+    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; width:'+arrowWidth+'px;');
 
     //取图片的宽高
     setTimeout(function(){
@@ -509,27 +498,16 @@ jQuery(document).ready(function($) {
       //设置所有的picroot下的img.photo的width=modWidth
       $('div.picroot img.photo').width(imgWidth);
 
-      //设置左侧留白
-      var ml = Math.floor( (windowWidth - modWidth - 8) /2 );
 
-      console.log(  '//设置左侧留白 ml '  + ml);
-      console.log(  ' 111  windowHieght,windowWidth,clientHeight,clientWidth,marginTop,picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth' );
-      console.log(  windowHieght,windowWidth, picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth );
-
+      // console.log(  '//设置左侧留白 ml '  + ml);
+      // console.log(  ' 111  windowHieght,windowWidth,clientHeight,clientWidth,marginTop,picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth' );
+      // console.log(  windowHieght,windowWidth, picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth );
 
     },300);
 
 
 
     setTimeout(function(){
-      //初始化的时候设置第二项的data-active=next
-      $('.item[data-active=on]').next().attr('data-active','next');
-
-      //初始化除了第一张图以外所有图的宽高，缩小，适应放大
-      // $('div[data-init="zoom"]').css({"top":"40px","left":"30px"});
-      // $('div[data-init="zoom"] img').css({"height": (modHeight + borderNum*2 -80)+ "px","width": (modWidth + borderNum*2 -60)+"px"});
-      
-      // $('img[data-info="hotspot_zoom"]').css({"width":"60px","height":"60px"});
 
       var picRoot1=$('#picroot1 img');
       photo_size = [ picRoot1.innerWidth(),picRoot1.innerHeight() ];
@@ -542,13 +520,15 @@ jQuery(document).ready(function($) {
     //初始化一些参数    //左右翻页
     var speed = 400, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
 
-    $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
+    $('div.arrow-group a i.icon-arrow-left').click(function() {
         transitionRight();
+        //console.log('  transitionRight');
     });
 
-    $('div.arrow-group a.pos-abs i.icon-arrow-right').click(function() {
+    $('div.arrow-group a i.icon-arrow-right').click(function() {
         //点击点在右侧，向下一个，→翻
         transitionLeft();
+        //console.log('  transitionLeft');
     });
 
     //给body绑定一个全局的click时间，获取坐标！
@@ -570,9 +550,9 @@ jQuery(document).ready(function($) {
     //隐藏第一页的←翻箭头
     function hideFirstArrows(){
         if(indexNum == 1){
-          $('div.arrow-group a').first().hide();
+          $('div.arrow-group a').last().hide();
         }else{
-          $('div.arrow-group a').first().show();
+          $('div.arrow-group a').last().show();
         }
     }
     hideFirstArrows();
@@ -599,7 +579,7 @@ jQuery(document).ready(function($) {
 
             hideFirstArrows();
         }else if(indexNum == pageNum){
-              $('html, body, .foot').animate({scrollTop: $(document).height()}, 400);           
+              $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);           
         }
     }
 
@@ -622,7 +602,7 @@ jQuery(document).ready(function($) {
                 left:-(imgWidth + 8) * (indexNum -1)
               },speed,'swing',function(){
                 onmotion = false;
-                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+                $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
               });
               hideFirstArrows();            
         }
