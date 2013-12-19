@@ -574,11 +574,13 @@ jQuery(document).ready(function($) {
         onmotion = true;
 
         if(indexNum < pageNum){
+
+            var thisNum = indexNum - 1;
             $('html, body, .foot').animate({scrollTop:0}, 300, function(){
                   indexNum+=1;
                   $('.hotspot[data-action="hotspot_goto"]').fadeOut();
                   $('#photo_frame').animate({
-                      left:-(imgWidth + 8) * (indexNum-1)
+                      left:-(imgWidth + 8) * thisNum
                   },speed,'swing',function(){
                       onmotion = false;
                       $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
@@ -602,10 +604,12 @@ jQuery(document).ready(function($) {
         setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
         
         $('html, body, .foot').animate({scrollTop:0}, 300,function(){
+
+              var thisNum = indexNum - 1;
               if(indexNum != 1){
                     $('.hotspot[data-action="hotspot_goto"]').fadeOut();
                     $('#photo_frame').animate({
-                      left:-(imgWidth + 8) * (indexNum - 1)
+                      left:-(imgWidth + 8) * thisNum
                     },speed,'swing',function(){
                         onmotion = false;
                         $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
