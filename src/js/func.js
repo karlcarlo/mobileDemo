@@ -672,7 +672,10 @@ jQuery(document).ready(function($) {
       var isWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
 
       if(isAndroid){
-
+          $('a.btn-download').attr('href','javascript');
+          $('a.btn-download').click(function(){
+              alert('目前只支持苹果系统，安卓用户敬请期待！');
+          });
       }else if(isIphoneOs || isIpad){
 
         //iphone设备的处理
