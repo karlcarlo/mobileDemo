@@ -34,6 +34,9 @@ a.th {
 .pos-abs {
   position: absolute;
 }
+.pos-fixed {
+  position: fixed;
+}
 .modal {
   position: fixed;
   _position: absolute;
@@ -82,6 +85,7 @@ a.th {
   .arrow-group a {
     margin: 0 10px;
     /*padding: 9px 14px;*/
+    -webkit-border-radius: 5px;
     border-radius: 5px;
   }
 }
@@ -164,6 +168,7 @@ img.photo {
 .stamp img.hotspot {
   position: absolute;
   border: 0.2em solid #fff;
+  -webkit-border-radius: 50%;
   border-radius: 50%;
   overflow: hidden;
   width: 60px;
@@ -210,6 +215,7 @@ img.photo {
   background: -o-linear-gradient(top, #f6f6fa 0%, #dcdce4 100%);
   background: -ms-linear-gradient(top, #f6f6fa 0%, #dcdce4 100%);
   background: linear-gradient(top bottom, #f6f6fa 0%, #dcdce4 100%);
+  -webkit-border-radius: 30px;
   border-radius: 30px;
   box-shadow: 0 1px 1px #18162b;
   font-size: 1.875em;
@@ -245,6 +251,7 @@ img.photo {
   border-width: 1px;
   border-style: solid;
   border-color: #05713c #4cb787 #6dc8a0;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
   box-shadow: 0 0 12px #baffee;
 }
@@ -262,6 +269,7 @@ img.photo {
   background-color: rgba(255,255,255,0.5);
   color: #3d434e;
   font-size: 0.875em;
+  -webkit-border-radius: 10px;
   border-radius: 10px;
 }
 .pop-alert i.arrow-down {
@@ -292,6 +300,7 @@ img.photo {
   background: -o-linear-gradient(top, #fd865c 0%, #fc612b 100%);
   background: -ms-linear-gradient(top, #fd865c 0%, #fc612b 100%);
   background: linear-gradient(top bottom, #fd865c 0%, #fc612b 100%);
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   box-shadow: 0 1px 1px #fec0aa inset,0 1px 4px #18162b;
   border: 1px solid #fc612a;
@@ -322,6 +331,7 @@ img.photo {
   font-size: 0.625em;
   line-height: 1.6em;
   color: #a8aaae;
+  -webkit-border-radius: 6px;
   border-radius: 6px;
   text-align: center;
   overflow: hidden;
@@ -367,6 +377,7 @@ img.photo {
   }
   .btns a.btn-download {
     padding: 12px 0;
+    -webkit-border-radius: 6px;
     border-radius: 6px;
   }
   .btns a.btn-download i.img-btn-text {
@@ -442,6 +453,7 @@ img.photo {
   }
   .btn-voice .btn {
     padding: 2px 8px;
+    -webkit-border-radius: 12px;
     border-radius: 12px;
   }
   .btn-voice .btn i.img-play {
