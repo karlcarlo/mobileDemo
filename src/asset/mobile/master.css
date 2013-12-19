@@ -74,11 +74,11 @@ a.th {
 .arrow-group a.next {
   float: right;
 }
-.arrow-group a:last-child {
-  float: left;
-}
 .arrow-group a:first-child {
-  float: right;
+  right: 0;
+}
+.arrow-group a:last-child {
+  left: 0;
 }
 .arrow-group i.icon-arrow-right {
   -webkit-transform: rotate(180deg);
