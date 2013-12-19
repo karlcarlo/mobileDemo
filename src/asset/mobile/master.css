@@ -74,6 +74,9 @@ a.th {
 .arrow-group a.next {
   float: right;
 }
+.arrow-group a:last-child {
+  float: left;
+}
 .arrow-group a:first-child {
   float: right;
 }
