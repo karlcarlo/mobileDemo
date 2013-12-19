@@ -51,10 +51,10 @@ a.th {
   background-size: 70% auto;
 }
 .arrow-group {
-  position: relative;
-  max-width: 40em;
+  /*max-width: 40em;*/
   margin: 0 auto;
   display: block;
+  z-index: 50;
 }
 .arrow-group i {
   background: url(icon_arrow.png) no-repeat 0 0;
@@ -72,10 +72,10 @@ a.th {
   opacity: 0.8;
 }
 .arrow-group a.next {
-  right: 0;
+  float: right;
 }
-.arrow-group a:last-child {
-  right: 0;
+.arrow-group a:first-child {
+  float: right;
 }
 .arrow-group i.icon-arrow-right {
   -webkit-transform: rotate(180deg);
