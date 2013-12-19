@@ -567,6 +567,8 @@ jQuery(document).ready(function($) {
         }
         onmotion = true;
         if(indexNum < pageNum){
+            $('html, body, .foot').animate({scrollTop: $(document).height()}, 0);
+
             indexNum+=1;
             $('.hotspot[data-action="hotspot_goto"]').fadeOut();
             $('#photo_frame').animate({
@@ -579,8 +581,6 @@ jQuery(document).ready(function($) {
             hideFirstArrows();
         }else if(indexNum == pageNum){
               $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);           
-        }else if(indexNum < pageNum){
-              $('html, body, .foot').animate({scrollTop: $(document).height()}, 0);
         }
     }
 
