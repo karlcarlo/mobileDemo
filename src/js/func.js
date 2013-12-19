@@ -517,7 +517,7 @@ jQuery(document).ready(function($) {
 
 
     //初始化一些参数    //左右翻页
-    var speed = 400, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
+    var pageEnd = false, speed = 400, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
 
     $('div.arrow-group a i.icon-arrow-left').click(function() {
         transitionRight();
@@ -555,15 +555,14 @@ jQuery(document).ready(function($) {
         }
 
 
-        if(pageNum == indexNum){
-          $('div.arrow-group a').first().hide();
-        }else{
+        if(!pageEnd){
           $('div.arrow-group a').first().show();
         }
     }
     hideFirstArrows();
 
     function transitionLeft(){
+
       console.log('向左转 开始：：下一个--->  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
         //关闭打开的图点 
@@ -589,7 +588,9 @@ jQuery(document).ready(function($) {
 
             hideFirstArrows();
         }else if(indexNum == pageNum){
-              $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);           
+              $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);   
+
+              $('div.arrow-group a').first().hide();        
         }
     }
 
