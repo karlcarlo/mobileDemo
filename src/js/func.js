@@ -556,9 +556,9 @@ jQuery(document).ready(function($) {
 
 
         if(pageNum == indexNum){
-          $('div.arrow-group a').last().show();
+          $('div.arrow-group a').first().hide();
         }else{
-          $('div.arrow-group a').last().hide();
+          $('div.arrow-group a').first().show();
         }
     }
     hideFirstArrows();
