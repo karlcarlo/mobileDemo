@@ -575,21 +575,22 @@ jQuery(document).ready(function($) {
 
         if(indexNum < pageNum){
 
-            $('html, body, .foot').animate({scrollTop:0}, 0);    
+            $('html, body, .foot').animate({scrollTop:0}, 300，function(){
 
-            indexNum+=1;
-            $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-            $('#photo_frame').animate({
-                left:-(imgWidth + 8) * (indexNum-1)
-            },speed,'swing',function(){
-                onmotion = false;
-                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
-            });
+                  indexNum+=1;
+                  $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+                  $('#photo_frame').animate({
+                      left:-(imgWidth + 8) * (indexNum-1)
+                  },speed,'swing',function(){
+                      onmotion = false;
+                      $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+                      hideFirstArrows();
+                  });
 
-            hideFirstArrows();
+            });    
+
         }else if(indexNum == pageNum){
               $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);   
-
               $('div.arrow-group a').first().hide();        
         }
     }
@@ -602,21 +603,18 @@ jQuery(document).ready(function($) {
         //关闭打开的图点 
         setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
         
-        $('html, body, .foot').animate({scrollTop:0}, 400,function(){
-
-          
-
-                  if(indexNum != 1){
-                        indexNum-=1;
-                        $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-                        $('#photo_frame').animate({
-                          left:-(imgWidth + 8) * (indexNum -1)
-                        },speed,'swing',function(){
-                          onmotion = false;
-                          $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
-                        });
-                        hideFirstArrows();            
-                  }
+        var Num = indexNum - 1;
+        $('html, body, .foot').animate({scrollTop:0}, 300,function(){
+              if(indexNum != 1){
+                    $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+                    $('#photo_frame').animate({
+                      left:-(imgWidth + 8) * Num
+                    },speed,'swing',function(){
+                        onmotion = false;
+                        $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
+                        hideFirstArrows();     
+                    });      
+              }
         });     
         
     }
