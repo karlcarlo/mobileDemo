@@ -566,8 +566,10 @@ jQuery(document).ready(function($) {
             return;
         }
         onmotion = true;
+
         if(indexNum < pageNum){
-            $('html, body, .foot').animate({scrollTop: $(document).height()}, 0);
+
+            $('html, body, .foot').animate({scrollTop:0}, 0);    
 
             indexNum+=1;
             $('.hotspot[data-action="hotspot_goto"]').fadeOut();
