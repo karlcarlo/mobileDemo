@@ -553,6 +553,13 @@ jQuery(document).ready(function($) {
         }else{
           $('div.arrow-group a').last().show();
         }
+
+
+        if(pageNum == indexNum){
+          $('div.arrow-group a').last().show();
+        }else{
+          $('div.arrow-group a').last().hide();
+        }
     }
     hideFirstArrows();
 
