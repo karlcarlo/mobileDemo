@@ -41,11 +41,11 @@
     , template = {
 
       spot: [
-          '<img class="hotspot blink"  {{#notfirst}}data-info="hotspot_zoom"{{/notfirst}}" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
+          '<img class="hotspot blink" data-action="hotspot_goto" data-spot-id="{{spot_id}}" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top:{{top}}%;left:{{left}}%;background-image:url({{src}});" />'
       ].join('')
 
       , album: [
-          '<div  id="album_{{page_num}}" class="album-wrapper  albumleft  item {{#notfirst}}hide{{/notfirst}}" data-id="{{page_num}}"   style="z-index:{{index}}"  {{#notfirst}}data-init="zoom"{{/notfirst}}  {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} data-id="{{page_num}}">',
+          '<div id="album_{{page_num}}" class="album-wrapper data-aid="{{page_num}}" {{#first}}data-active="on"{{/first}} {{#notfirst}}data-active="no"{{/notfirst}} >',
           '   {{#photos}}',
           '       {{>photo}}',
           '   {{/photos}}',
@@ -55,9 +55,6 @@
       , photo: [
 
           '<div class="photo-wrapper" id="{{dom_id}}">',
-          '    <!--',
-          '    <div class="pos-abs pagination"><span class="current">{{current_page}}</span>/<span class="total">{{total_page}}</span></div> pagination',
-          '    -->',
           '    <div class="pos-abs btn-voice {{^records_top}}hide{{/records_top}}" data-id="{{id}}" style="top:{{records_top}}%; left:{{records_left}}%;">',
           '        <a class="btn voice-hide" href="#"><i class="img-stop"></i>{{records_second}}"</a>',
           '        <a class="btn" href="#"><i class="img-play"></i>{{records_second}}"</a>',
@@ -72,10 +69,10 @@
           '    {{/hotspot}}',
 
           '    <div id="mod_{{id}}" data-action="hotspot_cover"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}" class="pos-abs img-mod picmod">',
-          '        <img data-info="backcover_zoom" src="{{cover}}" style="height: 745px; display: inline-block;"/>',
+          '        <img data-info="backcover_zoom" src="{{cover}}" style="width:{{spot_width}}px; height:{{spot_height}}px; display: inline-block;"/>',
           '    </div>',
           '    <div class="picroot" id="picroot{{id}}" data-action="hotspot_back"  data-id="{{id}}" data-parent-id="{{parent_id}}" data-type="{{type}}">',
-          '        <img data-info="backcover_zoom" alt="" src="{{src}}" style="display: inline-block;" class="photo" draggable="false"/>',
+          '        <img data-info="backcover_zoom" alt="" src="{{src}}" style="width:{{spot_width}}px; height:{{spot_height}}px; display: inline-block;" class="photo" draggable="false"/>',
           '    </div>',
           '</div>',
 
@@ -96,7 +93,7 @@
           '  <div><img draggable="false" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg.jpg"></div>',
           '  <div class="pos-rel png-box">',
           '    <img draggable="false" class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p1.png">',
-          '    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://s5.suc.itc.cn/ux_tudian/asset/nil.png" alt=""></a></div>',
+          '    <div class="btn-wrapper"><a href="javascript:void(0);"><img draggable="false" class="img_second_bg" src="http://s5.suc.itc.cn/ux_tudian/src/asset/nil.png" alt=""></a></div>',
           '    <img draggable="false" class="second-bg" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/img_second_bg_p2.png">',
           '  </div>',
           '</div>'
@@ -127,18 +124,16 @@
               //console.log('hotspot_fade')
               //clearTimeout(Photonote.openphoto_timer)
               var spotID = $(this).attr('data-spot-id');
-              setTimeout(function(){                    
+             /* setTimeout(function(){                    
                     //$('#spot_'+spotID+' > div[data-action="hotspot_back"]').click();
-              }, 4000);
+                    //back_spot(this);
+              }, 4000);*/
       })
       .on('click', '[data-action="hotspot_back"]', function(event){
 
         event.preventDefault()
-        back_spot(this)
+        back_spot(this);
 
-        if(!Photonote.is_hotspot_visible){
-          //hotspot_active()
-        }
       })
       .on('click', '[data-action="hotspot_cover"]', function(event){
         event.preventDefault()
@@ -168,6 +163,10 @@
     }
 
     function gen_albums(){
+
+
+
+
       if(!pages.length){
         return
       }
@@ -177,9 +176,10 @@
             page_num: idx,
             photos: [],
             first:!!((idx+1) == 1),
-            notfirst:!((idx+1) == 1),
-            index:pages.length - idx
+            notfirst:!((idx+1) == 1)
           } , html = '';
+
+          console.dir(data);
 
         data.photos.push(get_photo_data(obj));
         html = Hogan.compile(template.album).render(data, template);
@@ -189,6 +189,7 @@
    
       $photo_frame.find('#photo_frame').append(template.backcover);
       $('#' + get_spot_id(default_id)).show();
+
     }
 
 
@@ -246,9 +247,11 @@
 
     function render(data){
 
-      data.spot_width=photo_size[0] + photo_border*2;
-      data.spot_height=photo_size[1] + photo_border*2;
+      data.spot_width=photo_size[0]+8;
+      data.spot_height=photo_size[1]+8;
 
+      console.log('photo_size ' + photo_size );
+      console.dir(data);
 
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
@@ -288,7 +291,6 @@
 
     function get_photo_data(id){
 
-
       id = id || default_id
 
       var temp_obj = {}
@@ -325,7 +327,6 @@
         })
       }
 
-
       return temp_obj;
     }
 
@@ -347,28 +348,9 @@
 
       $elem.siblings('img.hotspot').fadeOut()
 
-      //缓存原始高度，96x96 or 60x60
-      $elem.data('style_width') || $elem.data('style_width', $elem.css('width'))
-      $elem.data('style_height') || $elem.data('style_height', $elem.css('height'))
-
-
-
-      var offsetParent = $elem.parent().offset();
-      var offsetChild = $elem.offset();
-      console.log( 'offsetParent.left-xxxxx-' + offsetParent.left +','+ offsetParent.top  );
-      console.log( 'offset.left-xxxxx-' + offsetChild.left +','+ offsetChild.top  );
-
-      //设置左侧留白
-      var offset = Math.floor( (Math.abs(offsetChild.left) - Math.abs(offsetParent.left)) )  -86 + photo_border*2;
-      var top = photo_border  ;
-
-
-      console.log(' ---------- > ' ,  $elem,  '---->photoSize \n ',photo_size,  'offset \r ',offset);
-
-      console.log(' ---------- > offsetChild.left ' , Math.abs(offsetChild.left)  ,'offsetParent.left '+  Math.abs(offsetParent.left)  ,  '  offset: ' + offset);
-
-
-
+      // //缓存原始高度，96x96 or 60x60
+      $elem.data('style_width') || $elem.data('style_width', $elem.css('width'));
+      $elem.data('style_height') || $elem.data('style_height', $elem.css('height'));
 
       $elem
       .addClass('expanding')
@@ -377,9 +359,9 @@
         height: photo_size[1],//图高
         'border-radius': 0,
         'border-width': 0,
-        left:offset/2,//（屏幕宽- 图片款）/2
-        top: top //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
-      },300, function(){
+        left:0,//（屏幕宽- 图片款）/2
+        top: 0 //(parseInt($('.photo-wrapper').css('padding-bottom').slice(0,-2))/2)
+      },400, function(){
         render(get_photo_data(spot_id))
       })
     }
@@ -387,6 +369,7 @@
     function back_spot(elem){
 
       console.log('back_spot-----> line 386 行');
+
 
 
       var $elem = $(elem)
@@ -481,27 +464,28 @@
 
 jQuery(document).ready(function($) {
 
-    var windowHieght,windowWidth,clientHeight,clientWidth,mt,picHeight,picWidth,modHeight,modWidth,borderNum;
+    var boxWidth,windowHieght,windowWidth,picHeight,picWidth,modHeight,modWidth,imgHeight,imgWidth,borderNum=4;
     //初始化设置图高为屏幕高度 
     function onResize() {
-      mt = parseInt($('.stamp .album-wrapper').css('marginTop'));
-      borderNum = parseInt($('.photo-wrapper .img-mod img, img.photo').css('border-width').slice(0,-2));
       windowHieght=window.innerHeight;
       windowWidth=window.innerWidth;
-      clientHeight = windowHieght - mt*2;
-      clientWidth = windowWidth - mt*2;
 
-      var imgHeight = clientHeight - borderNum*2;
-      var imgWidth = Math.floor((320*imgHeight)/480);
+      imgHeight = windowHieght - 28;
+      imgWidth = Math.floor((320*imgHeight)/480);
+      boxWidth = (imgWidth+8) * window.json.roots.length;
 
-      console.log('onResize imgHeight'+imgHeight, 'imgWidth'+imgWidth);
+
+      $('#photo_frame').css('width',boxWidth+'px');
+      $('#photo_box').css({'width':(imgWidth+8)+'px', 'height':(imgHeight+8)+'px'});
+
+      console.log('onResize imgHeight'+imgHeight, '   imgWidth'+imgWidth , '   boxWidth :' + boxWidth);
 
       $('div[data-type="root"] img.photo').height(imgHeight).show();
       $('div[data-type="root"] img.photo').width(imgWidth).show();
-      $('.photo-wrapper .img-mod img').height(clientHeight - borderNum*2).show();
+      $('.photo-wrapper .img-mod img').height(windowHieght - borderNum*2).show();
       $('.photo-wrapper .img-mod img').width(imgWidth).show();
 
-      $('#photo_frame').css({'height':(mt*2  + clientHeight)+'px' , 'margin' :'0 0 20px 0'});
+      $('#photo_frame').css({'height': windowHieght+'px'});
     }
     window.addEventListener("orientationchange", function(){
       setTimeout("onResize()",100);
@@ -510,8 +494,8 @@ jQuery(document).ready(function($) {
 
 
     //设置左右翻页按钮的位置和定位
-    var topOffset = Math.floor( clientHeight/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
-    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; width:'+windowWidth+'px; max-width:'+windowWidth+'px;');
+    var topOffset = Math.floor( windowHieght/2 - $('.arrow-group a.pos-abs').innerHeight()/2 );
+    $('.arrow-group').attr('style','top:' + topOffset+'px; z-index:200; max-width:'+windowWidth+'px;');
 
     //取图片的宽高
     setTimeout(function(){
@@ -523,11 +507,15 @@ jQuery(document).ready(function($) {
       modWidth = picmod.width;
 
       //设置所有的picroot下的img.photo的width=modWidth
-      $('div.picroot img.photo').width(modWidth);
+      $('div.picroot img.photo').width(imgWidth);
 
       //设置左侧留白
-      var ml = Math.floor(($('#photo_frame').width()-modWidth-borderNum*2) /2);
-      $('div.albumleft').css('margin-left', ml+'px');
+      var ml = Math.floor( (windowWidth - modWidth - 8) /2 );
+
+      console.log(  '//设置左侧留白 ml '  + ml);
+      console.log(  ' 111  windowHieght,windowWidth,clientHeight,clientWidth,marginTop,picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth' );
+      console.log(  windowHieght,windowWidth, picHeight,picWidth,modHeight,modWidth,borderNum,imgHeight,imgWidth );
+
 
     },300);
 
@@ -551,12 +539,25 @@ jQuery(document).ready(function($) {
     },500);
 
 
+    //初始化一些参数    //左右翻页
+    var speed = 400, onmotion = false, indexNum=1, pageNum = window.json.roots.length;
+
+    $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
+        transitionRight();
+    });
+
+    $('div.arrow-group a.pos-abs i.icon-arrow-right').click(function() {
+        //点击点在右侧，向下一个，→翻
+        transitionLeft();
+    });
+
     //给body绑定一个全局的click时间，获取坐标！
     //判断是向左还是向右反转图片
-    $('#photo_frame').on('click', '.img-mod', function(event){
+    $('.photo-wrapper').on('click', '.img-mod', function(event){
 
       var xpos = event.clientX;
       var zpos = window.innerWidth/2;
+
       if(xpos > zpos){
         //点击点在右侧，向下一个，→翻
         transitionLeft();
@@ -564,172 +565,67 @@ jQuery(document).ready(function($) {
         transitionRight();
       }
 
-
-      //console.log('zpos='+zpos,'  click=' + xpos , typeof xpos,photo_border, window.innerWidth,window.innerWidth/2,photo_size[0],photo_size[0]/2);
-
     });
-
-
-    //初始化一些参数    //左右翻页
-    var begin = true,end = false,speed = 500,onmotion = false;
-    $('div.arrow-group a.pos-abs i.icon-arrow-left').click(function() {
-        transitionRight();
-    });
-    $('div.arrow-group a.pos-abs i.icon-arrow-right').click(function() {
-        transitionLeft();
-    });
-
-
 
     //隐藏第一页的←翻箭头
     function hideFirstArrows(){
-        if(begin){
+        if(indexNum == 1){
           $('div.arrow-group a').first().hide();
         }else{
           $('div.arrow-group a').first().show();
         }
     }
-
     hideFirstArrows();
 
     function transitionLeft(){
+      console.log('向左转 开始：：下一个--->  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
-      console.log('向左转 下一个--->  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
-
+        //关闭打开的图点 
+        setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
+     
         if (onmotion) {
             return;
-        }else if(end){
-            $('html, body, .foot').animate({scrollTop: $(document).height()}, 600); 
-            return false; 
         }
         onmotion = true;
+        if(indexNum < pageNum){
+            indexNum+=1;
+            $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+            $('#photo_frame').animate({
+                left:-(imgWidth + 8) * (indexNum-1)
+            },speed,'swing',function(){
+                onmotion = false;
+                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+            });
 
-        //取得 当前on的id，以及下一个的id
-        var on    = $('.item[data-active=on]').attr('data-id');
-        var next  = $('.item[data-active=next]').attr('data-id');
-        //设置下一个显示， , 并且设置当前为next的下一个元素为next
-
-        var nextID = $('.item[data-active=next]').next().attr('data-id');
-        if(nextID){
-          $('.item[data-active=next]').removeClass('hide').next().attr('data-active','next');
-        }else{
-          $('.item[data-active=next]').removeClass('hide');
+            hideFirstArrows();
+        }else if(indexNum == pageNum){
+              $('html, body, .foot').animate({scrollTop: $(document).height()}, 400);           
         }
-
-        //设置当前的prev为no
-        $('.item[data-active=prev]').attr('data-active','no');
-
-        $('.item[data-id=' + on + ']').animate({
-          //top:'-=60', 
-          left:-windowWidth
-        },speed,function(){
-          $(this).attr('data-active','prev');
-        });
-
-        $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({          
-          // width:'+=60', 
-          // height:'+=120',
-          // opacity:0.3
-        },speed);
-
-        //$('.item[data-id=' + next + ']').css({'top':'40px','left':'30px'});
-        $('.item[data-id=' + next + ']').animate({
-          //top:'0',
-          left:'0'
-        },speed,function(){
-          $(this).attr('data-active','on');
-        });
-
-        $('.item[data-id=' + next + '] img[data-info="backcover_zoom"]').animate({
-          // width:'+=60', 
-          // height:'+=80',
-          // opacity:1
-          
-        },speed,function(){
-
-          //正在运动中不能再次触发
-          onmotion = false;
-        });
-
-        if($('.item[data-active=next]').next().attr('data-id')){
-
-          begin = false;
-          end = false;    
-        }else{
-          end = true;   
-
-        }
-
-          //隐藏第一个的←翻按钮
-          hideFirstArrows();
     }
 
 
     function transitionRight(){
 
-        console.log('向右转  <---- 上一个  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
+      console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
-        if(begin || onmotion){
-          return;
-        }
-        onmotion = true;
-
-        //取得 当前on的id，以及下一个的id
-        var on    = $('.item[data-active=on]').attr('data-id');
-        var prev  = $('.item[data-active=prev]').attr('data-id');
-        //设置下一个显示， , 并且设置当前为next的下一个元素为next
-
-        var prevID = $('.item[data-active=prev]').prev().attr('data-id');
-        if(prevID){
-          $('.item[data-active=prev]').prev().attr('data-active','prev');
-        }else{
-          $('.item[data-active=prev]');
-        }
-
-        //设置当前的next为no
-        $('.item[data-active=next]').attr('data-active','no');
-
-        $('.item[data-id=' + on + ']').animate({
-          // top:'+=40',
-          // left:'+=30'
-        },speed,function(){
-          $(this).attr('data-active','next');
-        });
-
-        $('.item[data-id=' + on + '] img[data-info="backcover_zoom"]').animate({
-          // width:'-=60', 
-          // height:'-=80', 
-          // opacity:1
-        },speed);
-
-        $('.item[data-id=' + prev + ']').animate({
-          //top:'0',
-          left:'0'
-        },speed,function(){
-          $(this).attr('data-active','on');
-        });
-
-        $('.item[data-id=' + prev + '] img[data-info="backcover_zoom"]').animate({
-          // width:'-=60',
-          // height:'-=120',
-          // opacity:1
-        },speed,function(){
-
-          //正在运动中不能再次触发
-          onmotion = false;
-        });
-
-        if($('.item[data-active=prev]').prev().attr('data-id')){
-          begin = false;
-          end = false;    
-
-        }else{
-          begin = true;   
-        }
-
+        //关闭打开的图点 
+        setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
         
-          //隐藏第一个的←翻按钮
-          hideFirstArrows();
+        if(indexNum == pageNum){
+            $('html, body, .foot').animate({scrollTop:0}, 0);     
+        }
+
+        if(indexNum != 1){
+              indexNum-=1;
+              $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+              $('#photo_frame').animate({
+                left:-(imgWidth + 8) * (indexNum -1)
+              },speed,'swing',function(){
+                onmotion = false;
+                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+              });
+              hideFirstArrows();            
+        }
     }
 
 
@@ -808,13 +704,13 @@ jQuery(document).ready(function($) {
             },500);
         })();
 
-        //为了测试ipad，暂时禁止掉！
-        (function(){
-            var thisNav = window.location.href;
-            setTimeout(function(){
-              window.location = 'travel://com.travelrecord';
-            },1000);
-        })();
+        // //调往旅游的地址
+        // (function(){
+        //     var thisNav = window.location.href;
+        //     setTimeout(function(){
+        //       window.location = 'travel://com.travelrecord';
+        //     },1000);
+        // })();
 
 
       }else{
@@ -838,12 +734,12 @@ jQuery(document).ready(function($) {
       <a href="#" class="btn"><i class="img-stop"></i>6''</a>
       <a href="#" class="btn"><i class="img-play"></i>60''</a>
       <audio controls="controls">
-        <source src="http://fennudegongniu.com/COFFdD0xMzgwMDEyNjM1Jmk9MS4yMDIuMTk4LjEyMyZ1PVNvbmdzL3YyL2ZhaW50UUMvZDAvNWUvMDhhMWEzYjE4ODJiZDc2YzM1YmY5NWM5OTE3YTVlZDAubXAzJm09MWRiMmNhOTk3NDA1YzI3ODU5ODgyZjM2NzkwN2NhNGEmdj1kb3duJm49SW50ZXJuYXRpb25hbHVkZSZzPU1hdHQlMjBQb2tvcmEmcD1z.mp3" type="audio/mpeg">
+        <source src="http://fennudegongniu.com/COFFdD0xMzgwMDEyNjM1Jmk9MS4yMDIumarginTopk4LjEyMyZ1PVNvbmdzL3YyL2ZhaW50UUMvZDAvNWUvMDhhMWEzYjE4ODJiZDc2YzM1YmY5NWM5OTE3YTVlZDAubXAzJm09MWRiMmNhOTk3NDA1YzI3ODU5ODgyZjM2NzkwN2NhNGEmdj1kb3duJm49SW50ZXJuYXRpb25hbHVkZSZzPU1hdHQlMjBQb2tvcmEmcD1z.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
       </audio>
     </div>
-    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="002" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top: 29%; left: 24%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a02.jpg);"/>
-    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="003" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" alt="" style="top: 50%; left: 20%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a03.jpg);"/> 
+    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="002" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top: 29%; left: 24%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a02.jpg);"/>
+    <img class="hotspot blink" data-action="hotspot_goto" data-spot-id="003" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" alt="" style="top: 50%; left: 20%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a03.jpg);"/> 
 
     <div class="pos-abs img-mod"><img src="http://img.itc.cn/ph0/c041be72b01cb60edf76dc02833a6a8b.png" /></div>
 
@@ -856,26 +752,11 @@ jQuery(document).ready(function($) {
 <div id="album_1" class="album-wrapper last-bg hide">
   <div id="spot_004" class="photo-wrapper">
     <//-- <div class="pos-abs pagination"><span class="current">2</span>/<span class="total">2</span></div> //>
-    <img style="top: 18%; left: 38%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a05.jpg);" alt="" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/nil.png" data-spot-id="005" data-action="hotspot_goto" class="hotspot blink"/>
+    <img style="top: 18%; left: 38%; background-image: url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a05.jpg);" alt="" src="http://s5.suc.itc.cn/ux_tudian/asset/mobile/nil.png" data-spot-id="005" data-action="hotspot_goto" class="hotspot blink"/>
     <div class="pos-abs img-mod"><img src="http://img.itc.cn/ph0/c041be72b01cb60edf76dc02833a6a8b.png" /></div>
     <div data-type="root" data-parent-id="" data-id="004" data-action="hotspot_back"><img alt="" style="background-image:url(http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/pic/a04.jpg);" src="http://s5.suc.itc.cn/ux_tudian/src/asset/mobile/img_download_filler.png" class="photo" draggable="false"/></div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
