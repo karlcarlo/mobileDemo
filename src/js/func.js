@@ -166,7 +166,7 @@
             notfirst:!((idx+1) == 1)
           } , html = '';
 
-          console.dir(data);
+          //console.dir(data);
 
         data.photos.push(get_photo_data(obj));
         html = Hogan.compile(template.album).render(data, template);
@@ -227,7 +227,7 @@
       //console.log('hotspot_disable')
       clearTimeout(Photonote.hotspot_timer)
       
-      console.log('308 行 dodolook');
+      //console.log('308 行 dodolook');
       //$photo_frame.find('.hotspot').hide()
       //Photonote.is_hotspot_visible = false
     }
@@ -237,8 +237,8 @@
       data.spot_width=photo_size[0]+8;
       data.spot_height=photo_size[1]+8;
 
-      console.log('photo_size ' + photo_size );
-      console.dir(data);
+      //console.log('photo_size ' + photo_size );
+      //console.dir(data);
 
       var $album_wrapper = $('#' + get_album_id(data.root_id))
 
@@ -328,7 +328,7 @@
     function goto_spot(elem){
 
 
-      console.log('goto_spot-----> line 343 行');
+      //console.log('goto_spot-----> line 343 行');
 
       var $elem = $(elem)
         , spot_id = $elem.attr('data-spot-id')
@@ -355,7 +355,7 @@
 
     function back_spot(elem){
 
-      console.log('back_spot-----> line 386 行');
+      //console.log('back_spot-----> line 386 行');
 
       var $elem = $(elem)
         , parent_id = $elem.attr('data-parent-id')
@@ -395,7 +395,7 @@
 
     function photo_reset(){
 
-      console.log('photo_reset-----> line 424 行');
+      //console.log('photo_reset-----> line 424 行');
 
 
       rendered.forEach(function(dom_id, i){
@@ -463,7 +463,7 @@ jQuery(document).ready(function($) {
       $('#photo_frame').css('width',boxWidth+'px');
       $('#photo_box').css({'width':(imgWidth+8)+'px', 'height':(imgHeight+8)+'px'});
 
-      console.log('onResize imgHeight'+imgHeight, '   imgWidth'+imgWidth , '   boxWidth :' + boxWidth);
+      //console.log('onResize imgHeight'+imgHeight, '   imgWidth'+imgWidth , '   boxWidth :' + boxWidth);
 
       $('div[data-type="root"] img.photo').height(imgHeight).show();
       $('div[data-type="root"] img.photo').width(imgWidth).show();
@@ -558,16 +558,28 @@ jQuery(document).ready(function($) {
         if(!pageEnd){
           $('div.arrow-group a').first().show();
         }
+
+
+        //console.log('hideFirstArrows------------------->indexNum' +indexNum + '    pageNum'+pageNum);
     }
     hideFirstArrows();
 
     function transitionLeft(){
 
-      console.log('向左转 开始：：下一个--->  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
+      //console.log('向左转 开始：：下一个--->  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
         //关闭打开的图点 
         setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
      
+
+
+        if (onmotion && (indexNum == pageNum)) {
+
+            $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);   
+            $('div.arrow-group a').first().hide();      
+            return;
+        }
+
         if (onmotion) {
             return;
         }
@@ -575,19 +587,19 @@ jQuery(document).ready(function($) {
 
         if(indexNum < pageNum){
 
-            var thisNum = indexNum - 1;
             $('html, body, .foot').animate({scrollTop:0}, 300, function(){
-                  indexNum+=1;
-                  $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-                  $('#photo_frame').animate({
-                      left:-(imgWidth + 8) * thisNum
-                  },speed,'swing',function(){
-                      onmotion = false;
-                      $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
-                      hideFirstArrows();
-                  });
-
             });    
+
+            indexNum += 1;
+            $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+            $('#photo_frame').animate({
+                left:-(imgWidth + 8) * (indexNum -1)
+            },speed,function(){
+                onmotion = false;
+                $('.hotspot[data-action="hotspot_goto"]').fadeIn(500);
+                hideFirstArrows();
+            });
+
 
         }else if(indexNum == pageNum){
               $('html, body, .foot').animate({scrollTop: $(document).height()}, 500);   
@@ -598,26 +610,26 @@ jQuery(document).ready(function($) {
 
     function transitionRight(){
 
-      console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
+      //console.log('向左转 <---- 上一个  indexNum:' + indexNum + ' pageNum:' + pageNum + '   onmotion:'+onmotion);
 
         //关闭打开的图点 
         setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
         
         $('html, body, .foot').animate({scrollTop:0}, 300,function(){
-
-              var thisNum = indexNum - 1;
-              if(indexNum != 1){
-                    $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-                    $('#photo_frame').animate({
-                      left:-(imgWidth + 8) * thisNum
-                    },speed,'swing',function(){
-                        onmotion = false;
-                        $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
-                        hideFirstArrows();     
-                    });      
-              }
         });     
         
+
+        if(indexNum != 1){
+          indexNum -= 1;
+              $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+              $('#photo_frame').animate({
+                left:-(imgWidth + 8) * (indexNum -1)
+              },speed,function(){
+                  onmotion = false;
+                  $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
+                  hideFirstArrows();     
+              });      
+        }
     }
 
 
@@ -710,7 +722,7 @@ jQuery(document).ready(function($) {
 
       }else{
         //其他设备，PC，ipad的处理
-        console.log('this is pc note3');
+        //console.log('this is pc note3');
       }
 
     }
@@ -760,7 +772,7 @@ jQuery(document).ready(function($) {
 
 function transitionLeft(){
 
-  console.log('向左转 下一个--->  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
+  //console.log('向左转 下一个--->  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
 
     if (onmotion) {
         return;
@@ -830,7 +842,7 @@ function transitionLeft(){
 
 function transitionRight(){
 
-    console.log('向右转  <---- 上一个  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
+    //console.log('向右转  <---- 上一个  是否第一个:' + begin + ' 是否最后一个:' + end + '  正在运动:' + onmotion);
 
     if(begin || onmotion){    
       return;
