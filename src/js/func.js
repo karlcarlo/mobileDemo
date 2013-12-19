@@ -602,20 +602,23 @@ jQuery(document).ready(function($) {
         //关闭打开的图点 
         setTimeout(function(){ $('div[data-action="hotspot_back"]').click(); }, 500);
         
-        $('html, body, .foot').animate({scrollTop:0}, 0);     
-        
+        $('html, body, .foot').animate({scrollTop:0}, 400,function(){
 
-        if(indexNum != 1){
-              indexNum-=1;
-              $('.hotspot[data-action="hotspot_goto"]').fadeOut();
-              $('#photo_frame').animate({
-                left:-(imgWidth + 8) * (indexNum -1)
-              },speed,'swing',function(){
-                onmotion = false;
-                $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
-              });
-              hideFirstArrows();            
-        }
+          
+
+                  if(indexNum != 1){
+                        indexNum-=1;
+                        $('.hotspot[data-action="hotspot_goto"]').fadeOut();
+                        $('#photo_frame').animate({
+                          left:-(imgWidth + 8) * (indexNum -1)
+                        },speed,'swing',function(){
+                          onmotion = false;
+                          $('.hotspot[data-action="hotspot_goto"]').fadeIn(300);
+                        });
+                        hideFirstArrows();            
+                  }
+        });     
+        
     }
 
 
